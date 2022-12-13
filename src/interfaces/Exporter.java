@@ -5,19 +5,16 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 
 import com.intellij.openapi.ui.VerticalFlowLayout;
 
-import utilities.AsideLayout;
+
 import utilities.Colors;
 import utilities.Fonts;
 import utilities.Labels;
-import utilities.Sary;
+
 public class Exporter extends JPanel{
     public Exporter(){
         this.setLayout(new BorderLayout());
@@ -50,6 +47,11 @@ public class Exporter extends JPanel{
 
         panel.setOpaque(false);
 
+        //-----******************* LABELS ************-*--------
+
+        Labels language = new Labels("Exporter no eto", Fonts.textFont, Colors.text, 15);
+   
+        panel.add(language);
         return panel;
     }
 }
