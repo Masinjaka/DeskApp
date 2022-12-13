@@ -10,6 +10,8 @@ public class ParametreService {
     
     public ParametreService(){
 
+        parametre.getList().setSelectedIndex(0);
+
         parametre.getList().addListSelectionListener(new ListSelectionListener() {
 
             @Override
