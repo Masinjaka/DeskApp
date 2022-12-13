@@ -32,6 +32,7 @@ public class Term_Condition extends JPanel{
         panel.setOpaque(false);
 
         return panel;
+
     }
      //Contenu du parametre
      private JPanel Condition(){

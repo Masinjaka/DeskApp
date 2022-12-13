@@ -48,7 +48,7 @@ public class Apropos extends JPanel {
 
         //-----******************* LABELS ************-*--------
 
-        Labels language = new Labels("Apropos no eto", Fonts.textFont, Colors.text, 15);
+        Labels language = new Labels("Apropos no eto apropos antsika sy ny logiciel", Fonts.textFont, Colors.text, 15);
    
         panel.add(language);
 

@@ -49,9 +49,10 @@ public class Exporter extends JPanel{
 
         //-----******************* LABELS ************-*--------
 
-        Labels language = new Labels("Exporter no eto", Fonts.textFont, Colors.text, 15);
+        Labels language = new Labels("Exporter la liste des personnels", Fonts.textFont, Colors.text, 15);
    
         panel.add(language);
+        
         return panel;
     }
 }

@@ -29,7 +29,7 @@ public class Parametre extends JPanel {
 
     public Parametre(){
 
-        this.thirdParty  = rfid;
+        this.thirdParty  = apparence;
 
         this.setLayout(new BorderLayout(10,0));
         this.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
