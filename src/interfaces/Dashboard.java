@@ -65,7 +65,11 @@ public class Dashboard extends JPanel {
         welcomePanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         searchPanel.setOpaque(false);
 
+<<<<<<< HEAD
         welcomeLabel = new JLabel("Tongasoa eto amin'ny dezaka be");
+=======
+        welcomeLabel = new JLabel("Tongasoa eto ianao");
+>>>>>>> 1f8a1ebe3ba668cb8837829b9382f952296dddcd
         welcomeLabel.setFont(new Font("Arial",Font.BOLD,30));
         welcomeLabel.setForeground(textColor);
 

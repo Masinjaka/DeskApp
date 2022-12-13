@@ -23,6 +23,9 @@ public class Parametre extends JPanel {
     private Apparence apparence = new Apparence();
     private ScannerRFID rfid = new ScannerRFID();
     private Account account = new Account();
+    private Apropos aprop= new Apropos();
+    private Term_Condition TermCond = new Term_Condition();
+    private Exporter exporte = new Exporter();
 
     public Parametre(){
 
@@ -106,6 +109,22 @@ public class Parametre extends JPanel {
     public void setAccount(Account account) {
         this.account = account;
     }
-    
-    
+    public  Apropos getApropos() {
+        return aprop;
+    }
+    public void setApropos(Apropos aprop){
+        this.aprop= aprop;
+    }
+    public Exporter getExporter(){
+        return exporte;
+    }
+    public void setExporter(Exporter exporte){
+        this.exporte= exporte;
+    }
+    public Term_Condition getTerm_Condition(){
+        return TermCond;
+    }
+    public void setTerm_Condition (Term_Condition TermCond){
+        this.TermCond = TermCond;
+    }
 }

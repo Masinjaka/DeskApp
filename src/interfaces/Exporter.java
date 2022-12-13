@@ -1,0 +1,55 @@
+package interfaces;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JToggleButton;
+
+import com.intellij.openapi.ui.VerticalFlowLayout;
+
+import utilities.AsideLayout;
+import utilities.Colors;
+import utilities.Fonts;
+import utilities.Labels;
+import utilities.Sary;
+public class Exporter extends JPanel{
+    public Exporter(){
+        this.setLayout(new BorderLayout());
+        this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
+        this.setOpaque(false);
+        this.add(titre(),BorderLayout.NORTH);
+        this.add(settings(),BorderLayout.CENTER);
+    }
+    private JPanel titre(){
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel titre = new JLabel("Exporter");
+        titre.setFont(new Font(Fonts.textFont,Font.BOLD,25));
+        titre.setForeground(Colors.text);
+        titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
+        panel.add(titre);
+        panel.setOpaque(false);
+
+        return panel;
+    }
+     //Contenu du parametre
+     private JPanel settings(){
+
+        VerticalFlowLayout layout = new VerticalFlowLayout();
+        layout.setHorizontalFill(true);
+
+        // *********************** PANELS ************************
+
+        JPanel panel = new JPanel();
+        panel.setLayout(layout);
+
+        panel.setOpaque(false);
+
+        return panel;
+    }
+}
