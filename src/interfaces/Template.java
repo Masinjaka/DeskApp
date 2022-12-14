@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import database.CreateTables;
+import database.Database;
+import database.Tables;
 import services.MenuServices;
 import utilities.Colors;
 import utilities.Fonts;
@@ -23,8 +26,19 @@ public class Template extends JFrame{
     //Dashboard dashboard = new Dashboard();
     private MenuServices menuServices = new MenuServices();
 
+    // Data base
+    private Database db=new Database();
+    private CreateTables createTables;
+    private Tables tables;
+
     //Constructor
     public Template(){
+        //instance de data base
+        db.ConnectBase();
+        createTables=new CreateTables();
+        tables=new Tables();
+        
+        //dash
 
         //Setups
 
