@@ -14,29 +14,24 @@ import database.Tables;
 import services.MenuServices;
 import utilities.Colors;
 import utilities.Fonts;
-import utilities.menu.MenuItems;
-import utilities.menu.UserProfile;
 
 public class Template extends JFrame{
     
     JPanel container = (JPanel)this.getContentPane();
-    
-    MenuItems dash,debut,fin,list,setting;
-    UserProfile profile = new UserProfile("user", "Username", "Occupation");
-    //Dashboard dashboard = new Dashboard();
+
     private MenuServices menuServices = new MenuServices();
 
     // Data base
-    private Database db=new Database();
-    private CreateTables createTables;
-    private Tables tables;
+    private Database db = new Database();
+    private CreateTables createTables ;
+    public static Tables db_tables ;
 
     //Constructor
     public Template(){
-        //instance de data base
-        db.ConnectBase();
-        createTables=new CreateTables();
-        tables=new Tables();
+        //Connect to database 
+        this.db.ConnectBase();
+        this.createTables=new CreateTables();
+        db_tables = new Tables();
         
         //dash
 
@@ -65,5 +60,7 @@ public class Template extends JFrame{
         panel.add(copyright);
         return panel;
     }
+
+
 
 }

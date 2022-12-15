@@ -17,12 +17,14 @@ public class CreateTables {
 
 	public CreateTables() {
 		
+		// Créer un table pour chaque liste
 		for(String ble:T) {
 			creerTable(ble);
 		}
 		
 	}
 
+	// Créer un table dans la base de donnée
 	public void creerTable(String table) {
 
 		String sqlReq = null;
