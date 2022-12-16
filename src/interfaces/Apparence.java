@@ -3,6 +3,7 @@ package interfaces;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -10,7 +11,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+import javax.swing.border.Border;
 
+import com.formdev.flatlaf.ui.FlatLineBorder;
 import com.intellij.openapi.ui.VerticalFlowLayout;
 
 import utilities.AsideLayout;
@@ -66,18 +69,21 @@ public class Apparence extends JPanel{
         box.addItem("Malagasy");
         box.addItem("Français");
         box.addItem("Anglais");
+        box.setBorder((Border) new FlatLineBorder(new Insets(8,10,8,10), Colors.purple,3,20));
 
         // Créer un toggle pour le choix de theme
         JToggleButton toggle = new JToggleButton();
         toggle.setText("LIGHT");
         toggle.setSelectedIcon(new ImageIcon(new Sary().Resize("img/on.png", 15, 15)));
         toggle.setIcon(new ImageIcon(new Sary().Resize("img/off.png", 15, 15)));
+        toggle.setBorder((Border) new FlatLineBorder(new Insets(8,42,8,10), Colors.purple,3,20));
 
         // Créer un JCombo pour le choix de taille de police
         JComboBox<String> boxtaille = new JComboBox<>();
         boxtaille.addItem("15%");
         boxtaille.addItem("50%");
         boxtaille.addItem("75%");
+        boxtaille.setBorder((Border) new FlatLineBorder(new Insets(6,38,6,10), Colors.purple,3,20));
 
         // Arranger tout les élements en place
         AsideLayout langLayout = new AsideLayout(language, box);
