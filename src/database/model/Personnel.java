@@ -15,7 +15,9 @@ public class Personnel {
 	private Mpiasa mpiasa;
 	
 	public Personnel() throws SQLException {
+		
 		stm = Database.connection.createStatement();
+		
 		mpiasa = new Mpiasa();
 	}
 
@@ -68,7 +70,7 @@ public class Personnel {
 
 	}// Fin select
 
-	public void ajouter(String nom,String prenom,String poste, long CIN, int heures,String carte, String photo,int etat) throws SQLException {
+	public void ajouter(String nom,String prenom,String poste, long CIN, int heures,String carte, String photo,int etat){
 		
 		query = "insert into personne (Nom,Prenom,Poste,CIN,Heures,Carte,Photo,Etat) values ('"
 				+nom+"','"
@@ -80,7 +82,10 @@ public class Personnel {
 				+photo+"',"
 				+etat+")";
 		
-		stm.executeUpdate(query);
+		try {
+			stm.executeUpdate(query);
+		} catch (SQLException e) {
+		}
 		
 	}// Fin ajouter
 	

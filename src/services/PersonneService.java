@@ -9,7 +9,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.MouseInputAdapter;
 
-import interfaces.Ajouter;
 import interfaces.Personnels;
 
 public class PersonneService {
@@ -19,7 +18,7 @@ public class PersonneService {
 
     public PersonneService() {
 
-        // Ajouter une action à la selection d'un élement du liste
+        // Afficher l'information concernant la personne selectionnée
         personnels.getList().addListSelectionListener(new ListSelectionListener() {
 
             @Override
@@ -27,12 +26,12 @@ public class PersonneService {
 
                 if (!e.getValueIsAdjusting()) {
 
-                    //Récupérer tout les informations de la l'élement sélectionné 
+                    //Récupérer tout les informations de la personne sélectionnée
                     String nom = personnels.getList().getSelectedValue().getNom();
                     String prenom = personnels.getList().getSelectedValue().getPrenom();
                     String photo = personnels.getList().getSelectedValue().getPhoto();
 
-                    // Changer l'information à affichher sur le coté pour celui se l'élement sélectionné
+                    // Changer l'information à affichher sur le coté pour celui de la personne sélectionnée
                     personnels.getInfo().getnoms().setText(nom);
                     personnels.getInfo().getSchedule().setText(prenom);
                     personnels.getInfo().changePhoto(photo);
@@ -48,6 +47,7 @@ public class PersonneService {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
                 // Afficher une fenêtre d'ajout
                 AjouterService AJService = new AjouterService();
                 AJService.setVisible(true);
@@ -61,6 +61,13 @@ public class PersonneService {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
+                // Actualisation
+                if(actualiser){
+
+                    // TODO: Recharger la liste de peronnel
+
+                }
+
             }
             
         });
