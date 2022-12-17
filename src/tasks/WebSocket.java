@@ -15,13 +15,16 @@ public class WebSocket {
     static final int PORT = 8080; 
     
     // Signal d'erreur
-    private boolean erreur = false;
+    private boolean erreur = true;
 
     // ID Badge
     public static String badge = "";
 
     // Streamer
     BufferedReader br = null;
+
+    // Message 
+    public static String message = "";
 
     // Constructor
     public WebSocket(){}
@@ -37,11 +40,12 @@ public class WebSocket {
             // Reinitialiser l'erreur si le socket est connecté
             if(socket.isConnected())
                 this.erreur = false;
+                message = "Connection avec le module établie";
 
             // Ouvrir un tampon de cannal de communication    
             br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        } catch (IOException e) { this.erreur = true;}
+        } catch (IOException e) { this.erreur = true; message = "La connection avec le module à échouée";}
     }
 
     // Fonction qui recupère l'ID du badge
@@ -67,7 +71,6 @@ public class WebSocket {
         }
     }
 
-    // Getter and Setter
 
     public boolean isErreur() {
         return erreur;
@@ -77,5 +80,9 @@ public class WebSocket {
     public void setErreur(boolean erreur) {
         this.erreur = erreur;
     }
+
+    // Getter and Setter
+
+    
     
 }

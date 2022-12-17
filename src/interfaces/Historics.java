@@ -66,7 +66,7 @@ public class Historics extends JPanel {
         JPanel panelDate = new JPanel();
         panelDate.setLayout(new BoxLayout(panelDate,BoxLayout.Y_AXIS));
         panelDate.setBackground(Colors.backgrounds);
-        panelDate.setPreferredSize(new Dimension(250,0));
+        panelDate.setPreferredSize(new Dimension(280,0));
         panelDate.setBorder(new FlatLineBorder(new Insets(17,10,15,10), Colors.stroke,1,20));
 
         //-----------------------------------------------------------

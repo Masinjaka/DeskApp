@@ -39,19 +39,21 @@ public class DateAndTime extends JPanel {
         time.setFont(new Font(Fonts.textFont,Font.BOLD,50));
         time.setForeground(Colors.backgrounds);
 
-        Timer timer = new Timer(1/3, new ActionListener(){
+        Thread thread = new Thread(new Runnable() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                time.setText(LocalTime.now().truncatedTo(ChronoUnit.MINUTES).toString());
-                
-            }
+            public void run() {
+                for(;;){
 
+                    time.setText(LocalTime.now().truncatedTo(ChronoUnit.SECONDS).toString());
+                    // Pause pendant une seconde
+                    try {Thread.sleep(1000);} catch (InterruptedException e) {}
+                }
+            }
+            
         });
-        timer.setRepeats(true);
-        timer.setCoalesce(true);
-        timer.start();
+        thread.setDaemon(true);
+        thread.start();
 
         
         timePanel.add(time);

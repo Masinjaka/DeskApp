@@ -12,16 +12,31 @@ public class WebSocketService {
     // Créer un WebSocket
     WebSocket web_socket = new WebSocket();
     
-    // Constructeur
+    // ? Constructeur
     public WebSocketService(){
+
         Timer timer = new Timer(1/3, new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 
+                // *vérifier si il y a une erreur
+
+                while(web_socket.isErreur()){
+                    // Recommencer la connection 
+                    web_socket.connecter();
+                }
+                
+                // Récupérer un badge
+                web_socket.getID_badge(); 
             }
             
         });
+
+        // ? Demarrer le timer 
+        timer.setRepeats(true);
+        timer.setCoalesce(true);
+        timer.start();
     }
 
 
