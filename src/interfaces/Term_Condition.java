@@ -8,6 +8,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+// import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import com.intellij.openapi.ui.VerticalFlowLayout;
 
@@ -34,7 +36,7 @@ public class Term_Condition extends JPanel{
         return panel;
 
     }
-     //Contenu du parametre
+     //Contenu du termes et conditions
      private JPanel Condition(){
 
         VerticalFlowLayout layout = new VerticalFlowLayout();
@@ -42,15 +44,24 @@ public class Term_Condition extends JPanel{
 
         // *********************** PANELS ************************
 
+        
         JPanel panel = new JPanel();
-        panel.setLayout(layout);
+         panel.setLayout(layout);
 
         panel.setOpaque(false);
 //-----******************* LABELS ************-*--------
 
-        Labels language = new Labels("terme et condition  no eto", Fonts.textFont, Colors.text, 15);
+
+        Labels Mini_titre = new Labels("terme et condition  no eto", Fonts.textFont, Colors.purple, 20);
+        JTextArea Term_condition = new JTextArea("terme et condition ooooooooooooo");
+        Term_condition.setEditable(false);
+
    
-        panel.add(language);
+        panel.setBackground(Colors.blue);
+        panel.add(Mini_titre); 
+        panel.add(Term_condition);
+
+        
         return panel;
     }
 }
