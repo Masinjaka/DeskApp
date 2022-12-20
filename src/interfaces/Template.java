@@ -8,23 +8,32 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import database.CreateTables;
+import database.Database;
+import database.Tables;
 import services.MenuServices;
 import utilities.Colors;
 import utilities.Fonts;
-import utilities.menu.MenuItems;
-import utilities.menu.UserProfile;
 
 public class Template extends JFrame{
     
     JPanel container = (JPanel)this.getContentPane();
-    
-    MenuItems dash,debut,fin,list,setting;
-    UserProfile profile = new UserProfile("user", "Username", "Occupation");
-    //Dashboard dashboard = new Dashboard();
+
     private MenuServices menuServices = new MenuServices();
+
+    // Data base
+    private Database db = new Database();
+    private CreateTables createTables ;
+    public static Tables db_tables ;
 
     //Constructor
     public Template(){
+        //Connect to database 
+        this.db.ConnectBase();
+        this.createTables=new CreateTables();
+        db_tables = new Tables();
+        
+        //dash
 
         //Setups
 
@@ -51,5 +60,7 @@ public class Template extends JFrame{
         panel.add(copyright);
         return panel;
     }
+
+
 
 }

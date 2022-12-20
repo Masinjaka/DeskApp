@@ -1,7 +1,6 @@
 import com.formdev.flatlaf.FlatLightLaf;
 
 import interfaces.Template;
-
 public class App {
 
     static Template template;
