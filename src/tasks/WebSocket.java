@@ -7,15 +7,14 @@ import java.net.Socket;
 
 public class WebSocket {
 
-
     // Nouveau Socket
-    Socket socket = null; 
-    
+    private Socket socket = null;
+
     // Port
-    static final int PORT = 8080; 
-    
+    static final int PORT = 8080;
+
     // Signal d'erreur
-    private boolean erreur = true;
+    public static volatile boolean erreur = true;
 
     // ID Badge
     public static String badge = "";
@@ -23,66 +22,62 @@ public class WebSocket {
     // Streamer
     BufferedReader br = null;
 
-    // Message 
+    // Message
     public static String message = "";
 
     // Constructor
-    public WebSocket(){}
-    
-
-    // Connecter au serveur
-    public void connecter(){
-
-        try {
-
-            socket = new Socket("localhost", PORT);
-            
-            // Reinitialiser l'erreur si le socket est connecté
-            if(socket.isConnected())
-                this.erreur = false;
-                message = "Connection avec le module établie";
-
-            // Ouvrir un tampon de cannal de communication    
-            br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-        } catch (IOException e) { this.erreur = true; message = "La connection avec le module à échouée";}
+    public WebSocket() {
     }
 
-    // Fonction qui recupère l'ID du badge
-    public void getID_badge(){
+    // Connecter au serveur
+    public void connecter() {
+
         try {
-            // Verifier si la communication avec le serveur n'est pas interompu
-            if(socket.getInetAddress().isReachable(1000)){
 
-                // il y un message
-                if(br.ready()){
+            WebSocket.erreur = false;
+            socket = new Socket("localhost", PORT);
 
-                    // Lire les données
-                    badge = br.readLine();
-                }
-                
-            }else{
+            // Ouvrir un tampon de cannal de communication
+            br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                // Signaler une erreur
-                this.erreur = true;
-            }
         } catch (IOException e) {
-            this.erreur = true;
+            WebSocket.erreur = true;
         }
     }
 
+    // Fonction qui recupère l'ID du badge
+    public void getID_badge() {
+        // Verifier si la communication avec le serveur n'est pas interompu
 
-    public boolean isErreur() {
-        return erreur;
+        try {
+            if (socket.getInetAddress().isReachable(1000)) {
+                // il y un message
+                if (br.ready()) {
+
+                    // Lire les données
+                    WebSocket.badge = br.readLine();
+                    System.out.println(WebSocket.badge);
+
+                }
+                
+
+            } else {
+                // Signaler une erreur
+                WebSocket.erreur = true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public Socket getSocket() {
+        return socket;
+    }
 
-    public void setErreur(boolean erreur) {
-        this.erreur = erreur;
+    public void setSocket(Socket socket) {
+        this.socket = socket;
     }
 
     // Getter and Setter
 
-    
-    
 }

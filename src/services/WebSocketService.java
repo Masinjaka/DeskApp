@@ -1,44 +1,68 @@
 package services;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.Timer;
+import javax.swing.SwingWorker;
 
 import tasks.WebSocket;
+import utilities.ToggleButton;
 
 public class WebSocketService {
 
     // Créer un WebSocket
     WebSocket web_socket = new WebSocket();
-    
-    // ? Constructeur
-    public WebSocketService(){
+    private ToggleButton toggle;
 
-        Timer timer = new Timer(1/3, new ActionListener(){
+    // ? Constructeur
+    public WebSocketService(ToggleButton toggla) {
+
+        // Bouton switch
+        this.toggle = toggla;
+
+        SwingWorker fetchBadge = new SwingWorker<Void, Boolean>() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                // *vérifier si il y a une erreur
+            protected Void doInBackground() throws Exception {
+                int count = 0;
+                for (;;) {
 
-                while(web_socket.isErreur()){
-                    // Recommencer la connection 
-                    web_socket.connecter();
+                    // ? Pause avant chaque boucle afin de laisser respirer le ram :)
+                    Thread.sleep(100);
+
+                    // ? Essayer de connecter avec le module
+                    if (WebSocket.erreur) {
+                        web_socket.connecter();
+                        if (count > 0) {
+                        } else {
+                            publish(WebSocket.erreur);
+                            count++;
+                        }
+                    } else {
+                        web_socket.getID_badge();
+                        if (count < 1) {
+                        } else {
+                            publish(WebSocket.erreur);
+                            count--;
+                        }
+                    }
+
+                    // ? Essayer de récupérer l'identité d'un badge
+
                 }
-                
-                // Récupérer un badge
-                web_socket.getID_badge(); 
             }
-            
-        });
 
-        // ? Demarrer le timer 
-        timer.setRepeats(true);
-        timer.setCoalesce(true);
-        timer.start();
+            @Override
+            protected void process(List<Boolean> chunks) {
+
+                boolean state = chunks.get(chunks.size() - 1);
+                toggle.setSelected(!state);
+
+            }
+
+        };
+        fetchBadge.execute();
+
     }
-
 
     // Getters and Setters
     public WebSocket getWeb_socket() {
@@ -48,6 +72,5 @@ public class WebSocketService {
     public void setWeb_socket(WebSocket web_socket) {
         this.web_socket = web_socket;
     }
-    
-    
+
 }

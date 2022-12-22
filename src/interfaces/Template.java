@@ -12,6 +12,7 @@ import database.CreateTables;
 import database.Database;
 import database.Tables;
 import services.MenuServices;
+import tasks.DataModifiable;
 import utilities.Colors;
 import utilities.Fonts;
 
@@ -19,35 +20,28 @@ public class Template extends JFrame{
     
     JPanel container = (JPanel)this.getContentPane();
 
-    private MenuServices menuServices = new MenuServices();
-
     // Data base
     private Database db = new Database();
-    private CreateTables createTables ;
-    public static Tables db_tables ;
+    private CreateTables createTables;
+    public static Tables db_tables;
+
+    private MenuServices menuServices;
 
     //Constructor
     public Template(){
-        //Connect to database 
+
+        DataModifiable.frame = this;
+
+        // ? Connecter à la base de donnée 
         this.db.ConnectBase();
-        this.createTables=new CreateTables();
+        createTables = new CreateTables();
         db_tables = new Tables();
+        menuServices = new MenuServices();
+
+        // ? initialiser UI
+        initialiserUI();
+
         
-        //dash
-
-        //Setups
-
-        this.setTitle("Smart teknolojia");
-        this.setSize(1000,700);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setLayout(new BorderLayout());
-
-        this.add(menuServices.getMenu(),BorderLayout.WEST);
-        this.add(menuServices.getDashboard(),BorderLayout.CENTER);
-        this.add(footer(),BorderLayout.SOUTH);
-
-        this.setVisible(true);
          
     }
     //footer
@@ -61,6 +55,22 @@ public class Template extends JFrame{
         return panel;
     }
 
+    // paramètre UI
+    private void initialiserUI(){
+
+        this.setTitle("Smart teknolojia");
+        this.setSize(1000,700);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setLayout(new BorderLayout());
+
+        this.add(menuServices.getMenu(),BorderLayout.WEST);
+        this.add(menuServices.getDashboard(),BorderLayout.CENTER);
+        this.add(footer(),BorderLayout.SOUTH);
+
+        this.setVisible(true);
+
+    }
 
 
 }

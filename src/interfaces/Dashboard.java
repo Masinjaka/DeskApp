@@ -35,7 +35,7 @@ public class Dashboard extends JPanel {
     private ClockInService clockInService = new ClockInService();
     private ClockOutService clockOutService = new ClockOutService();
     private ParametreService parametreService = new ParametreService();
-    //private WebSocketService webService = new WebSocketService();
+    private WebSocketService webService ;
 
 
     private JLabel welcomeLabel;
@@ -45,11 +45,14 @@ public class Dashboard extends JPanel {
     public Dashboard(){
 
         placeholder = historicService.getHistorics();
+        webService = new WebSocketService(historicService.getHistorics().getScanner().getToggle());
 
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
         this.add(welcomeBar(),BorderLayout.NORTH);
         this.add(placeholder,BorderLayout.CENTER);
+
+        
         //this.add(personneService.getPersonnels(),BorderLayout.CENTER);
     }
 

@@ -89,6 +89,8 @@ public class Account extends JPanel {
         //textfield layout
         JPanel fieldLayout = new JPanel(new FlowLayout(FlowLayout.LEFT));
         fieldLayout.setOpaque(false);
+        
+        //? Textfield à côté du bouton éditer
         fieldLayout.add(field);fieldLayout.add(edit);
        // AsideLayout fieldLayout = new AsideLayout(field, edit);
 

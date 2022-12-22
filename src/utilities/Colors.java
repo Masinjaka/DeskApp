@@ -15,5 +15,7 @@ public class Colors {
     public static final Color stroke = new Color(52, 58, 64,40);
     public static final Color soft_purple = new Color(245, 229, 254);
     public static final Color green= new Color(57, 181, 27);
+    public static final Color yellow= new Color(255, 204, 0);
+    public static final Color dark_transparent= new Color(13, 17, 23,0);
     
 }

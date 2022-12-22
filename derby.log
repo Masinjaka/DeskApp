@@ -1,18 +1,11 @@
 ----------------------------------------------------------------
-<<<<<<< HEAD
-Sat Dec 17 11:02:24 EAT 2022:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-1f1b-094d-0000213fb610 
+Thu Dec 22 15:25:04 EAT 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-39cb-51e4-000007217960 
 on database directory D:\DeskApp\smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
 Loaded from file:/D:/DeskApp/lib/derby.jar
-=======
-Fri Dec 16 21:50:19 EAT 2022:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-1c45-de34-000006019250 
-on database directory C:\Users\JD132\Desktop\Dossier\smart\smartVs\DeskApp\smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
-Loaded from file:/C:/Users/JD132/Desktop/Dossier/smart/smartVs/DeskApp/lib/derby.jar
->>>>>>> 3cafdce6149624ea71039bd4a0f10dea2716cb50
 java.vendor=Oracle Corporation
 java.runtime.version=18.0.1.1+2-6
-user.dir=C:\Users\JD132\Desktop\Dossier\smart\smartVs\DeskApp
+user.dir=D:\DeskApp
 os.name=Windows 11
 os.arch=amd64
 os.version=10.0

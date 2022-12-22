@@ -24,7 +24,7 @@ public class Buttons extends JPanel {
         this.setLayout(new FlowLayout());
         this.textLabel = new Labels(this.text, Fonts.textFont, Colors.backgrounds, 15);
         this.setBackground(background);
-        this.setBorder(new FlatLineBorder(new Insets(7,10,5,10), getBackground(),0,20));
+        this.setBorder(new FlatLineBorder(new Insets(6,10,3,10), getBackground(),0,20));
         this.add(textLabel);
 
     }
@@ -34,7 +34,7 @@ public class Buttons extends JPanel {
         if(outlined){
             this.textLabel.setForeground(Colors.purple);
             this.setBackground(Colors.backgrounds);
-            this.setBorder(new FlatLineBorder(new Insets(7,10,5,10), this.stroke,0,20));
+            this.setBorder(new FlatLineBorder(new Insets(6,10,3,10), this.stroke,0,20));
             //this.add(textLabel);
         }
     }
@@ -46,12 +46,6 @@ public class Buttons extends JPanel {
     }
     public void setText(String text) {
         this.text = text;
-    }
-    public boolean isOutlined() {
-        return isOutlined;
-    }
-    public void setOutlined(boolean isOutlined) {
-        this.isOutlined = isOutlined;
     }
     public Color getBackground() {
         return background;

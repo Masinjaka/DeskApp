@@ -49,6 +49,14 @@ public class Hours extends JPanel{
 	public void setHourPicker(JTextField hourPicker) {
 		this.hourPicker = hourPicker;
 	}
+
+	public JButton getBouton() {
+		return bouton;
+	}
+
+	public void setBouton(JButton bouton) {
+		this.bouton = bouton;
+	}
 	
 	
 }

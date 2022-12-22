@@ -1,7 +1,11 @@
 package interfaces;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Insets;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -16,9 +20,10 @@ import javax.swing.JScrollPane;
 import com.formdev.flatlaf.ui.FlatLineBorder;
 import com.intellij.openapi.ui.VerticalFlowLayout;
 
+import utilities.Buttons;
 import utilities.Colors;
 import utilities.Sary;
-import utilities.peronnel.Info;
+import utilities.peronnel.InfoAdditionnel;
 import utilities.peronnel.WorkerCard;
 import utilities.peronnel.WorkerInfo;
 import utilities.peronnel.WorkerRenderer;
@@ -28,7 +33,11 @@ public class Personnels extends JPanel {
     private JList<WorkerCard> list;
     private WorkerInfo info;
     private JLabel add;
-
+    private Buttons edit ;
+    private List<InfoAdditionnel> infoList = new ArrayList<InfoAdditionnel>();
+    private String poste="",cin="",heures="";
+    InfoAdditionnel Carte;
+    
     public Personnels(){
         this.setLayout(new BorderLayout(10,0));
         this.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
@@ -55,9 +64,6 @@ public class Personnels extends JPanel {
         list.setModel(model);
         list.setCellRenderer(new WorkerRenderer());
         pane.setViewportView(list);
-        model.addElement(new WorkerCard("masy.jpg", "MASINJAKA","Andrianomentsoa", "Lead developer"));
-        model.addElement(new WorkerCard("useraa.png", "JESSICA","Miller", "Secretaire"));
-        
         panel.add(pane);
 
         //------------------- Adding new emplyee-------------------
@@ -73,31 +79,114 @@ public class Personnels extends JPanel {
     }
 
     // Right-sided worker information panel
-    public JPanel personnelInfo(){
+    public JScrollPane personnelInfo(){
         
-        JPanel panel = new JPanel(new VerticalFlowLayout());
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        scrollPane.setOpaque(false);
+        JPanel panel = new JPanel();
+        
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setPreferredSize(new Dimension(300,0));
         //panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
         panel.setBorder(new FlatLineBorder(new Insets(10,10,10,10), Colors.stroke,1,20));
         panel.setBackground(Colors.backgrounds);
 
-        info = new WorkerInfo("useraa.png", "MASINJAKA", "Andrianomentsoa");
+        info = new WorkerInfo("useraa.png", "Employée", "Employée");
         
-        JPanel infoPanel = new JPanel(new VerticalFlowLayout());
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
         infoPanel.setBorder(new FlatLineBorder(new Insets(10,10,10,10), Colors.stroke,1,20));
 
-        infoPanel.add(new Info("Carte ID", "220631007056"));
-        infoPanel.add(Box.createVerticalStrut(10));
-        infoPanel.add(new Info("Poste", "RH"));
-        infoPanel.add(Box.createVerticalStrut(10));
-        infoPanel.add(new Info("Heure de service", "7h00-16h00"));
+
+        // ? Ajouter des informations en bas du photo et du nom de la personne
+
+        // * Informations
+        InfoAdditionnel CIN = new InfoAdditionnel("CIN",this.cin,false);
+        InfoAdditionnel Poste = new InfoAdditionnel("Poste",this.poste,false);
+        Carte = new InfoAdditionnel("Carte rfid ", "",true);
+        InfoAdditionnel Heure = new InfoAdditionnel("Heure de service",this.heures,true);
+
+        infoList.add(CIN);
+        infoList.add(Poste);
+        infoList.add(Carte);
+        infoList.add(Heure);
+         
+        infoPanel.add(CIN);
+        //infoPanel.add(Box.createVerticalStrut(2));
+        infoPanel.add(Poste);
+        //infoPanel.add(Box.createVerticalStrut(2));
+        infoPanel.add(Heure);
+        //infoPanel.add(Box.createVerticalStrut(2));
+        infoPanel.add(Carte);
+        Carte.setVisible(false);
+
+        // * Panel pour le bouton de validation de modification
+ 
+        JPanel editPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        editPanel.setOpaque(false);
+        edit = new Buttons("Modifier");
+        edit.setBackground(Colors.blue);
+
+        editPanel.add(edit);
+        edit.setVisible(false);
 
         panel.add(info);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(infoPanel);
-        return panel;
+        panel.add(editPanel);
+
+        scrollPane.getViewport().add(panel);
+        return scrollPane;
     }
 
-
+    // Set the info below editable
+    public void setEditable(Boolean editable){
+        if(editable){
+            for(InfoAdditionnel info: infoList){
+                info.setEditable(true);
+            }
+            Carte.setVisible(true);
+        }else{
+            for(InfoAdditionnel info: infoList){
+                info.setEditable(false);
+            }
+            Carte.setVisible(false);
+        }
+    }
     
+    public List<InfoAdditionnel> getInfoList() {
+        return infoList;
+    }
+
+    public void setInfoList(List<InfoAdditionnel> infoList) {
+        this.infoList = infoList;
+    }
+
+    public String getPoste() {
+        return poste;
+    }
+
+    public void setPoste(String poste) {
+        this.poste = poste;
+    }
+
+    public String getCin() {
+        return cin;
+    }
+
+    public void setCin(String cin) {
+        this.cin = cin;
+    }
+
+    public String getHeures() {
+        return heures;
+    }
+
+    public void setHeures(String heures) {
+        this.heures = heures;
+    }
+
     public JList<WorkerCard> getList() {
         return list;
     }
@@ -106,11 +195,11 @@ public class Personnels extends JPanel {
         this.list = list;
     }
 
-    public WorkerInfo getInfo() {
+    public WorkerInfo getWorkerInfo() {
         return info;
     }
 
-    public void setInfo(WorkerInfo info) {
+    public void setWorkerInfo(WorkerInfo info) {
         this.info = info;
     }
 
@@ -120,6 +209,14 @@ public class Personnels extends JPanel {
 
     public void setAdd(JLabel add) {
         this.add = add;
+    }
+
+    public Buttons getEdit() {
+        return edit;
+    }
+
+    public void setEdit(Buttons edit) {
+        this.edit = edit;
     }
     
     
