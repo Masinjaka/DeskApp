@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import javax.swing.JScrollPane;
-// import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 
@@ -48,20 +47,27 @@ public class Term_Condition extends JPanel{
 
         
         JPanel panel = new JPanel();
-         panel.setLayout(layout);
+        JScrollPane Scroll = new JScrollPane();
+        JPanel pan = new JPanel();
 
+        panel.setLayout(layout);
         panel.setOpaque(false);
 //-----******************* LABELS ************-*--------
 
+        Labels Mini_titre = new Labels("SMART TEKNOLOJIA", Fonts.textFont, Colors.purple, 20);
 
-        Labels Mini_titre = new Labels("terme et condition  no eto", Fonts.textFont, Colors.purple, 20);
-        JTextArea Term_condition = new JTextArea("terme et condition ooooooooooooo");
+        JTextArea Term_condition = new JTextArea("7.1 Smart Teknolojia s'engage à prendre toute précaution raisonnable pour assurer la protection matérielle des données et des programmes que LE CLIENT lui aura confiés. \n7.2 La responsabilité de Smart Teknolojia ne sera pas engagé dans les cas ci-après :\n - détérioration de l'application du fait du CLIENT et/ou non-respect des conseils donnés. \n- mauvaise utilisation des serveurs et des logiciels par LE CLIENT ou par sa CLIENTELE.\n - destruction partielle ou totale des informations transmises ou stockées à la suite d'erreurs imputables directement ou indirectement au CLIENT.");
         Term_condition.setEditable(false);
+        Term_condition.setBackground(Colors.backgrounds);
 
    
-        panel.setBackground(Colors.blue);
-        panel.add(Mini_titre); 
-        panel.add(Term_condition);
+        Scroll.setViewportView(pan);
+        pan.setBackground(Colors.backgrounds);
+        pan.add(Term_condition);
+        pan.setSize(500, 700);
+
+        panel.add(Mini_titre);
+        panel.add(Scroll);
 
         
         return panel;
