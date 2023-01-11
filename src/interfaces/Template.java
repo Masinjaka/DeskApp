@@ -13,6 +13,7 @@ import database.Database;
 import database.Tables;
 import services.MenuServices;
 import tasks.DataModifiable;
+import tasks.EveController;
 import utilities.Colors;
 import utilities.Fonts;
 
@@ -24,6 +25,7 @@ public class Template extends JFrame{
     private Database db = new Database();
     private CreateTables createTables;
     public static Tables db_tables;
+    public static EveController time_control;
 
     private MenuServices menuServices;
 
@@ -37,6 +39,7 @@ public class Template extends JFrame{
         createTables = new CreateTables();
         db_tables = new Tables();
         menuServices = new MenuServices();
+        time_control = new EveController();
 
         // ? initialiser UI
         initialiserUI();

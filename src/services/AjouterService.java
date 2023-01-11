@@ -32,7 +32,7 @@ public class AjouterService extends JDialog implements Verifiable {
 	private static final long serialVersionUID = 1L;
 
 	private Ajouter ajouter;
-	private String carte = "";
+	public static String carte = "";
 
 	// pour détecter un badge
 	private boolean detecting = false;
@@ -98,7 +98,7 @@ public class AjouterService extends JDialog implements Verifiable {
 
 		}
 		// ! Quand aucune carte n'est encore assigné
-		if (carte.equalsIgnoreCase("")) {
+		if (AjouterService.carte.equalsIgnoreCase("")) {
 
 			ajouter.getPassezCarte().setText("Veuillez assigner un carte.");
 			ajouter.setForeground(Color.red);
@@ -123,7 +123,7 @@ public class AjouterService extends JDialog implements Verifiable {
 
 		// ? Ajouter dans la table des peronnels
 		Template.db_tables.getTablePersonnel().ajouter(champs.get(0), champs.get(1), champs.get(3),
-				Long.parseLong(champs.get(2)), Integer.parseInt(champs.get(4)), this.carte, image, 0);
+				Long.parseLong(champs.get(2)), Integer.parseInt(champs.get(4)), AjouterService.carte, image, 0);
 
 		if (ajouter.getAleatoire().isSelected()) {
 			// ? Heure aléatoire
@@ -135,7 +135,7 @@ public class AjouterService extends JDialog implements Verifiable {
 						firava = ajouter.getFin1().getHours().getHourPicker().getText();
 
 				// ? Enregistrer les heures
-				Template.db_tables.getHeureContinue().ajouter(carte, fidira, firava);
+				Template.db_tables.getHeureContinue().ajouter(AjouterService.carte, fidira, firava);
 
 			} else if (ajouter.gethDiscontinue().isSelected()) {
 
@@ -145,7 +145,7 @@ public class AjouterService extends JDialog implements Verifiable {
 						firava2 = ajouter.getFin2().getHours().getHourPicker().getText();
 
 				// ? Enregistrer les heures
-				Template.db_tables.getDiscontinue_double().ajouter(carte, fidira1, fidira2, firava1, firava2);
+				Template.db_tables.getDiscontinue_double().ajouter(AjouterService.carte, fidira1, fidira2, firava1, firava2);
 
 			}
 
@@ -178,14 +178,14 @@ public class AjouterService extends JDialog implements Verifiable {
 					if (!(WebSocket.badge.equalsIgnoreCase(""))) {
 
 						// ? Vérifier si le badge est déjà assigné
-						if ((!carte.equalsIgnoreCase("")) && carte.equalsIgnoreCase(WebSocket.badge)) {
+						if ((!AjouterService.carte.equalsIgnoreCase("")) && AjouterService.carte.equalsIgnoreCase(WebSocket.badge)) {
 
 							publish("Vous avez assigné la même carte.");
 							WebSocket.badge = "";
 
 						} else {
 
-							carte = WebSocket.badge;
+							AjouterService.carte = WebSocket.badge;
 							image = new Sary().Resize("img/reussit.png", 17, 15);
 							publish("Une nouvelle carte est assignée.");
 							WebSocket.badge = "";
@@ -282,7 +282,7 @@ public class AjouterService extends JDialog implements Verifiable {
 					System.out.println("CIN existe déjà");
 
 				}
-				if (carte.equalsIgnoreCase(result.getString("Carte"))) {
+				if (AjouterService.carte.equalsIgnoreCase(result.getString("Carte"))) {
 
 					existe = true;
 					cas_carte = true;

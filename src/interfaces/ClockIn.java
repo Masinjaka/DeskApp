@@ -19,6 +19,8 @@ import utilities.historic.HistoricRenderer;
 
 public class ClockIn extends JPanel{
 
+    private JList<WorkerCheck> list;
+
     public ClockIn(){
         this.setLayout(new BorderLayout(10,0));
         this.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
@@ -34,7 +36,7 @@ public class ClockIn extends JPanel{
 
         JScrollPane pane = new JScrollPane();
         DefaultListModel<WorkerCheck> model = new DefaultListModel<>();
-        JList<WorkerCheck> list = new JList<>();
+        list = new JList<>();
 
         list.setBackground(Colors.backgrounds);
         pane.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
@@ -49,5 +51,13 @@ public class ClockIn extends JPanel{
         panel.add(pane);
         return panel;
     }
+    public JList<WorkerCheck> getList() {
+        return list;
+    }
+    public void setList(JList<WorkerCheck> list) {
+        this.list = list;
+    }
+
+    
 
 }

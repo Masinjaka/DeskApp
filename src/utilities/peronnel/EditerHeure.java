@@ -262,8 +262,6 @@ public class EditerHeure extends JFrame {
             }
         });
 
-
-
         changer.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -276,39 +274,54 @@ public class EditerHeure extends JFrame {
                 DataModifiable.reprise = reprise.getHours().getHourPicker().getText();
                 DataModifiable.fin = fin.getHours().getHourPicker().getText();
 
-                if(fixée.isSelected()){
+                if (fixée.isSelected()) {
 
-                    if(continu.isSelected()){
+                    if (continu.isSelected()) {
 
                         String carte = "";
-                        try {
+                        // * Prendre la carte de la personne selectionnée
+                        carte = Template.db_tables.getTablePersonnel().select_card_by_id(DataModifiable.id);
 
-                            ResultSet set = Template.db_tables.getTablePersonnel().select(DataModifiable.id);
+                        //? Vérifier la personne est dans la table des heures continues
+                        if (Template.db_tables.getHeureContinue().verifier(carte)) {
                             
-                            if(set.next()){
-                                carte = set.getString("Carte");
-                                Template.db_tables.getHeureContinue().modifier_Heures(carte, DataModifiable.debut, DataModifiable.fin);
-                            }
-                            
-                        
-                        } catch (SQLException e1) {
-                            e1.printStackTrace();
+                            // Remplacer l'heure de la personne dans la base de donnée 
+                            Template.db_tables.getHeureContinue().modifier_Heures(carte, DataModifiable.debut,
+                                    DataModifiable.fin);
+
+                        // ? Vérifier si la personne est dans la tables des heures avec une pause
+                        } else if (Template.db_tables.getDiscontinue_double().verifier(carte)) {
+
+                            // Supprimer la personne de la base
+                            Template.db_tables.getDiscontinue_double().supprimer(carte);
+
+                            // * Ajouter la personne dans la base des heures continue
+                            Template.db_tables.getHeureContinue().ajouter(carte, DataModifiable.debut, DataModifiable.fin);
                         }
 
+                    } else if (_pause.isSelected()) {
 
-                    }else if(_pause.isSelected()){
                         String carte = "";
-                        try {
+                        // * Prendre la carte de la personne selectionnée
+                        carte = Template.db_tables.getTablePersonnel().select_card_by_id(DataModifiable.id);
 
-                            if(Template.db_tables.getTablePersonnel().select(DataModifiable.id).next()){
-                                carte = Template.db_tables.getTablePersonnel().select(DataModifiable.id).getString("Carte");
-                                Template.db_tables.getDiscontinue_double().modifier_heures(carte, DataModifiable.debut, DataModifiable.reprise,DataModifiable.pause,DataModifiable.fin);
-                            }
+                        //? Vérifier la personne est dans la table des heures continues
+                        if (Template.db_tables.getHeureContinue().verifier(carte)) {
+
+                            // Supprimer la personne de la base
+                            Template.db_tables.getHeureContinue().supprimer(carte);
                             
-                        
-                        } catch (SQLException e1) {
-                            e1.printStackTrace();
+                            // * Ajouter la personne dans la base des heures continue
+                            Template.db_tables.getDiscontinue_double().ajouter(carte, DataModifiable.debut, DataModifiable.reprise,DataModifiable.pause,DataModifiable.fin);                 
+
+                        // ? Vérifier si la personne est dans la tables des heures avec une pause
+                        } else if (Template.db_tables.getDiscontinue_double().verifier(carte)) {
+
+                            // Remplacer l'heure de la personne dans la base de donnée 
+                            Template.db_tables.getDiscontinue_double().modifier_heures(carte, DataModifiable.debut,
+                                    DataModifiable.reprise,DataModifiable.pause,DataModifiable.fin);
                         }
+                        
                     }
                     EditerHeure.value_changed = true;
                 }
@@ -317,7 +330,6 @@ public class EditerHeure extends JFrame {
             }
 
         });
-
 
     }
 }
