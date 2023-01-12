@@ -8,20 +8,27 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.event.MouseInputAdapter;
 
 import com.formdev.flatlaf.ui.FlatLineBorder;
 import com.intellij.openapi.ui.VerticalFlowLayout;
 
+import tasks.WebSocket;
 import utilities.Colors;
 import utilities.Fonts;
+import utilities.ToggleSelectedEvent;
 import utilities.dispositif.DateAndTime;
 import utilities.dispositif.DispositifItem;
 import utilities.historic.Historic;
 import utilities.historic.HistoricRenderer;
+import java.awt.event.*;
 
 public class Historics extends JPanel {
+
+    private DispositifItem scanner = new DispositifItem("Scanner de badge");
 
     public Historics(){
         this.setLayout(new BorderLayout(10,0));
@@ -66,7 +73,7 @@ public class Historics extends JPanel {
         JPanel panelDate = new JPanel();
         panelDate.setLayout(new BoxLayout(panelDate,BoxLayout.Y_AXIS));
         panelDate.setBackground(Colors.backgrounds);
-        panelDate.setPreferredSize(new Dimension(250,0));
+        panelDate.setPreferredSize(new Dimension(280,0));
         panelDate.setBorder(new FlatLineBorder(new Insets(17,10,15,10), Colors.stroke,1,20));
 
         //-----------------------------------------------------------
@@ -88,15 +95,21 @@ public class Historics extends JPanel {
         horlogePanel.setBackground(Colors.purple);
         horlogePanel.setBorder(new FlatLineBorder(new Insets(10,10,10,10), Colors.purple,0,20));
 
-        //Putting in place 
-        devicePanel.add(deviceLabel);
-        topDevicePanel.add(devicePanel);
-        topDevicePanel.add(new DispositifItem("Scanner de badge"));
-        topDevicePanel.add(Box.createVerticalBox());
-        topDevicePanel.add(new DispositifItem("Lecteur biometrique"));
+        // * Le panel d'en haut
 
-        //.....................date and devices......................
+        // ? le titre "Dispositifs"
+        devicePanel.add(deviceLabel); 
+        topDevicePanel.add(devicePanel);
+
+        // ? le toggle "Scanner de badge"
+        topDevicePanel.add(scanner);
+        topDevicePanel.add(Box.createVerticalBox());
+        //topDevicePanel.add(new DispositifItem("Lecteur biometrique"));
+
+        //* le panel violet
         horlogePanel.add(new DateAndTime());
+
+        // ? l'ensemble du  panel du côté EST 
         panelDate.add(topDevicePanel);panelDate.add(horlogePanel);
         
 
@@ -104,5 +117,14 @@ public class Historics extends JPanel {
         this.add(panelDate,BorderLayout.EAST);
 
     }
+
+    public DispositifItem getScanner() {
+        return scanner;
+    }
+
+    public void setScanner(DispositifItem scanner) {
+        this.scanner = scanner;
+    }
+    
     
 }

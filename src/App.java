@@ -1,3 +1,5 @@
+import javax.swing.SwingUtilities;
+
 import com.formdev.flatlaf.FlatLightLaf;
 
 import interfaces.Template;
@@ -8,7 +10,14 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         FlatLightLaf.setup();
-        template = new Template();
+
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                template = new Template();
+            }
+        });
         
     }
 }

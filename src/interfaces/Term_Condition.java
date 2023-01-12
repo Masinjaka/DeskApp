@@ -13,6 +13,8 @@ import javax.swing.JTextArea;
 
 
 import com.intellij.openapi.ui.VerticalFlowLayout;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 import utilities.Colors;
 import utilities.Fonts;
@@ -56,12 +58,40 @@ public class Term_Condition extends JPanel{
 
         Labels Mini_titre = new Labels("SMART TEKNOLOJIA", Fonts.textFont, Colors.purple, 20);
 
-        JTextArea Term_condition = new JTextArea("7.1 Smart Teknolojia s'engage à prendre toute précaution raisonnable pour assurer la protection matérielle des données et des programmes que LE CLIENT lui aura confiés. \n7.2 La responsabilité de Smart Teknolojia ne sera pas engagé dans les cas ci-après :\n - détérioration de l'application du fait du CLIENT et/ou non-respect des conseils donnés. \n- mauvaise utilisation des serveurs et des logiciels par LE CLIENT ou par sa CLIENTELE.\n - destruction partielle ou totale des informations transmises ou stockées à la suite d'erreurs imputables directement ou indirectement au CLIENT.");
+        JTextArea Term_condition = new JTextArea("");
         Term_condition.setEditable(false);
         Term_condition.setBackground(Colors.backgrounds);
-
-   
         Scroll.setViewportView(pan);
+
+// ------------------recupération du contenu du pdf dans un textArea-----------
+        try 
+        {
+            //Créer une instance PdfReader.
+            PdfReader pdf = new PdfReader("Do you love me.pdf");  
+       
+            //Récupérer le nombre de pages en pdf.
+            int nbrPages = pdf.getNumberOfPages(); 
+       
+            //Itérer le pdf à travers les pages.
+            for(int i=1; i <= nbrPages; i++) 
+            { 
+                //Extraire le contenu de la page à l'aide de PdfTextExtractor.
+                String content = PdfTextExtractor.getTextFromPage(pdf, i);
+       
+                //Afficher le contenu de la page sur la console.
+                // System.out.println( content);
+                Term_condition.setText(content);
+            }
+       
+            //Fermez le PdfReader.
+            pdf.close();
+        
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+
+
         pan.setBackground(Colors.backgrounds);
         pan.add(Term_condition);
         pan.setSize(500, 700);

@@ -6,10 +6,7 @@ import java.awt.Dimension;
 import java.awt.FileDialog;
 import java.awt.FlowLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -30,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.text.PlainDocument;
 
 import com.formdev.flatlaf.ui.FlatLineBorder;
 import com.intellij.openapi.graph.view.MouseInputMode;
@@ -41,6 +39,7 @@ import utilities.Fonts;
 import utilities.ImageProfile;
 import utilities.Labels;
 import utilities.Sary;
+import utilities.TextFieldFiltre;
 import utilities.ajouter.ComboHours;
 
 public class Ajouter extends JPanel {
@@ -85,8 +84,8 @@ public class Ajouter extends JPanel {
 	private JPanel choixHeure = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
 	// Radio button varié fixé
-	public static JRadioButton aleatoire = new JRadioButton("Variée");
-	public static JRadioButton fixed = new JRadioButton("Fixée");
+	private JRadioButton aleatoire = new JRadioButton("Variée");
+	private JRadioButton fixed = new JRadioButton("Fixée");
 
 	private ButtonGroup bg = new ButtonGroup();
 
@@ -98,8 +97,8 @@ public class Ajouter extends JPanel {
 	private JPanel choixContinuite = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
 	// RADIO Button
-	public static JRadioButton hContinue = new JRadioButton("Heure continue");
-	public static JRadioButton hDiscontinue = new JRadioButton("Heure discontinue");
+	private JRadioButton hContinue = new JRadioButton("Heure continue");
+	private JRadioButton hDiscontinue = new JRadioButton("Heure discontinue");
 
 	private ButtonGroup bG = new ButtonGroup();
 
@@ -119,7 +118,7 @@ public class Ajouter extends JPanel {
 	// private JPanel pFinger = new JPanel(new FlowLayout(FlowLayout.LEFT));
 	private Labels hintCarte = new Labels("Passez une carte vierge sur le dispositif", Fonts.textFont, Colors.purple,
 			12);
-	public static Labels passezCarte = new Labels("Carte d'identification manquante", Fonts.textFont, Colors.purple,
+	private Labels passezCarte = new Labels("Carte d'identification manquante", Fonts.textFont, Colors.purple,
 			12);
 	// private String codeCarte = null;
 	public static int error = 015;
@@ -202,8 +201,12 @@ public class Ajouter extends JPanel {
 
 		tTitre = new JTextField();
 		tHeure = new JTextField();
-		tTitre.setPreferredSize(new Dimension(0, 25));
-		tHeure.setPreferredSize(new Dimension(40, 25));
+		// Heure de travail
+		PlainDocument doc = (PlainDocument) tHeure.getDocument();
+		doc.setDocumentFilter(new TextFieldFiltre());
+		
+		tTitre.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.purple, 1, 8));
+		tHeure.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.purple, 1, 8));
 		parSem.add(tHeure);
 		parSem.add(semaine);
 
@@ -331,9 +334,17 @@ public class Ajouter extends JPanel {
 		// Redimensionner les champs de texte
 		// tnom.setPreferredSize(new Dimension(0, 25));tprenom.setPreferredSize(new
 		// Dimension(0, 25));tcin.setPreferredSize(new Dimension(0, 25));
-		tnom.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.purple, 2, 0));
-		tprenom.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.purple, 2, 0));
-		tcin.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.purple, 2, 0));
+		tnom.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.purple, 1, 8));
+		tprenom.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.purple, 1, 8));
+		tcin.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.purple, 1, 8));
+		
+		// ? Ajouter un filtre de chiffre aux textfields
+		
+		// Carte CIN
+		PlainDocument docCIN = (PlainDocument) tcin.getDocument();
+		docCIN.setDocumentFilter(new TextFieldFiltre());
+
+		
 
 		// Nom
 		infoPane.add(nom);
@@ -421,10 +432,20 @@ public class Ajouter extends JPanel {
 					super.mouseClicked(e);
 					// Reinitialize textField border
 					if (fill.getText().equalsIgnoreCase("Veuillez remplir ce champs")) {
-						fill.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.purple, 2, 0));
+						fill.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.purple, 1, 8));
 						fill.setText("");
 						fill.setForeground(Colors.text);
 					}
+				}
+			});
+			fill.addFocusListener(new FocusAdapter(){
+				@Override
+				public void focusGained(FocusEvent e) {
+					fill.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.blue, 2, 8));
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					fill.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.purple, 1, 8));
 				}
 			});
 
@@ -528,6 +549,47 @@ public class Ajouter extends JPanel {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	public Labels getPassezCarte() {
+		return passezCarte;
+	}
+
+	public void setPassezCarte(Labels passezCarte) {
+		this.passezCarte = passezCarte;
+	}
+
+	public JRadioButton getFixed() {
+		return fixed;
+	}
+
+	public void setFixed(JRadioButton fixed) {
+		this.fixed = fixed;
+	}
+
+	public JRadioButton getAleatoire() {
+		return aleatoire;
+	}
+
+	public void setAleatoire(JRadioButton aleatoire) {
+		this.aleatoire = aleatoire;
+	}
+
+	public JRadioButton gethContinue() {
+		return hContinue;
+	}
+
+	public void sethContinue(JRadioButton hContinue) {
+		this.hContinue = hContinue;
+	}
+
+	public JRadioButton gethDiscontinue() {
+		return hDiscontinue;
+	}
+
+	public void sethDiscontinue(JRadioButton hDiscontinue) {
+		this.hDiscontinue = hDiscontinue;
+	}
+	
 	
 
 }

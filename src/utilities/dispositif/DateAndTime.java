@@ -8,9 +8,11 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingWorker;
 import javax.swing.Timer;
 
 import com.intellij.openapi.ui.VerticalFlowLayout;
@@ -21,6 +23,8 @@ import utilities.Fonts;
 public class DateAndTime extends JPanel {
 
     public DateAndTime(){
+
+        
      
         this.setLayout(new VerticalFlowLayout(VerticalFlowLayout.BOTTOM));
         this.setOpaque(false);
@@ -37,21 +41,48 @@ public class DateAndTime extends JPanel {
         timePanel.setOpaque(false);
         JLabel time = new JLabel();
         time.setFont(new Font(Fonts.textFont,Font.BOLD,50));
-        time.setForeground(Colors.backgrounds);
+        time.setForeground(Colors.backgrounds); 
 
-        Timer timer = new Timer(1/3, new ActionListener(){
+        // ? tâche en arrière plan
+        SwingWorker worker = new SwingWorker<Void,String>() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                time.setText(LocalTime.now().truncatedTo(ChronoUnit.MINUTES).toString());
-                
+            protected Void doInBackground() throws Exception {
+                String temps = null;
+
+                for(;;){
+
+                    Thread.sleep(1000);
+                    temps= LocalTime.now().truncatedTo(ChronoUnit.SECONDS).toString();
+                    publish(temps);
+                }
             }
 
+            @Override
+            protected void process(List<String> chunks) {
+                
+                time.setText(chunks.get(chunks.size()-1));
+
+            }
+            
+        };
+        worker.execute();
+
+        /*Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                for(;;){
+
+                    
+                    // Pause pendant une seconde
+                    try {Thread.sleep(1000);} catch (InterruptedException e) {}
+                }
+            }
+            
         });
-        timer.setRepeats(true);
-        timer.setCoalesce(true);
-        timer.start();
+        thread.setDaemon(true);
+        thread.start();*/
 
         
         timePanel.add(time);

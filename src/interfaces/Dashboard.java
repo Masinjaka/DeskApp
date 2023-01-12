@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
+import java.net.http.WebSocket;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,6 +22,7 @@ import services.ClockOutService;
 import services.HistoricService;
 import services.ParametreService;
 import services.PersonneService;
+import services.WebSocketService;
 import utilities.Colors;
 import utilities.menu.UserProfile;
 public class Dashboard extends JPanel {
@@ -33,6 +35,7 @@ public class Dashboard extends JPanel {
     private ClockInService clockInService = new ClockInService();
     private ClockOutService clockOutService = new ClockOutService();
     private ParametreService parametreService = new ParametreService();
+    private WebSocketService webService ;
 
 
     private JLabel welcomeLabel;
@@ -42,15 +45,18 @@ public class Dashboard extends JPanel {
     public Dashboard(){
 
         placeholder = historicService.getHistorics();
+        webService = new WebSocketService(historicService.getHistorics().getScanner().getToggle());
 
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
         this.add(welcomeBar(),BorderLayout.NORTH);
         this.add(placeholder,BorderLayout.CENTER);
+
+        
         //this.add(personneService.getPersonnels(),BorderLayout.CENTER);
     }
 
-    //TOp bar
+    // * fonction qui crée l'entête 
     public JPanel welcomeBar(){
 
         JPanel panel = new JPanel();
@@ -65,7 +71,7 @@ public class Dashboard extends JPanel {
         welcomePanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         searchPanel.setOpaque(false);
 
-        welcomeLabel = new JLabel("Tongasoa eto ianao RAHALAHY mianakavy");
+        welcomeLabel = new JLabel("Tongasoa");
         welcomeLabel.setFont(new Font("Arial",Font.BOLD,30));
         welcomeLabel.setForeground(textColor);
 
@@ -85,7 +91,7 @@ public class Dashboard extends JPanel {
         return panel;
     }
 
-    //Adding the menu panel to the dashboard
+    // * fonction qui charge les élements du tableau de bord
     public void load(JPanel replacement){
         this.remove(placeholder);
         placeholder = replacement;
@@ -94,6 +100,8 @@ public class Dashboard extends JPanel {
         this.repaint();
     }
 
+
+    // * Getter and Setter 
     public PersonneService getPersonneService() {
         return personneService;
     }

@@ -19,7 +19,7 @@ public class HeureContinue {
 	
 	public ResultSet select(String carte) {
 		
-		query = "select HE,HS from heureContinue where carte ='"+carte+"'";
+		query = "select HE,HS,id from heureContinue where carte ='"+carte+"'";
 		
 		try {
 			
@@ -31,30 +31,54 @@ public class HeureContinue {
 		
 	}// Fin select
 	
-	public void ajouter(String carte, String HE,String HS) throws SQLException {
+	public void ajouter(String carte, String HE,String HS) {
 		
 		query = "insert into heureContinue (carte,HE,HS) values ('"
 				+carte+"','"
 				+HE+"','"
 				+HS+"')";
 		
-		stm.executeUpdate(query);
+		try {
+			stm.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}// Fin ajouter
 
-	public void modifier(int id,String carte,String HE,String HS) throws SQLException {
+	public void modifier(int id,String carte,String HE,String HS){
 
 		query = "update heureContinue set carte = '" + carte+ "', HE = '" + HE + "', HS = '" + HS + "' where id = " + id;
 
-		stm.executeUpdate(query);
+		try {
+			stm.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}// Fin modifier
 
-	public void supprimer(int id) throws SQLException {
+	public void modifier_Heures(String carte,String HE,String HS){
+		query = "update heureContinue set HE = '" + HE + "', HS = '" + HS + "' where carte = '" + carte+ "'";
+		try {
+			stm.executeUpdate(query);
+			System.out.println("Modification heure réussit");
+		} catch (SQLException e) {
+			System.out.println("Modification heure échoué");
+			e.printStackTrace();
+		}
+	}
 
-		query = "delete from heureContinue where id = " + id;
+	public void supprimer(String carte) {
 
-		stm.executeUpdate(query);
+		query = "delete from heureContinue where Carte = '" + carte +"'";
+
+		try {
+			stm.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}// Fin supprimer
 

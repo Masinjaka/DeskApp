@@ -52,6 +52,7 @@ public class Personnel {
 			e.printStackTrace();
 		}
 	}
+	// ? Select person by rfid card
 	public ResultSet select(String carte) throws SQLException {
 		
 		query = "select Nom, Prenom,Photo,Etat from personne where Carte ='"+carte+"'";
@@ -59,11 +60,33 @@ public class Personnel {
 
 		return result;
 	}
-	
+	// ? Select person by id
+	public ResultSet select(int id) throws SQLException {
+		
+		query = "select Poste, CIN, Carte from personne where id ="+id;
+		result = stm.executeQuery(query);
+
+		return result;
+	}
+
+	// * Get carte by ID
+	public String select_card_by_id(int id) {
+		String card = "";
+		query = "select Poste, CIN, Carte from personne where id ="+id;
+		try {
+			result = stm.executeQuery(query);
+			if(result.next()){
+				card = result.getString("Carte");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return card;
+	}
 	// M�thode pour selectionner tout les elements de la table personne
 	public ResultSet select() throws SQLException {
 
-		query = "select Nom, Prenom, Poste, CIN, Carte, Photo from personne";
+		query = "select Nom, Prenom, Poste, CIN, Carte, id, Photo from personne";
 		result = stm.executeQuery(query);
 
 		return result;
@@ -105,11 +128,15 @@ public class Personnel {
 		
 	}// Fin modifier
 	
-	public void supprimer(int id) throws SQLException {
+	public void supprimer(int id){
 		
 		query = "delete from personne where id = "+id;
 		
-		stm.executeUpdate(query);
+		try {
+			stm.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}//Fin supprimer
 

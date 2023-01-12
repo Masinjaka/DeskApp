@@ -56,7 +56,7 @@ public class Menus extends JPanel {
         logoPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         logoPanel.setOpaque(false);
         //logoPanel.setPreferredSize(new Dimension(0,50));
-        JLabel logo = new JLabel(new ImageIcon(new Sary().Resize("img/logo.png", 100, 75)));     
+        JLabel logo = new JLabel(new ImageIcon(new Sary().Resize("img/santa.png", 100, 85)));     
 
         //Setting up the list of menu
         model.addElement(dash);model.addElement(debut);model.addElement(fin);model.addElement(list);

@@ -30,12 +30,16 @@ public class Discontinue_double {
 		return result;
 	}// Fin select
 
-	public void ajouter(String carte, String HE_1, String HE_2, String HS_1, String HS_2) throws SQLException {
+	public void ajouter(String carte, String HE_1, String HE_2, String HS_1, String HS_2) {
 
 		query = "insert into discontinue_double (carte,HE_1,HE_2,HS_1,HS_2) values ('" + carte + "','" + HE_1 + "','"
 				+ HE_2 + "','" + HS_1 + "','" + HS_2 + "')";
 
-		stm.executeUpdate(query);
+		try {
+			stm.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}// Fin ajouter
 
@@ -48,11 +52,27 @@ public class Discontinue_double {
 
 	}// Fin modifier
 
-	public void supprimer(int id) throws SQLException {
+	public void modifier_heures(String carte, String HE_1, String HE_2, String HS_1, String HS_2){
+		query = "update discontinue_double set HE_1 = '" + HE_1 + "', HE_2 = '" + HE_2
+				+ "', HS_1 = '" + HS_1 + "', HS_2 = '" + HS_2 + "' where carte = '" + carte + "'";
 
-		query = "delete from discontinue_double where id = " + id;
+		try {
+			stm.executeUpdate(query);
+			System.out.println("Modification réussit");
+		} catch (SQLException e) {
+			System.out.println("Modification échoué");
+			e.printStackTrace();
+		}
+	}
+	public void supprimer(String carte) {
 
-		stm.executeUpdate(query);
+		query = "delete from discontinue_double where Carte = '"+carte+"'";
+
+		try {
+			stm.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}// Fin supprimer
 
