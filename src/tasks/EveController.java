@@ -14,7 +14,7 @@ public class EveController {
 
 	private String carte = "";
 	private String service = "";
-	public static String eve = "Milieu de journée";
+	public static String eve = "";
 	private TimeSpans timeSpans = new TimeSpans();
 	
 	
