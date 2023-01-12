@@ -67,7 +67,7 @@ public class Term_Condition extends JPanel{
         try 
         {
             //Créer une instance PdfReader.
-            PdfReader pdf = new PdfReader("Do you love me.pdf");  
+            PdfReader pdf = new PdfReader("term_Condi.pdf");  
        
             //Récupérer le nombre de pages en pdf.
             int nbrPages = pdf.getNumberOfPages(); 
@@ -94,7 +94,7 @@ public class Term_Condition extends JPanel{
 
         pan.setBackground(Colors.backgrounds);
         pan.add(Term_condition);
-        pan.setSize(500, 700);
+        // pan.setSize(500, 700);
 
         panel.add(Mini_titre);
         panel.add(Scroll);

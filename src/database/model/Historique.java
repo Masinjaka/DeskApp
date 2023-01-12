@@ -26,6 +26,7 @@ public class Historique {
 		query = "select Nom, Prenom, Eve, Heure, Carte, Photo from historique";
 		resultset = stm.executeQuery(query);
 		
+		
 		return resultset;
 	}//Fin select
 	
