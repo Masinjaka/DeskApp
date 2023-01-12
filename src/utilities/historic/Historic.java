@@ -34,6 +34,7 @@ public class Historic extends JPanel{
         this.setBorder(new FlatLineBorder(new Insets(5,0,0,0), getBackground(), 0, 20));
         this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
         this.add(profile());this.add(clockIn());
+        
     }
 
     private JPanel profile(){

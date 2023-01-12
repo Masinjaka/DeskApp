@@ -8,7 +8,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+
 import com.intellij.openapi.ui.VerticalFlowLayout;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 import utilities.Colors;
 import utilities.Fonts;
@@ -33,7 +39,7 @@ public class Term_Condition extends JPanel{
         return panel;
 
     }
-     //Contenu du parametre
+     //Contenu du termes et conditions
      private JPanel Condition(){
 
         VerticalFlowLayout layout = new VerticalFlowLayout();
@@ -41,15 +47,59 @@ public class Term_Condition extends JPanel{
 
         // *********************** PANELS ************************
 
+        
         JPanel panel = new JPanel();
-        panel.setLayout(layout);
+        JScrollPane Scroll = new JScrollPane();
+        JPanel pan = new JPanel();
 
+        panel.setLayout(layout);
         panel.setOpaque(false);
 //-----******************* LABELS ************-*--------
 
-        Labels language = new Labels("terme et condition  no eto", Fonts.textFont, Colors.text, 15);
-   
-        panel.add(language);
+        Labels Mini_titre = new Labels("SMART TEKNOLOJIA", Fonts.textFont, Colors.purple, 20);
+
+        JTextArea Term_condition = new JTextArea("");
+        Term_condition.setEditable(false);
+        Term_condition.setBackground(Colors.backgrounds);
+        Scroll.setViewportView(pan);
+
+// ------------------recupération du contenu du pdf dans un textArea-----------
+        try 
+        {
+            //Créer une instance PdfReader.
+            PdfReader pdf = new PdfReader("term_Condi.pdf");  
+       
+            //Récupérer le nombre de pages en pdf.
+            int nbrPages = pdf.getNumberOfPages(); 
+       
+            //Itérer le pdf à travers les pages.
+            for(int i=1; i <= nbrPages; i++) 
+            { 
+                //Extraire le contenu de la page à l'aide de PdfTextExtractor.
+                String content = PdfTextExtractor.getTextFromPage(pdf, i);
+       
+                //Afficher le contenu de la page sur la console.
+                // System.out.println( content);
+                Term_condition.setText(content);
+            }
+       
+            //Fermez le PdfReader.
+            pdf.close();
+        
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+
+
+        pan.setBackground(Colors.backgrounds);
+        pan.add(Term_condition);
+        // pan.setSize(500, 700);
+
+        panel.add(Mini_titre);
+        panel.add(Scroll);
+
+        
         return panel;
     }
 }
