@@ -18,8 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import com.formdev.flatlaf.ui.FlatLineBorder;
-import com.intellij.openapi.ui.VerticalFlowLayout;
-
 import utilities.Buttons;
 import utilities.Colors;
 import utilities.Sary;

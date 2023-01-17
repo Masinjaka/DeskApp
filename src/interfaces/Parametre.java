@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 
 import com.formdev.flatlaf.ui.FlatLineBorder;
 
+import services.AccountService;
+import services.ExporterService;
 import utilities.Colors;
 import utilities.menu.Cell;
 import utilities.menu.MenuItems;
@@ -22,10 +24,13 @@ public class Parametre extends JPanel {
     private JPanel placeholder,thirdParty;
     private Apparence apparence = new Apparence();
     private ScannerRFID rfid = new ScannerRFID();
-    private Account account = new Account();
     private Apropos aprop= new Apropos();
     private Term_Condition TermCond = new Term_Condition();
-    private Exporter exporte = new Exporter();
+
+    private AccountService accountService = new AccountService();
+    private ExporterService exporterService= new ExporterService();
+
+
 
     public Parametre(){
 
@@ -103,23 +108,11 @@ public class Parametre extends JPanel {
     public void setRfid(ScannerRFID rfid) {
         this.rfid = rfid;
     }
-    public Account getAccount() {
-        return account;
-    }
-    public void setAccount(Account account) {
-        this.account = account;
-    }
     public  Apropos getApropos() {
         return aprop;
     }
     public void setApropos(Apropos aprop){
         this.aprop= aprop;
-    }
-    public Exporter getExporter(){
-        return exporte;
-    }
-    public void setExporter(Exporter exporte){
-        this.exporte= exporte;
     }
     public Term_Condition getTerm_Condition(){
         return TermCond;
@@ -127,4 +120,22 @@ public class Parametre extends JPanel {
     public void setTerm_Condition (Term_Condition TermCond){
         this.TermCond = TermCond;
     }
+   
+
+    //getter and setter accountService
+    public AccountService getAccountService() {
+        return accountService;
+    }
+    public void setAccountService(AccountService accountService) {
+        this.accountService = accountService;
+    }
+    public ExporterService getExporterService() {
+        return exporterService;
+    }
+    public void setExporterService(ExporterService exporterService) {
+        this.exporterService = exporterService;
+    }
+
+    
+    
 }

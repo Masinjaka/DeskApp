@@ -49,5 +49,19 @@ public class Utilisateur {
 				+oldUsername+"'";
 		stm.executeUpdate(query);
 	}
+	//Modifier réponse d'authentification
+	public void modifierAns(String username,String reponse){
+		query= "update utilisateur  set Reponse = '"
+				+reponse+"' where UserName = '"
+				+username+"'";
+		try {
+			stm.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+
 
 }

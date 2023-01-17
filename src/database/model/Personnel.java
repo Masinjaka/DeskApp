@@ -86,7 +86,7 @@ public class Personnel {
 	// M�thode pour selectionner tout les elements de la table personne
 	public ResultSet select() throws SQLException {
 
-		query = "select Nom, Prenom, Poste, CIN, Carte, id, Photo from personne";
+		query = "select Nom, Prenom, Poste, CIN, Carte, id,Heures, Photo from personne";
 		result = stm.executeQuery(query);
 
 		return result;

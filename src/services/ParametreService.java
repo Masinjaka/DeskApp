@@ -7,7 +7,7 @@ import interfaces.Parametre;
 
 public class ParametreService {
     private Parametre parametre = new Parametre();
-    
+
     public ParametreService(){
 
         parametre.getList().setSelectedIndex(0);
@@ -26,10 +26,10 @@ public class ParametreService {
                             parametre.load(parametre.getRfid());
                             break;
                         case 2:
-                            parametre.load(parametre.getAccount());
+                            parametre.load(parametre.getAccountService().getAccount());
                             break;
                         case 3:
-                            parametre.load(parametre.getExporter());
+                            parametre.load(parametre.getExporterService().getExporter());
                             break;
                         case 4:
                         parametre.load(parametre.getApropos());

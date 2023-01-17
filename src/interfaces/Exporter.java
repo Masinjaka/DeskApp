@@ -10,12 +10,14 @@ import javax.swing.JPanel;
 
 import com.intellij.openapi.ui.VerticalFlowLayout;
 
-
+import utilities.Buttons;
 import utilities.Colors;
 import utilities.Fonts;
 import utilities.Labels;
 
 public class Exporter extends JPanel{
+    private Buttons exporterBtn=new Buttons("Exporter");
+
     public Exporter(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
@@ -43,6 +45,8 @@ public class Exporter extends JPanel{
         // *********************** PANELS ************************
 
         JPanel panel = new JPanel();
+        JPanel panBtn=new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panBtn.setOpaque(false);
         panel.setLayout(layout);
 
         panel.setOpaque(false);
@@ -51,8 +55,19 @@ public class Exporter extends JPanel{
 
         Labels language = new Labels("Exporter la liste des personnels", Fonts.textFont, Colors.text, 15);
    
+        //-----******************* Bouton ************-*--------
+        panBtn.add(exporterBtn);
+    
         panel.add(language);
+        panel.add(panBtn);
         
         return panel;
     }
+    public Buttons getExporterBtn() {
+        return exporterBtn;
+    }
+    public void setExporterBtn(Buttons exporterBtn) {
+        this.exporterBtn = exporterBtn;
+    }
+    
 }
