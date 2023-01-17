@@ -27,7 +27,7 @@ public class Template extends JFrame{
     public static Tables db_tables;
     public static EveController time_control;
 
-    private MenuServices menuServices;
+    public static MenuServices menuServices;
 
     //Constructor
     public Template(){
