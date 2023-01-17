@@ -20,6 +20,7 @@ import com.formdev.flatlaf.ui.FlatLineBorder;
 import services.ClockInService;
 import services.ClockOutService;
 import services.HistoricService;
+import services.OverviewService;
 import services.ParametreService;
 import services.PersonneService;
 import services.WebSocketService;
@@ -35,6 +36,7 @@ public class Dashboard extends JPanel {
     private ClockInService clockInService = new ClockInService();
     private ClockOutService clockOutService = new ClockOutService();
     private ParametreService parametreService = new ParametreService();
+    private OverviewService overviewService = new OverviewService();
     private WebSocketService webService ;
 
 
@@ -148,6 +150,14 @@ public class Dashboard extends JPanel {
 
     public void setParametreService(ParametreService parametreService) {
         this.parametreService = parametreService;
+    }
+
+    public OverviewService getOverviewService() {
+        return overviewService;
+    }
+
+    public void setOverviewService(OverviewService overviewService) {
+        this.overviewService = overviewService;
     }
     
     

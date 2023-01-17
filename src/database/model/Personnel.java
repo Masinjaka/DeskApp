@@ -110,7 +110,7 @@ public class Personnel {
 		}
 		return card;
 	}
-	// M�thode pour selectionner tout les elements de la table personne
+	// Méthode pour selectionner tout les elements de la table personne
 	public ResultSet select() throws SQLException {
 
 		query = "select Nom, Prenom, Poste, CIN, Carte, id, Photo from personne";

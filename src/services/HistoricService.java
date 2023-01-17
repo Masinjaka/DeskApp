@@ -12,6 +12,7 @@ import javax.swing.SwingWorker;
 import database.model.Historique;
 import interfaces.Historics;
 import interfaces.Template;
+import tasks.EveController;
 import tasks.Verifiable;
 import utilities.historic.Historic;
 
@@ -28,7 +29,7 @@ public class HistoricService implements Verifiable{
         load();
 
         // ? Actualiser la liste
-        actualiser();
+        //actualiser();
         /*
          * Ecrit ici une boucle de type Timer qui actualise l'historique tout les 1/3 de séconde 
          * et qui affiche une nouvelle personne uniquement s'il la nouvelle carte est dans la base de donnée 
@@ -106,33 +107,18 @@ public class HistoricService implements Verifiable{
 
         // 1- Tsy vide le badge && tsy manao ajout 
 
-                AjouterService Ajt = new AjouterService();
+                while(true){
 
-                // maka ny carte personnels
-                ResultSet resultat;
-                try {
-                    resultat= Template.db_tables.getTablePersonnel().select();
-                    String[] elts;
-                    ArrayList<String[]> list = new ArrayList<>();
-                    while (resultat.next()) {
+                    Thread.sleep(200);
 
-                        elts = new String[] {
-                                resultat.getString("Photo"),
-                                resultat.getString("Nom"),
-                                resultat.getString("Prenom"),
-                                resultat.getString("Poste"),
-                                String.valueOf(resultat.getInt("id"))
-                        };
-                        list.add(elts);
-                    };
+                    if(EveController.hasNewHistoricElement){
 
-                }catch (SQLException e) {
-                        e.printStackTrace();
+                        //Get Last element
+
+                        EveController.hasNewHistoricElement = false;
                     }
-                    return null;
-
-                    
-
+                
+                }
                 /*if (carte !=null ){//&& ajt.is.....(falses)
                      if (carte == Historique.getCarte()){
 

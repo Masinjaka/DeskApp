@@ -25,7 +25,7 @@ public class Nivoaka {
 	 */
 	public ResultSet select() throws SQLException {
 		
-		query = "select Nom,Prenom,Depart,id,Carte from nivoaka";
+		query = "select Nom,Prenom,Depart,id,Carte,Date from nivoaka";
 		
 		result = stm.executeQuery(query);
 		

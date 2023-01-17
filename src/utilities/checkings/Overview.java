@@ -24,8 +24,11 @@ import utilities.historic.HistoricRenderer;
 
 public class Overview extends JPanel {
     
-    private static JList<LazyWorker> list;
-    public static JPanel overviewInfo(){
+    private JList<LazyWorker> list;
+
+    public Overview(){}
+
+    public JPanel overviewInfo(){
         
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
@@ -70,8 +73,6 @@ public class Overview extends JPanel {
         list.setModel(model);
         list.setCellRenderer(new HistoricRenderer());
         pane.setViewportView(list);
-        model.addElement(new LazyWorker("stellam.jpg", "Stellam", "arrivé"));
-        model.addElement(new LazyWorker("emma.jpg", "Sitraka Emma", "départ"));
 
         titlePanel.add(icon);
         titlePanel.add(title);
@@ -83,5 +84,15 @@ public class Overview extends JPanel {
         panel.add(absentPanel);
         return panel;
     }
+
+    public JList<LazyWorker> getList() {
+        return list;
+    }
+
+    public void setList(JList<LazyWorker> list) {
+        this.list = list;
+    }
+
+    
 
 }

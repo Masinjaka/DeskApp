@@ -15,6 +15,11 @@ public class EveController {
 	private String carte = "";
 	private String service = "";
 	public static String eve = "";
+
+	// ity le boolean
+	public static boolean hasNewHistoricElement = false;
+
+
 	private TimeSpans timeSpans = new TimeSpans();
 	
 	
@@ -30,9 +35,18 @@ public class EveController {
 	private boolean discontinue = false;
 	private boolean firstIn, SecondIn, firstOut, SecondOut;
 
+	// ... 
 	public EveController() {
 		super();
 	}
+
+	private void addToHistoric(){
+
+		// Ajouter dans la table historique
+
+		EveController.hasNewHistoricElement = true;
+	}
+	//...
 
 	public String checkHours() {
 
@@ -83,6 +97,8 @@ public class EveController {
 			// Set etat to one
 			personnel.updateState(this.carte, 1);
 
+			//
+
 			break;
 		case 1:
 			System.out.println("Etat = 1 pour cette personne en heure continue");
@@ -96,13 +112,19 @@ public class EveController {
 			String lastDate = niditra.selectLastPointage(this.carte, "date");
 
 			if (!(lastDate.equalsIgnoreCase("")) && timeSpans.thisDateIsNow(lastDate) == true) {
+
 				System.out.println("Vous avez d�j� fait une pointage autour de l'heure d'entr�e");
+
 			} else {
+
 				personnel.selectPersonWithCard(this.carte);
 				niditra.insert(personnel.getMpiasa().getNom(), personnel.getMpiasa().getPrenom(), this.carte,
 						truncAnk.toString(), LocalDate.now().toString());
 				// Set MLF (Manodidina lera fidirana
 				eve = "En d�but de service";
+
+				//
+
 			}
 
 			break;
@@ -112,6 +134,7 @@ public class EveController {
 		}
 		/* Permetre au tableau des d�but de service de se mettre � jour */
 		this.service = "niditra";
+
 	}
 
 	private void insertIntoNivoaka() {
@@ -158,6 +181,8 @@ public class EveController {
 
 		/* Permettre au tableau de fin de service de se mettre � jour */
 		this.service = "nivoaka";
+
+		//
 	}
 
 	private void heureContinue() {
@@ -224,6 +249,8 @@ public class EveController {
 				// Set etat to one
 				personnel.updateState(this.carte, 1);
 
+				//
+
 				break;
 			case 1:
 				System.out.println("Etat = 1 discontinue");
@@ -252,6 +279,8 @@ public class EveController {
 								truncAnk.toString(), LocalDate.now().toString());
 						// Set MLF (Manodidina lera fidirana
 						eve = "En début de service";
+
+						//
 				
 					}
 
@@ -262,6 +291,8 @@ public class EveController {
 							truncAnk.toString(), LocalDate.now().toString());
 					// Set MLF (Manodidina lera fidirana
 					eve = "En d�but de service";
+
+					//
 				}
 
 				break;
@@ -271,6 +302,7 @@ public class EveController {
 			}// FIN SWITCH CASE
 
 			this.service = "niditra";
+			//
 
 		} else if (timeSpans.inBetween(gap3, gap4, ankehitriny)
 				|| timeSpans.inBetween(gap7, gap8, ankehitriny)) {
@@ -293,6 +325,8 @@ public class EveController {
 				eve = "En fin de service";
 				// Set etat to one
 				personnel.updateState(this.carte, 0);
+
+				//
 				break;
 			case 0:
 
@@ -321,24 +355,34 @@ public class EveController {
 								truncAnk.toString(), LocalDate.now().toString());
 						// Set MLF (Manodidina lera fidirana
 						eve = "En fin de service";
+
+						//
 					}
 					
 
 				} else {
 					System.out.println("On ajoute quand m�me En SORTIE");
 					personnel.selectPersonWithCard(this.carte);
+					//...
 					nivoaka.insert(personnel.getMpiasa().getNom(), personnel.getMpiasa().getPrenom(), this.carte,
 							truncAnk.toString(), LocalDate.now().toString());
 					// Set MLF (Manodidina lera fidirana
 					eve = "En fin de service";
+
+					// add to historic
+					addToHistoric();
 				}
 				break;
+				//...
 
 			default:
 				break;
 			}
 
 			this.service = "nivoaka";
+
+			// 
+			
 			/*Si la dur�e du temps de travail est de seulement d'une heure*/
 		} else if ((timeSpans.inBetween(gap1, gap2, ankehitriny)
 				&& timeSpans.inBetween(gap3, gap4, ankehitriny))

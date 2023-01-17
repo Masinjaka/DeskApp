@@ -20,12 +20,13 @@ import utilities.historic.HistoricRenderer;
 public class ClockIn extends JPanel{
 
     private JList<WorkerCheck> list;
+    public static Overview overview = new Overview();
 
     public ClockIn(){
         this.setLayout(new BorderLayout(10,0));
         this.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
         this.add(poitagePanel(),BorderLayout.CENTER);
-        this.add(Overview.overviewInfo(),BorderLayout.EAST);
+        this.add(ClockIn.overview.overviewInfo(),BorderLayout.EAST);
     }
     private JPanel poitagePanel(){
 
