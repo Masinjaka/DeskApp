@@ -7,6 +7,7 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import com.intellij.openapi.ui.VerticalFlowLayout;
 
@@ -48,9 +49,12 @@ public class Apropos extends JPanel {
 
         //-----******************* LABELS ************-*--------
 
-        Labels language = new Labels("Apropos no eto apropos antsika sy ny logiciel", Fonts.textFont, Colors.text, 15);
+        Labels mini_Labels = new Labels("Marik'Ora", Fonts.textFont, Colors.purple, 20);
+        JTextArea apropos = new JTextArea("Marik'Ora est un logiciel créer et développer par l'entreprise SMART TEKNOLJIA. Il est accompagné par un gadget pour capter le signal des badges électronique,\nutilisés pour pointer les heures d'arriver et les heures de sorties des employés \nPour plus d'information veuillez consulter notre site web: https\\...........");
+        apropos.setEditable(false);
+        apropos.setBackground(Colors.backgrounds);
    
-        panel.add(language);
+        panel.add(mini_Labels);panel.add(apropos);
 
 
 

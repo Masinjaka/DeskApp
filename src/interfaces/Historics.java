@@ -24,11 +24,19 @@ import utilities.dispositif.DateAndTime;
 import utilities.dispositif.DispositifItem;
 import utilities.historic.Historic;
 import utilities.historic.HistoricRenderer;
+import utilities.peronnel.WorkerCard;
+
 import java.awt.event.*;
 
 public class Historics extends JPanel {
 
     private DispositifItem scanner = new DispositifItem("Scanner de badge");
+
+    
+
+    JScrollPane pane = new JScrollPane();
+    DefaultListModel<Historic> model = new DefaultListModel<>();
+    JList<Historic> list = new JList<>();
 
     public Historics(){
         this.setLayout(new BorderLayout(10,0));
@@ -47,9 +55,9 @@ public class Historics extends JPanel {
         title.setFont(new Font(Fonts.textFont,Font.BOLD,22));
 
         //......................................................................
-        JScrollPane pane = new JScrollPane();
-        DefaultListModel<Historic> model = new DefaultListModel<>();
-        JList<Historic> list = new JList<>();
+        
+
+
 
         //Little customization
         list.setBackground(Colors.backgrounds);
@@ -124,6 +132,13 @@ public class Historics extends JPanel {
 
     public void setScanner(DispositifItem scanner) {
         this.scanner = scanner;
+    }
+    public JList<Historic> getList() {
+        return list;
+    }
+
+    public void setList(JList<Historic> list) {
+        this.list = list;
     }
     
     

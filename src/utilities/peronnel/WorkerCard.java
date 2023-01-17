@@ -46,7 +46,8 @@ public class WorkerCard extends JPanel {
 
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         icon = new JLabel();
-        changerImage(this.photo,null);
+        icon.setIcon(new ImageIcon(new ImageProfile().ResizeCercle("img/workers/"+ this.photo, 50, 50, Colors.stroke)));
+        //changerImage(this.photo,null);
         
         JPanel namePanel = new JPanel(new VerticalFlowLayout());
         this.name  = new JLabel(this.nom +" "+this.prenom);

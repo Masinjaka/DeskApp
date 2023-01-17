@@ -20,7 +20,7 @@ public class Niditra {
 	}
 	public ResultSet select() throws SQLException {
 		
-		query = "select Nom,Prenom,Arrive from niditra";
+		query = "select Nom,Prenom,Arrive,id,Carte,Date from niditra";
 		
 		result = stm.executeQuery(query);
 		
@@ -28,6 +28,7 @@ public class Niditra {
 		return result;
 	}
 
+	// ? ici
 
 	public String selectLastPointage(String carte,String choice) {
 

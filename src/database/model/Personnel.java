@@ -60,11 +60,38 @@ public class Personnel {
 
 		return result;
 	}
+
+	// ? For showing personnel purpose
+	public ResultSet select_for_list(String card){
+
+		query = "select Nom, Prenom, Photo, Poste, id from personne where Carte ='"+card+"'";
+		try {
+			result = stm.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 	// ? Select person by id
 	public ResultSet select(int id) throws SQLException {
 		
 		query = "select Poste, CIN, Carte from personne where id ="+id;
 		result = stm.executeQuery(query);
+
+		return result;
+	}
+
+	// ? Select person by name
+	public ResultSet selectPhoto(String carte){
+		
+		query = "select Photo from personne where Carte = '"+carte+"'";
+
+		try {
+			result = stm.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		return result;
 	}
@@ -83,7 +110,7 @@ public class Personnel {
 		}
 		return card;
 	}
-	// M�thode pour selectionner tout les elements de la table personne
+	// Méthode pour selectionner tout les elements de la table personne
 	public ResultSet select() throws SQLException {
 
 		query = "select Nom, Prenom, Poste, CIN, Carte, id, Photo from personne";

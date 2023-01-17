@@ -25,13 +25,25 @@ public class Nivoaka {
 	 */
 	public ResultSet select() throws SQLException {
 		
-		query = "select Nom,Prenom,Depart from nivoaka";
+		query = "select Nom,Prenom,Depart,id,Carte,Date from nivoaka";
 		
 		result = stm.executeQuery(query);
 		
 		
 		return result;
 	}
+
+	// ? Select last person 
+	public ResultSet selectLastElement(){
+		query = "select Nom,Prenom,Depart,id,Carte from nivoaka order by id desc";
+		try {
+			result = stm.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	public String selectLastPointage(String carte,String choice) {
 		query = "select Depart,Date from nivoaka where Carte = '" + carte + "' order by id desc";
 

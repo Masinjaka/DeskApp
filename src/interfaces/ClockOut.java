@@ -19,11 +19,14 @@ import utilities.historic.HistoricRenderer;
 
 public class ClockOut extends JPanel{
 
+    private JList<WorkerCheck> list;
+    public static Overview overview = new Overview();
+
     public ClockOut(){
         this.setLayout(new BorderLayout(10,0));
         this.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
         this.add(poitagePanel(),BorderLayout.CENTER);
-        this.add(Overview.overviewInfo(),BorderLayout.EAST);
+        this.add(ClockOut.overview.overviewInfo(),BorderLayout.EAST);
     }
     private JPanel poitagePanel(){
 
@@ -34,7 +37,7 @@ public class ClockOut extends JPanel{
         
         JScrollPane pane = new JScrollPane();
         DefaultListModel<WorkerCheck> model = new DefaultListModel<>();
-        JList<WorkerCheck> list = new JList<>();
+        list = new JList<>();
 
         list.setBackground(Colors.backgrounds);
         pane.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
@@ -43,11 +46,17 @@ public class ClockOut extends JPanel{
         list.setModel(model);
         list.setCellRenderer(new HistoricRenderer());
         pane.setViewportView(list);
-        model.addElement(new WorkerCheck("stellam.jpg", "RIVOHARILALA Stellam", "7h00-18h00", "18h15"));
-        model.addElement(new WorkerCheck("samirah.jpg", "IZANENARANAO Samirah", "7h00-18h00", "18h15"));
 
         panel.add(pane);
         return panel;
     }
+    public JList<WorkerCheck> getList() {
+        return list;
+    }
+    public void setList(JList<WorkerCheck> list) {
+        this.list = list;
+    }
+
+    
     
 }
