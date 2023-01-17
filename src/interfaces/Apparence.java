@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -21,9 +23,17 @@ import utilities.Colors;
 import utilities.Fonts;
 import utilities.Labels;
 import utilities.Sary;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Apparence extends JPanel{
-
+    private Locale currentLocale = Locale.FRANCE;
+    private ResourceBundle messages;
+    JLabel titre;
+    Labels language;
+    Labels theme;
+    Labels taille;
+    Menus men = Template.menuServices.getMenu();
     public Apparence(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
@@ -35,7 +45,7 @@ public class Apparence extends JPanel{
     // Titre du parametre
     private JPanel titre(){
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel titre = new JLabel("Apparence");
+        titre = new JLabel("Apparence");
         titre.setFont(new Font(Fonts.textFont,Font.BOLD,25));
         titre.setForeground(Colors.text);
         titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
@@ -60,16 +70,36 @@ public class Apparence extends JPanel{
 
         //-----******************* LABELS ************-*--------
 
-        Labels language = new Labels("Language", Fonts.textFont, Colors.text, 15);
-        Labels theme = new Labels("Theme", Fonts.textFont, Colors.text, 15);
-        Labels taille= new Labels("Taille de police", Fonts.textFont, Colors.text, 15);
+        language = new Labels("Langage", Fonts.textFont, Colors.text, 15);
+        theme = new Labels("Thème", Fonts.textFont, Colors.text, 15);
+        taille= new Labels("Taille de police", Fonts.textFont, Colors.text, 15);
         
         // Créer un JCombobox pour le choix de langue
         JComboBox<String> box = new JComboBox<>();
-        box.addItem("Malagasy");
         box.addItem("Français");
-        box.addItem("Anglais");
+        box.addItem("Malagasy");
+        //box.addItem("Anglais");
         box.setBorder((Border) new FlatLineBorder(new Insets(8,10,8,10), Colors.purple,3,20));
+        //messages = ResourceBundle.getBundle("resources/messages");
+        box.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = box.getSelectedIndex();
+                if(selectedIndex == 0){
+                    currentLocale = Locale.FRANCE;
+                }else{
+                    currentLocale = new Locale("mg","MG");
+                }
+                messages = ResourceBundle.getBundle("resources/messages", currentLocale);
+                updateInterface();
+
+                
+            }
+
+        });
+
+
 
         // Créer un toggle pour le choix de theme
         JToggleButton toggle = new JToggleButton();
@@ -96,6 +126,14 @@ public class Apparence extends JPanel{
 
 
         return panel;
+    }
+    private void updateInterface(){
+        titre.setText(messages.getString("titre"));
+        language.setText(messages.getString("lang"));
+        taille.setText(messages.getString("taille"));
+        theme.setText(messages.getString("them"));
+        men.dash.getMenu().setText(messages.getString("tab"));
+        //Template.menuServices.getMenu().dash.getMenu().setText(TOOL_TIP_TEXT_KEY);
     }
     
 }

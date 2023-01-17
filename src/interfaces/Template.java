@@ -25,7 +25,7 @@ public class Template extends JFrame{
     private CreateTables createTables;
     public static Tables db_tables;
 
-    private MenuServices menuServices;
+    public static MenuServices menuServices;
 
     //Constructor
     public Template(){

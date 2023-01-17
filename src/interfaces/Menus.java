@@ -1,4 +1,4 @@
-package interfaces;
+ package interfaces;
 
 import java.awt.Color;
 
@@ -23,6 +23,38 @@ public class Menus extends JPanel {
 
     MenuItems dash,debut,fin,list,setting;
     
+    public void setDash(MenuItems dash) {
+        this.dash = dash;
+    }
+
+    public void setDebut(MenuItems debut) {
+        this.debut = debut;
+    }
+
+    public void setFin(MenuItems fin) {
+        this.fin = fin;
+    }
+
+    public void setList(MenuItems list) {
+        this.list = list;
+    }
+
+    public MenuItems getDash() {
+        return dash;
+    }
+
+    public MenuItems getDebut() {
+        return debut;
+    }
+
+    public MenuItems getFin() {
+        return fin;
+    }
+
+    public MenuItems getList() {
+        return list;
+    }
+
     JList<MenuItems> menuList;
 
     public Menus(){

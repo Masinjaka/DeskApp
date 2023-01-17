@@ -65,4 +65,12 @@ public class MenuItems extends JPanel {
             return false;
         }
     }
+
+    public JLabel getMenu() {
+        return menu;
+    }
+
+    public void setMenu(JLabel menu) {
+        this.menu = menu;
+    }
 }
