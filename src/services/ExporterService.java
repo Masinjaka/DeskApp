@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.sql.ResultSet;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -111,6 +112,7 @@ public class ExporterService {
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 workbook.write(new FileOutputStream(jfc.getSelectedFile()+File.separator+"ListPersonnel.xls"));
                 System.out.println("Exportation terminé");
+                JOptionPane.showMessageDialog(null, "Exportation terminé");
                 rowIndex=0;
                 n=0;
                 workbook.close();
