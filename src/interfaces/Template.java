@@ -16,6 +16,11 @@ import database.Database;
 import database.Tables;
 import services.LogInService;
 import services.MenuServices;
+<<<<<<< HEAD
+=======
+import tasks.DataModifiable;
+import tasks.EveController;
+>>>>>>> 8e0b34ae359feca02832b45905e602900e3cb939
 import utilities.Colors;
 import utilities.Fonts;
 
@@ -29,6 +34,7 @@ public class Template extends JFrame{
 
     // Data base
     private Database db = new Database();
+<<<<<<< HEAD
     private CreateTables createTables ;
     public static Tables db_tables ;
 
@@ -65,6 +71,13 @@ public class Template extends JFrame{
 	thread.start();
 	thread.setRepeats(true);
     }
+=======
+    private CreateTables createTables;
+    public static Tables db_tables;
+    public static EveController time_control;
+
+    public static MenuServices menuServices;
+>>>>>>> 8e0b34ae359feca02832b45905e602900e3cb939
 
     //Constructor
     public Template(){
@@ -72,11 +85,20 @@ public class Template extends JFrame{
 
         //Setups
 
+<<<<<<< HEAD
         this.setTitle("Smart teknolojia");
         this.setSize(1000,700);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
+=======
+        // ? Connecter à la base de donnée 
+        this.db.ConnectBase();
+        createTables = new CreateTables();
+        db_tables = new Tables();
+        menuServices = new MenuServices();
+        time_control = new EveController();
+>>>>>>> 8e0b34ae359feca02832b45905e602900e3cb939
 
         this.add(menuServices.getMenu(),BorderLayout.WEST);
         this.add(menuServices.getDashboard(),BorderLayout.CENTER);

@@ -289,19 +289,26 @@ public class PersonneService {
 
                     // ? Récupérer depuis la base
                     if (AjouterService.actualiser) {
-                        ResultSet set = Template.db_tables.getTablePersonnel().select();
+
+                        System.out.println("An actualisation avec la carte: "+ AjouterService.carte );
+
+
+                        ResultSet set = Template.db_tables.getTablePersonnel().select_for_list(AjouterService.carte);
+                        
                         String[] elements;
 
-                        while (set.next()) {
+                        if (set.next()) {
 
+                            // ? Récuperation de donnée
                             elements = new String[] {
                                     set.getString("Photo"),
                                     set.getString("Nom"),
                                     set.getString("Prenom"),
                                     set.getString("Poste"),
                                     String.valueOf(set.getInt("id"))
-                            };
+                            };  
                             publish(elements);
+                            
                         }
                         AjouterService.actualiser = false;
                     }
@@ -314,9 +321,8 @@ public class PersonneService {
             protected void process(List<String[]> chunks) {
 
                 // ? Récupérer le dernier élement du tableau
-                String[] retrieve = chunks.get(chunks.size() - 1);
-                model.addElement(new WorkerCard(retrieve[0], retrieve[1], retrieve[2], retrieve[3],
-                        Integer.parseInt(retrieve[4])));
+                String[] retrieve = chunks.get(0);
+                model.addElement(new WorkerCard(retrieve[0], retrieve[1], retrieve[2], retrieve[3],Integer.parseInt(retrieve[4])));
 
             }
         };
@@ -389,7 +395,7 @@ public class PersonneService {
                     String [] d_debut= DataModifiable.debut.split(":");
                     String [] d_fin= DataModifiable.fin.split(":");
                     String heure = d_debut[0]+"H-"+d_fin[0]+"H";
-                    personnels.setHeures(heure);
+                    personnels.getInfoList().get(3).getLvalue().setText(heure);
 
                     EditerHeure.value_changed = false;
                 }

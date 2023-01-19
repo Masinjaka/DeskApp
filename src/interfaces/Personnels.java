@@ -110,6 +110,7 @@ public class Personnels extends JPanel {
         infoList.add(Carte);
         infoList.add(Heure);
          
+        
         infoPanel.add(CIN);
         //infoPanel.add(Box.createVerticalStrut(2));
         infoPanel.add(Poste);
