@@ -31,7 +31,7 @@ import java.awt.event.*;
 public class Historics extends JPanel {
 
     private DispositifItem scanner = new DispositifItem("Scanner de badge");
-
+    public static  JLabel title = new JLabel("Historique");
     
 
     JScrollPane pane = new JScrollPane();
@@ -50,7 +50,6 @@ public class Historics extends JPanel {
         
         //......................................................................
         JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel title = new JLabel("Historique");
         title.setForeground(Colors.text);
         title.setFont(new Font(Fonts.textFont,Font.BOLD,22));
 

@@ -27,6 +27,8 @@ public class Parametre extends JPanel {
     private Term_Condition TermCond = new Term_Condition();
     private Exporter exporte = new Exporter();
 
+    public static String txtApparence,txtScanner,txtCompte,txtExport,txtAbout,txtTerm;
+
     public Parametre(){
 
         this.thirdParty  = apparence;
@@ -50,7 +52,8 @@ public class Parametre extends JPanel {
         list.setCellRenderer(new Cell());
         pane.setViewportView(list);
 
-        model.addElement(new MenuItems("login", "Apparence"));
+        txtApparence="Apparence";
+        model.addElement(new MenuItems("login",txtApparence));
         model.addElement(new MenuItems("logout", "Scanner RFID"));
         model.addElement(new MenuItems("writing", "Compte"));
         model.addElement(new MenuItems("clipboard", "Exporter"));

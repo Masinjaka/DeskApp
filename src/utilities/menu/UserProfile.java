@@ -17,6 +17,8 @@ public class UserProfile extends JPanel {
     private String imageIcon;
     private String name;
     private String poste;
+    private JLabel nom ;
+    private JLabel post;
     
     public UserProfile(String imageIcon, String name, String poste) {
         this.imageIcon = imageIcon;
@@ -32,8 +34,8 @@ public class UserProfile extends JPanel {
         //Creating elements
         JLabel icon = new JLabel(new ImageIcon(new Sary().Resize("img/profile/"+this.imageIcon+".png", 30,30)));
         JPanel stack = new JPanel(new VerticalFlowLayout());
-        JLabel nom = new JLabel(this.name);
-        JLabel post = new JLabel(this.poste);
+        nom = new JLabel(this.name);
+        post = new JLabel(this.poste);
 
         //Putting in place
         stack.add(nom);stack.add(post);
@@ -70,6 +72,22 @@ public class UserProfile extends JPanel {
 
     public void setPoste(String poste) {
         this.poste = poste;
+    }
+
+    public JLabel getNom() {
+        return nom;
+    }
+
+    public void setNom(JLabel nom) {
+        this.nom = nom;
+    }
+
+    public JLabel getPost() {
+        return post;
+    }
+
+    public void setPost(JLabel post) {
+        this.post = post;
     }
 
     

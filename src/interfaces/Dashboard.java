@@ -40,9 +40,9 @@ public class Dashboard extends JPanel {
     private WebSocketService webService ;
 
 
-    private JLabel welcomeLabel;
+    public static JLabel welcomeLabel=new JLabel("Bienvenue");
     private JPanel placeholder;
-    UserProfile profile = new UserProfile("user", "Username", "Occupation");
+    public static UserProfile profile = new UserProfile("user", "Username", "Occupation");
 
     public Dashboard(){
 
@@ -73,7 +73,6 @@ public class Dashboard extends JPanel {
         welcomePanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         searchPanel.setOpaque(false);
 
-        welcomeLabel = new JLabel("Tongasoa");
         welcomeLabel.setFont(new Font("Arial",Font.BOLD,30));
         welcomeLabel.setForeground(textColor);
 

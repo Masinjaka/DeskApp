@@ -33,7 +33,7 @@ public class Apparence extends JPanel{
     Labels language;
     Labels theme;
     Labels taille;
-    Menus men = Template.menuServices.getMenu();
+//    Menus men = Template.menuServices.getMenu();
     public Apparence(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
@@ -128,12 +128,27 @@ public class Apparence extends JPanel{
         return panel;
     }
     private void updateInterface(){
-        titre.setText(messages.getString("titre"));
-        language.setText(messages.getString("lang"));
-        taille.setText(messages.getString("taille"));
-        theme.setText(messages.getString("them"));
-        men.dash.getMenu().setText(messages.getString("tab"));
-        //Template.menuServices.getMenu().dash.getMenu().setText(TOOL_TIP_TEXT_KEY);
+             titre.setText(messages.getString("titre"));
+            language.setText(messages.getString("lang"));       
+            taille.setText(messages.getString("taille"));
+            theme.setText(messages.getString("them"));
+          //  men.dash.getMenu().setText(messages.getString("tab"));
+           // Template.menuServices.getMenu().dash.getMenu().setText(messages.getString("tab"));
+    
+           Menus.dash.getMenu().setText(messages.getString("tab"));
+           Menus.debut.getMenu().setText(messages.getString("deb"));
+           Menus.fin.getMenu().setText(messages.getString("fin"));
+           Menus.list.getMenu().setText(messages.getString("pers"));
+           Menus.setting.getMenu().setText(messages.getString("param"));
+
+          Dashboard.welcomeLabel.setText(messages.getString("tonga"));
+          Dashboard.profile.getNom().setText(messages.getString("user"));
+          Dashboard.profile.getPost().setText(messages.getString("occup"));
+          Historics.title.setText(messages.getString("histo"));
+
+        
+        
+    
     }
     
 }
