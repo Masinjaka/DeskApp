@@ -51,13 +51,23 @@ public class HistoricService implements Verifiable{
                         ArrayList<String[]> list = new ArrayList<>();
                         while (hst.next()) {
     
+                            String carte = hst.getString("Carte");
+                            String heure ="";
+    
+                                if(Template.db_tables.getHeureContinue().verifier(carte)){
+                                    heure= Template.db_tables.getHeureContinue().getHE()+"-"+Template.db_tables.getHeureContinue().getHS();
+    
+                                }else if (Template.db_tables.getHeureContinue().verifier(carte)){
+                                    heure = Template.db_tables.getDiscontinue_double().getHE_1()+"-"+Template.db_tables.getDiscontinue_double().getHS_1()
+                                    +"    "+Template.db_tables.getDiscontinue_double().getHE_2()+"-"+Template.db_tables.getDiscontinue_double().getHS_2();
+                                }
                             elts = new String[] {
-                                    hst.getString("Photo"),
-                                    hst.getString("Nom"),
+                                    hst.getString("Nom")+" "+
+                                    hst.getString("Prenom"),
+                                    hst.getString("Eve"),
+                                    heure,
                                     hst.getString("Heure"),
-                                    hst.getString("Entre"),
-                                    hst.getString("Presence"),
-                                    String.valueOf(hst.getInt("id"))
+                                    hst.getString("Photo")
                             };
                             list.add(elts);
                         }
@@ -77,8 +87,7 @@ public class HistoricService implements Verifiable{
                     for (String[] elt : chunks.get(chunks.size() - 1)) {
     
                         // mbola mila jerena tsara ito alouha ny zavatra rehetra
-                        model.addElement(new Historic(elt[0], elt[1], elt[2], elt[3], elt[4])); //Integer.parseInt(elt[4]); 
-                        System.out.println("Mandeha ihany ilay izy");
+                        model.addElement(new Historic(elt[4], elt[0], elt[2], elt[3],elt[1]));
                         historics.revalidate();
                         historics.repaint();
     
@@ -89,14 +98,6 @@ public class HistoricService implements Verifiable{
             };
     
             work.execute();
-            // mbola tsy mety tsara ilay mmiaffiche azy @listen'ny historique de mbola hojerena tsara
-
-
-            // fighting eonni!!
-    
-        
-        //1- Maka donnée avy any @ table historique 
-        //2- Afficher anazy eo am liste 
     }
 
     public void actualiser(){
@@ -105,94 +106,73 @@ public class HistoricService implements Verifiable{
             @Override
             protected Void doInBackground() throws Exception {
 
-        // 1- Tsy vide le badge && tsy manao ajout 
-
                 while(true){
 
                     Thread.sleep(200);
 
                     if(EveController.hasNewHistoricElement){
 
-                        //Get Last element
+                        ResultSet resultat; 
 
-                        EveController.hasNewHistoricElement = false;
-                    }
-                
-                }
-                /*if (carte !=null ){//&& ajt.is.....(falses)
-                     if (carte == Historique.getCarte()){
-
-                     } //mbola ila alaina tany amin'ny base ny carte ho comparena aminy
-                }*/
-                
-
-        // 2- Vérifier oe misy ao am base
-        
-        
-         
-
-
-        /*  3- Collecter donnée {
-            nom et prenom
-            tranche horraire 
-            heure de pointage
-        }*/
-        //3- Séparer niditra et nivoaka 
-        //4- Enregistrer any am base ny historique sy ny niditra/nivoaka 
-        }
-
-    } ;
-}
+                        try {
+                            String[] elts = null;
+                            String heure = "";
+                            
     
-   /* public void actualiser(AjouterService AJ) {
+                            resultat = Template.db_tables.getHistorique().dernierPointage();
+                            if(resultat.next()){
+                                String carte = resultat.getString("Carte");
+    
+                                if(Template.db_tables.getHeureContinue().verifier(carte)){
+                                    heure= Template.db_tables.getHeureContinue().getHE()+"-"+Template.db_tables.getHeureContinue().getHS();
+    
+                                }else if (Template.db_tables.getHeureContinue().verifier(carte)){
+                                    heure = Template.db_tables.getDiscontinue_double().getHE_1()+"-"+Template.db_tables.getDiscontinue_double().getHS_1()
+                                    +"    "+Template.db_tables.getDiscontinue_double().getHE_2()+"-"+Template.db_tables.getDiscontinue_double().getHS_2();
+                                }
 
-        SwingWorker worker = new SwingWorker<Void, String[]>() {
-
-            @Override
-            protected Void doInBackground() throws Exception {
-
-                // ? Pendant que la fenêtre d'ajout détecte une carte
-                while (AJ.isDetecting()) {
-
-                    // Pause
-                    Thread.sleep(20);
-
-                    // ? Récupérer depuis la base
-                    if (AjouterService.actualiser) {
-                        ResultSet set = Template.db_tables.getTablePersonnel().select();
-                        String[] elements;
-
-                        while (set.next()) {
-
-                            elements = new String[] {
-                                    set.getString("Photo"),
-                                    set.getString("Nom"),
-                                    set.getString("Prenom"),
-                                    set.getString("Poste"),
-                                    String.valueOf(set.getInt("id"))
+                                elts = new String []{
+                                    resultat.getString("Photo"),
+                                    resultat.getString("Nom"),
+                                    resultat.getString("Prenom"),
+                                    heure,
+                                    resultat.getString("Heure"),
+                                    resultat.getString("Eve")
+    
+                                };
+    
                             };
-                            publish(elements);
+
+                            publish(elts);
+
+                            } catch (Exception e) {
+                                // TODO: handle exception
+                                e.printStackTrace();
+                            }
+
+                    
+
+                            EveController.hasNewHistoricElement = false;
                         }
-                        AjouterService.actualiser = false;
+                
                     }
+                
+                }
+        
+
+                @Override
+                protected void process(List<String[]> chunks) {
+                    super.process(chunks);
+                    String[] lisita = chunks.get(chunks.size()-1);
+                    model.addElement((new Historic(lisita[0], lisita[1]+" "+lisita[2], lisita[3], lisita[4], lisita[5])));
 
                 }
-                return null;
-            }
 
-            @Override
-            protected void process(List<String[]> chunks) {
-
-                // ? Récupérer le dernier élement du tableau
-                String[] retrieve = chunks.get(chunks.size() - 1);
-                model.addElement(new WorkerCard(retrieve[0], retrieve[1], retrieve[2], retrieve[3],
-                        Integer.parseInt(retrieve[4])));
-
-            }
-        };
-
+            } ;
         worker.execute();
-    }*/
+    }
+    
+
 
     public Historics getHistorics() {
         return historics;

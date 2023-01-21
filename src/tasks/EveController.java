@@ -1,5 +1,7 @@
 package tasks;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +31,7 @@ public class EveController {
 	private Personnel personnel = Template.db_tables.getTablePersonnel();
 	private Niditra niditra = Template.db_tables.getNiditra();
 	private Nivoaka nivoaka = Template.db_tables.getNivoaka();
+	private Historique his_toric = Template.db_tables.getHistorique();
 
 	private LocalTime ankehitriny, truncAnk;
 
@@ -40,13 +43,6 @@ public class EveController {
 		super();
 	}
 
-	private void addToHistoric(){
-
-		// Ajouter dans la table historique
-
-		EveController.hasNewHistoricElement = true;
-	}
-	//...
 
 	public String checkHours() {
 
@@ -97,7 +93,7 @@ public class EveController {
 			// Set etat to one
 			personnel.updateState(this.carte, 1);
 
-			//
+			addToHistoric();
 
 			break;
 		case 1:
@@ -123,8 +119,7 @@ public class EveController {
 				// Set MLF (Manodidina lera fidirana
 				eve = "En d�but de service";
 
-				//
-
+				addToHistoric();
 			}
 
 			break;
@@ -149,6 +144,7 @@ public class EveController {
 			eve = "En fin de service";
 			// Set etat to one
 			personnel.updateState(this.carte, 0);
+			addToHistoric();
 
 			break;
 		case 0:
@@ -170,6 +166,7 @@ public class EveController {
 						truncAnk.toString(), LocalDate.now().toString());
 				// Set MLF (Manodidina lera fidirana
 				eve = "En fin de service";
+				addToHistoric();
 
 			}
 
@@ -203,6 +200,7 @@ public class EveController {
 				|| timeSpans.BeforeTime(ankehitriny, continues.getHE())) {
 
 			insertIntoNiditra();
+
 
 		} else if (timeSpans.inBetween(gap3, gap4, ankehitriny)) {
 			/* V�rifier si c'est dans l'intervalle du fin de service */
@@ -249,7 +247,7 @@ public class EveController {
 				// Set etat to one
 				personnel.updateState(this.carte, 1);
 
-				//
+				addToHistoric();
 
 				break;
 			case 1:
@@ -280,7 +278,7 @@ public class EveController {
 						// Set MLF (Manodidina lera fidirana
 						eve = "En début de service";
 
-						//
+						addToHistoric();
 				
 					}
 
@@ -292,7 +290,7 @@ public class EveController {
 					// Set MLF (Manodidina lera fidirana
 					eve = "En d�but de service";
 
-					//
+					addToHistoric();
 				}
 
 				break;
@@ -326,6 +324,7 @@ public class EveController {
 				// Set etat to one
 				personnel.updateState(this.carte, 0);
 
+				addToHistoric();
 				//
 				break;
 			case 0:
@@ -356,7 +355,7 @@ public class EveController {
 						// Set MLF (Manodidina lera fidirana
 						eve = "En fin de service";
 
-						//
+						addToHistoric();
 					}
 					
 
@@ -395,6 +394,21 @@ public class EveController {
 		/*Si le pointage se passe entre les heures de pointes */
 		} else {
 			eve = "En milieu de journée";
+		}
+	}
+
+	public void addToHistoric(){
+		hasNewHistoricElement= true;
+		ResultSet set = Template.db_tables.getTablePersonnel().selectPhoto(carte);
+
+		try {
+			if(set.next()){
+				String photo = set.getString("Photo");
+				his_toric.insert(personnel.getMpiasa().getNom(), personnel.getMpiasa().getPrenom(), eve, truncAnk.toString(), this.carte, photo);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	

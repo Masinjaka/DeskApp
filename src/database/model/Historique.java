@@ -11,6 +11,7 @@ public class Historique {
 	private ResultSet resultset;
 	private String query = "";
 	private Statement stm;
+
 	
 	public Historique() {
 		super();
@@ -42,5 +43,17 @@ public class Historique {
 		stm.executeUpdate(query);
 		
 	}// Fin insert
+
+	public ResultSet dernierPointage(){
+		
+		query= "select Nom, Prenom, Eve, Heure, Photo, Carte from historique order by id desc";
+		try {
+			resultset = stm.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return resultset;
+	}
 	
 }

@@ -14,10 +14,13 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 import javax.swing.event.MouseInputAdapter;
 
+import com.fazecast.jSerialComm.SerialPort;
 import com.formdev.flatlaf.ui.FlatLineBorder;
 import com.intellij.openapi.ui.VerticalFlowLayout;
 
@@ -35,6 +38,10 @@ public class ScannerRFID extends JPanel{
     private JPanel serialPortPanel = new JPanel();
     private JPanel linkModule = new JPanel();
     private JLabel steps = new JLabel();
+    JComboBox<String> comPorts;
+    private SerialPort[] serialPorts;
+    private SerialPort serialPort;
+    private boolean scanning = true;
 
     public ScannerRFID(){
         this.setLayout(new BorderLayout());
@@ -45,6 +52,38 @@ public class ScannerRFID extends JPanel{
         this.add(titre(),BorderLayout.NORTH);
         this.add(settings(),BorderLayout.CENTER);
         this.add(steps(),BorderLayout.SOUTH);
+    }
+
+    public void connectToPort(){
+        String selectedPort = (String) comPorts.getSelectedItem();
+        serialPort = SerialPort.getCommPort(selectedPort);
+        serialPort.setComPortParameters(9600, 8, 1, SerialPort.NO_PARITY);
+        serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
+        if(serialPort.openPort()){
+            JOptionPane.showMessageDialog(null, "Connected to "+selectedPort);
+            scanning = false;
+        }else{
+            JOptionPane.showMessageDialog(null, "Failed to connect to "+selectedPort);
+        }
+    }
+
+    public void port_scanning(){
+        SwingWorker worker = new SwingWorker<Void,Void>(){
+
+            @Override
+            protected Void doInBackground() throws Exception {
+
+                while(scanning){
+                    serialPorts = SerialPort.getCommPorts();
+                    for (SerialPort serial:serialPorts){
+                    }
+                }
+                return null;
+            }
+            
+        };
+
+        worker.execute();
     }
 
     private JPanel titre(){
@@ -108,10 +147,10 @@ public class ScannerRFID extends JPanel{
         processPanel.add(port);processPanel.add(portSuite);
 
         //Create a combobox for comport choice
-        JComboBox<String> comPorts = new JComboBox<>();
-        comPorts.addItem("COM3");
-        comPorts.addItem("COM15");
-        comPorts.addItem("COM23");
+        comPorts = new JComboBox<>();
+
+        
+        
         comPorts.setPreferredSize(new Dimension(100,50));
         comPorts.setBorder(new FlatLineBorder(new Insets(10,10,10,10), Colors.purple,3,20));
 
@@ -131,7 +170,7 @@ public class ScannerRFID extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                
+                connectToPort();
                 slider.nextPanel(4, networkPanel,JPanelSlider.left);
                 steps.setIcon(new ImageIcon(new Sary().Resize("img/two.png",300,22)));
             }
