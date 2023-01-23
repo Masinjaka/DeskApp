@@ -20,6 +20,7 @@ public class MenuItems extends JPanel {
 
     private JLabel icon = new JLabel();
     private JLabel menu = new JLabel();
+    private int size=19;
     boolean activated = false;
     public static boolean remove = true;
     boolean selfSelection = false;
@@ -33,7 +34,7 @@ public class MenuItems extends JPanel {
 
         this.icon.setIcon(new ImageIcon(new Sary().Resize("img/" + icon + ".png", 15, 15)));
         this.menu.setText(menuTitle);
-        this.menu.setFont(new Font(Fonts.textFont, Font.BOLD, 15));
+        this.menu.setFont(new Font(Fonts.textFont, Font.BOLD, this.size));
         this.menu.setForeground(Colors.grey);
         this.menu.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
         this.add(this.icon);
@@ -64,6 +65,12 @@ public class MenuItems extends JPanel {
         } else {
             return false;
         }
+    }
+
+    //changer taille police
+    public void changeFont(int pourcent){
+        int newSize=(this.size*pourcent)/100;
+        this.menu.setFont(new Font(Fonts.textFont,Font.BOLD,newSize));
     }
 
     public JLabel getMenu() {

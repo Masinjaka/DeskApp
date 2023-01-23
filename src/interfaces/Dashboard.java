@@ -23,8 +23,11 @@ import services.HistoricService;
 import services.OverviewService;
 import services.ParametreService;
 import services.PersonneService;
+import services.ScannerRFIDService;
 import services.WebSocketService;
 import utilities.Colors;
+import utilities.Fonts;
+import utilities.Labels;
 import utilities.menu.UserProfile;
 public class Dashboard extends JPanel {
 
@@ -37,12 +40,13 @@ public class Dashboard extends JPanel {
     private ClockOutService clockOutService = new ClockOutService();
     private ParametreService parametreService = new ParametreService();
     private OverviewService overviewService = new OverviewService();
+    private ScannerRFIDService scannerRFIDService=new ScannerRFIDService();
     private WebSocketService webService ;
 
 
-    private JLabel welcomeLabel;
+    private Labels welcomeLabel;
     private JPanel placeholder;
-    UserProfile profile = new UserProfile("user", "Username", "Occupation");
+    public UserProfile profile = new UserProfile("user", "Username", "Occupation");
 
     public Dashboard(){
 
@@ -73,9 +77,8 @@ public class Dashboard extends JPanel {
         welcomePanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         searchPanel.setOpaque(false);
 
-        welcomeLabel = new JLabel("Tongasoa");
-        welcomeLabel.setFont(new Font("Arial",Font.BOLD,30));
-        welcomeLabel.setForeground(textColor);
+        welcomeLabel = new Labels("Bienvenue",Fonts.textFont, Colors.text, 30);
+     
 
         welcomePanel.add(welcomeLabel);
 
@@ -124,7 +127,7 @@ public class Dashboard extends JPanel {
         return welcomeLabel;
     }
 
-    public void setWelcomeLabel(JLabel welcomeLabel) {
+    public void setWelcomeLabel(Labels welcomeLabel) {
         this.welcomeLabel = welcomeLabel;
     }
 
@@ -158,6 +161,14 @@ public class Dashboard extends JPanel {
 
     public void setOverviewService(OverviewService overviewService) {
         this.overviewService = overviewService;
+    }
+
+    public ScannerRFIDService getScannerRFIDService() {
+        return scannerRFIDService;
+    }
+
+    public void setScannerRFIDService(ScannerRFIDService scannerRFIDService) {
+        this.scannerRFIDService = scannerRFIDService;
     }
     
     

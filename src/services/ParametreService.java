@@ -20,7 +20,7 @@ public class ParametreService {
                 if(!e.getValueIsAdjusting()){
                     switch(parametre.getList().getSelectedIndex()){
                         case 0:
-                            parametre.load(parametre.getApparence());
+                            parametre.load(parametre.getApparenceService().getApparence());
                             break;
                         case 1:
                             parametre.load(parametre.getRfid());

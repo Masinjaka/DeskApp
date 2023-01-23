@@ -26,16 +26,18 @@ import utilities.menu.UserProfile;
 public class Account extends JPanel {
     
     UserProfile profile = new UserProfile("user", "Username", "Occupation");
-    Labels changePass;
+
     private JPanel top,center,bottom;
+
     
     //variable 
     public static  JTextField fieldUsername = new JTextField("Username");
     private JLabel editUsername = new JLabel(new ImageIcon(new Sary().Resize("img/edit_blue.png",25,25)));
     private  JLabel editPass = new JLabel(new ImageIcon(new Sary().Resize("img/edit_blue.png",25,25)));
     private JLabel editSQ = new JLabel(new ImageIcon(new Sary().Resize("img/edit_blue.png",25,25)));
-    public Account(){
 
+    Labels usernameLabel,changePass,changeSQ,changeCompte;
+    public Account(){
         changePass = new Labels("Changer de compte",Fonts.textFont,Colors.text,15);
         
         this.top = topPanel();
@@ -76,7 +78,7 @@ public class Account extends JPanel {
         changes.setOpaque(false);
 
         //username label
-        Labels usernameLabel = new Labels("Nom d'utilisateur","Arial",Colors.text,15);
+        usernameLabel = new Labels("Nom d'utilisateur","Arial",Colors.text,15);
         usernameLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
         //Edit logo
         editUsername.setBorder(BorderFactory.createEmptyBorder(4, 0, 0, 0));
@@ -93,7 +95,7 @@ public class Account extends JPanel {
        // AsideLayout fieldLayout = new AsideLayout(field, edit);
 
         //Password label
-        Labels changePass = new Labels("Changer de mot de passe","Arial",Colors.text,15);
+        changePass = new Labels("Changer de mot de passe","Arial",Colors.text,15);
         changePass.setBorder(BorderFactory.createEmptyBorder(0, 2, 0, 0));
 
         //Edit logo password
@@ -101,13 +103,13 @@ public class Account extends JPanel {
         editPass.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
         //Password layout
-        JPanel  passChangeLayout = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        passChangeLayout.setOpaque(false);
-        passChangeLayout.add(changePass); passChangeLayout.add(editPass);
-       //AsideLayout passChangeLayout = new AsideLayout(changePass, editPass);
+      //  JPanel  passChangeLayout = new JPanel(new FlowLayout(FlowLayout.LEFT));
+       // passChangeLayout.setOpaque(false);
+      //  passChangeLayout.add(changePass); passChangeLayout.add(editPass);
+       AsideLayout passChangeLayout = new AsideLayout(changePass, editPass);
 
         //Security question label
-        Labels changeSQ = new Labels("Changer de question de sécurité","Arial",Colors.text,15);
+        changeSQ = new Labels("Changer de question de sécurité","Arial",Colors.text,15);
         changeSQ.setBorder(BorderFactory.createEmptyBorder(3, 2, 0, 0));
 
         //Edit logo password
@@ -138,8 +140,9 @@ public class Account extends JPanel {
        changePass.addMouseListener(new MouseInputAdapter() {
             
        });
+         changeCompte= new Labels("Changer compte","Arial",Colors.text,15);
        
-        panel.add(changePass);
+        panel.add(changeCompte);
         return panel;
     }
 
@@ -210,6 +213,30 @@ public class Account extends JPanel {
         Account.fieldUsername = fieldUsername;
     }
 
+    public Labels getUsernameLabel() {
+        return usernameLabel;
+    }
+
+    public void setUsernameLabel(Labels usernameLabel) {
+        this.usernameLabel = usernameLabel;
+    }
+
+    public Labels getChangeSQ() {
+        return changeSQ;
+    }
+
+    public void setChangeSQ(Labels changeSQ) {
+        this.changeSQ = changeSQ;
+    }
+
+    public Labels getChangeCompte() {
+        return changeCompte;
+    }
+
+    public void setChangeCompte(Labels changeCompte) {
+        this.changeCompte = changeCompte;
+    }
+    
 
 
 }

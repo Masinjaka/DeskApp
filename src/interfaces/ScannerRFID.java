@@ -43,6 +43,34 @@ public class ScannerRFID extends JPanel{
     private SerialPort serialPort;
     private boolean scanning = true;
 
+    private Labels port = new Labels("Choisissez le port du", Fonts.textFont, Colors.grey, 25);
+    private Labels portSuite = new Labels("module parmis la liste", Fonts.textFont, Colors.grey, 25);
+    Labels titre = new Labels("Scanner RFID",Fonts.textFont,Colors.text,25);
+    public Labels getPort() {
+        return port;
+    }
+
+    public void setPort(Labels port) {
+        this.port = port;
+    }
+
+    public Labels getPortSuite() {
+        return portSuite;
+    }
+
+    public void setPortSuite(Labels portSuite) {
+        this.portSuite = portSuite;
+    }
+    
+
+    public Labels getTitre() {
+        return titre;
+    }
+
+    public void setTitre(Labels titre) {
+        this.titre = titre;
+    }
+
     public ScannerRFID(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
@@ -88,9 +116,6 @@ public class ScannerRFID extends JPanel{
 
     private JPanel titre(){
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel titre = new JLabel("Scanner RFID");
-        titre.setFont(new Font(Fonts.textFont,Font.BOLD,25));
-        titre.setForeground(Colors.text);
         titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
         panel.add(titre);
         panel.setOpaque(false);
@@ -138,8 +163,7 @@ public class ScannerRFID extends JPanel{
         buttonPanel.setOpaque(false);
 
         //Create label for instructions
-        Labels port = new Labels("Choisissez le port du", Fonts.textFont, Colors.grey, 25);
-        Labels portSuite = new Labels("module parmis la liste", Fonts.textFont, Colors.grey, 25);
+       
         port.isLight(true);
         portSuite.isLight(true);
 

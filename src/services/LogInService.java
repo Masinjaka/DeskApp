@@ -98,7 +98,7 @@ public class LogInService {
                                    Account.fieldUsername.setText(login.getTxtUserName().getText());
                                     System.out.println("you are logged in!!");
                                     login.getStatut().setText("");
-                                    Template.autorizeLogin=true;
+                                   // Template.autorizeLogin=true;
                                     break;
                                 }
                                 else {

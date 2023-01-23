@@ -4,13 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.Border;
@@ -23,17 +19,14 @@ import utilities.Colors;
 import utilities.Fonts;
 import utilities.Labels;
 import utilities.Sary;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class Apparence extends JPanel{
-    private Locale currentLocale = Locale.FRANCE;
-    private ResourceBundle messages;
-    JLabel titre;
-    Labels language;
-    Labels theme;
-    Labels taille;
-    Menus men = Template.menuServices.getMenu();
+    
+   public Labels titre;
+   public Labels language,theme, taille;
+   private JComboBox<String> box = new JComboBox<>();
+   private JComboBox<String> boxtaille = new JComboBox<>();
+
     public Apparence(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
@@ -45,7 +38,7 @@ public class Apparence extends JPanel{
     // Titre du parametre
     private JPanel titre(){
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        titre = new JLabel("Apparence");
+        titre = new Labels("Apparence", Fonts.textFont, Colors.text, 30);
         titre.setFont(new Font(Fonts.textFont,Font.BOLD,25));
         titre.setForeground(Colors.text);
         titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
@@ -75,32 +68,12 @@ public class Apparence extends JPanel{
         taille= new Labels("Taille de police", Fonts.textFont, Colors.text, 15);
         
         // Créer un JCombobox pour le choix de langue
-        JComboBox<String> box = new JComboBox<>();
+        
         box.addItem("Français");
         box.addItem("Malagasy");
         //box.addItem("Anglais");
         box.setBorder((Border) new FlatLineBorder(new Insets(8,10,8,10), Colors.purple,3,20));
-        //messages = ResourceBundle.getBundle("resources/messages");
-        box.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedIndex = box.getSelectedIndex();
-                if(selectedIndex == 0){
-                    currentLocale = Locale.FRANCE;
-                }else{
-                    currentLocale = new Locale("mg","MG");
-                }
-                messages = ResourceBundle.getBundle("resources/messages", currentLocale);
-                updateInterface();
-
-                
-            }
-
-        });
-
-
-
+    
         // Créer un toggle pour le choix de theme
         JToggleButton toggle = new JToggleButton();
         toggle.setText("LIGHT");
@@ -109,7 +82,7 @@ public class Apparence extends JPanel{
         toggle.setBorder((Border) new FlatLineBorder(new Insets(8,42,8,10), Colors.purple,3,20));
 
         // Créer un JCombo pour le choix de taille de police
-        JComboBox<String> boxtaille = new JComboBox<>();
+       
         boxtaille.addItem("15%");
         boxtaille.addItem("50%");
         boxtaille.addItem("75%");
@@ -123,17 +96,24 @@ public class Apparence extends JPanel{
 
         panel.add(langLayout);panel.add(themeLayout);panel.add(tailleLayout);
 
-
-
         return panel;
     }
-    private void updateInterface(){
-        titre.setText(messages.getString("titre"));
-        language.setText(messages.getString("lang"));
-        taille.setText(messages.getString("taille"));
-        theme.setText(messages.getString("them"));
-        men.dash.getMenu().setText(messages.getString("tab"));
-        //Template.menuServices.getMenu().dash.getMenu().setText(TOOL_TIP_TEXT_KEY);
+
+    public JComboBox<String> getBox() {
+        return box;
     }
-    
+
+    public void setBox(JComboBox<String> box) {
+        this.box = box;
+    }
+
+    public JComboBox<String> getBoxtaille() {
+        return boxtaille;
+    }
+
+    public void setBoxtaille(JComboBox<String> boxtaille) {
+        this.boxtaille = boxtaille;
+    }
+
+   
 }

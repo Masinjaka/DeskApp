@@ -15,7 +15,7 @@ public class App {
 
             @Override
             public void run() {
-                template = new Template(1);
+                template = new Template();
             }
         });
         

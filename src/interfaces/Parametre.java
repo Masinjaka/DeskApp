@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import com.formdev.flatlaf.ui.FlatLineBorder;
 
 import services.AccountService;
+import services.ApparenceService;
 import services.ExporterService;
 import utilities.Colors;
 import utilities.menu.Cell;
@@ -22,19 +23,25 @@ public class Parametre extends JPanel {
 
     private JList<MenuItems> list;
     private JPanel placeholder,thirdParty;
-    private Apparence apparence = new Apparence();
     private ScannerRFID rfid = new ScannerRFID();
     private Apropos aprop= new Apropos();
     private Term_Condition TermCond = new Term_Condition();
 
     private AccountService accountService = new AccountService();
     private ExporterService exporterService= new ExporterService();
-
+    private ApparenceService apparenceService = new ApparenceService();
+    
+    public MenuItems menuApparence=new MenuItems("login", "Apparence");
+    public MenuItems menuScan=new MenuItems("logout", "Scanner RFID");
+    public MenuItems menuCompte=new MenuItems("writing", "Compte");
+    public MenuItems menuExporter=new MenuItems("clipboard", "Exporter");
+    public MenuItems menuApropo=new MenuItems("disposition", "A propos");
+    public MenuItems menuTerm_cond=new MenuItems("login", "Term & condition");
 
 
     public Parametre(){
 
-        this.thirdParty  = apparence;
+        this.thirdParty  = apparenceService.getApparence();
 
         this.setLayout(new BorderLayout(10,0));
         this.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
@@ -55,12 +62,12 @@ public class Parametre extends JPanel {
         list.setCellRenderer(new Cell());
         pane.setViewportView(list);
 
-        model.addElement(new MenuItems("login", "Apparence"));
-        model.addElement(new MenuItems("logout", "Scanner RFID"));
-        model.addElement(new MenuItems("writing", "Compte"));
-        model.addElement(new MenuItems("clipboard", "Exporter"));
-        model.addElement(new MenuItems("disposition", "A propos"));
-        model.addElement(new MenuItems("login", "Term & condition"));
+        model.addElement(menuApparence);
+        model.addElement(menuScan);
+        model.addElement(menuCompte);
+        model.addElement(menuExporter);
+        model.addElement(menuApropo);
+        model.addElement(menuTerm_cond);
 
         pane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         pane.setBackground(Colors.backgrounds);
@@ -96,12 +103,6 @@ public class Parametre extends JPanel {
     public void setList(JList<MenuItems> list) {
         this.list = list;
     }
-    public Apparence getApparence() {
-        return apparence;
-    }
-    public void setApparence(Apparence apparence) {
-        this.apparence = apparence;
-    }
     public ScannerRFID getRfid() {
         return rfid;
     }
@@ -134,6 +135,12 @@ public class Parametre extends JPanel {
     }
     public void setExporterService(ExporterService exporterService) {
         this.exporterService = exporterService;
+    }
+    public ApparenceService getApparenceService() {
+        return apparenceService;
+    }
+    public void setApparenceService(ApparenceService apparenceService) {
+        this.apparenceService = apparenceService;
     }
 
     

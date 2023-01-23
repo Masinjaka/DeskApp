@@ -13,7 +13,6 @@ public class MenuServices {
     
     private Menus menu = new Menus();
     private Dashboard dashboard = new Dashboard();
-
     public MenuServices(){
         
         menu.getMenuList().addListSelectionListener(new ListSelectionListener() {
@@ -24,19 +23,19 @@ public class MenuServices {
                     switch (menu.getMenuList().getSelectedIndex()){
                         case 0:
                             dashboard.load(dashboard.getHistoricService().getHistorics());
-                            dashboard.getWelcomeLabel().setText("Tongasoa");
+                            dashboard.getWelcomeLabel().setText(menu.dash.getMenu().getText());
                             break;
                         case 1:
                             dashboard.load(dashboard.getClockInService().getClock_in());
-                            dashboard.getWelcomeLabel().setText("Début de service");
+                            dashboard.getWelcomeLabel().setText(menu.debut.getMenu().getText());
                             break;
                         case 2:
                             dashboard.load(dashboard.getClockOutService().getClock_out());
-                            dashboard.getWelcomeLabel().setText("Fin de service");
+                            dashboard.getWelcomeLabel().setText(menu.fin.getMenu().getText());
                             break;
                         case 3:
                             dashboard.load(dashboard.getPersonneService().getPersonnels());
-                            dashboard.getWelcomeLabel().setText("Personnels");
+                            dashboard.getWelcomeLabel().setText(menu.list.getMenu().getText());
                             break;
                     }
                 }
@@ -54,7 +53,7 @@ public class MenuServices {
 
                 //Show setting panel
                 dashboard.load(dashboard.getParametreService().getParametre());
-                dashboard.getWelcomeLabel().setText("Paramètres");
+                dashboard.getWelcomeLabel().setText(menu.setting.getMenu().getText());
 
             }
         });
