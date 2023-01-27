@@ -21,25 +21,12 @@ import utilities.Labels;
 import utilities.Sary;
 
 public class Apparence extends JPanel{
-<<<<<<< HEAD
     
    public Labels titre;
    public Labels language,theme, taille;
    private JComboBox<String> box = new JComboBox<>();
    private JComboBox<String> boxtaille = new JComboBox<>();
 
-=======
-    private Locale currentLocale = Locale.FRANCE;
-    private ResourceBundle messages;
-    JLabel titre;
-    Labels language;
-    Labels theme;
-    Labels taille;
-<<<<<<< HEAD
-=======
-//    Menus men = Template.menuServices.getMenu();
->>>>>>> 0b2e1693ed9f458b098c22e5c8d6deaeb1b13ce3
->>>>>>> f9fdc1ff3873ff878379c1002081735c045c01a9
     public Apparence(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
@@ -111,44 +98,10 @@ public class Apparence extends JPanel{
 
         return panel;
     }
-<<<<<<< HEAD
 
     public JComboBox<String> getBox() {
         return box;
-=======
-    private void updateInterface(){
-<<<<<<< HEAD
-        titre.setText(messages.getString("titre"));
-        language.setText(messages.getString("lang"));
-        taille.setText(messages.getString("taille"));
-        theme.setText(messages.getString("them"));
-        Template.menuServices.getMenu().dash.getMenu().setText(messages.getString("tab"));
-        //Template.menuServices.getMenu().dash.getMenu().setText(TOOL_TIP_TEXT_KEY);
-    }
-=======
-             titre.setText(messages.getString("titre"));
-            language.setText(messages.getString("lang"));       
-            taille.setText(messages.getString("taille"));
-            theme.setText(messages.getString("them"));
-          //  men.dash.getMenu().setText(messages.getString("tab"));
-           // Template.menuServices.getMenu().dash.getMenu().setText(messages.getString("tab"));
->>>>>>> f9fdc1ff3873ff878379c1002081735c045c01a9
-    
-           Menus.dash.getMenu().setText(messages.getString("tab"));
-           Menus.debut.getMenu().setText(messages.getString("deb"));
-           Menus.fin.getMenu().setText(messages.getString("fin"));
-           Menus.list.getMenu().setText(messages.getString("pers"));
-           Menus.setting.getMenu().setText(messages.getString("param"));
 
-          Dashboard.welcomeLabel.setText(messages.getString("tonga"));
-          Dashboard.profile.getNom().setText(messages.getString("user"));
-          Dashboard.profile.getPost().setText(messages.getString("occup"));
-          Historics.title.setText(messages.getString("histo"));
-
-        
-        
-    
->>>>>>> 0b2e1693ed9f458b098c22e5c8d6deaeb1b13ce3
     }
 
     public void setBox(JComboBox<String> box) {

@@ -64,22 +64,12 @@ public class Parametre extends JPanel {
         list.setCellRenderer(new Cell());
         pane.setViewportView(list);
 
-<<<<<<< HEAD
         model.addElement(menuApparence);
         model.addElement(menuScan);
         model.addElement(menuCompte);
         model.addElement(menuExporter);
         model.addElement(menuApropo);
         model.addElement(menuTerm_cond);
-=======
-        txtApparence="Apparence";
-        model.addElement(new MenuItems("login",txtApparence));
-        model.addElement(new MenuItems("logout", "Scanner RFID"));
-        model.addElement(new MenuItems("writing", "Compte"));
-        model.addElement(new MenuItems("clipboard", "Exporter"));
-        model.addElement(new MenuItems("disposition", "A propos"));
-        model.addElement(new MenuItems("login", "Term & condition"));
->>>>>>> 0b2e1693ed9f458b098c22e5c8d6deaeb1b13ce3
 
         pane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         pane.setBackground(Colors.backgrounds);
