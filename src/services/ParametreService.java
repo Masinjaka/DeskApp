@@ -23,7 +23,7 @@ public class ParametreService {
                             parametre.load(parametre.getApparenceService().getApparence());
                             break;
                         case 1:
-                            parametre.load(parametre.getRfid());
+                            parametre.load(parametre.getScannerRFIDService().getScanner());
                             break;
                         case 2:
                             parametre.load(parametre.getAccountService().getAccount());

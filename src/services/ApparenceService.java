@@ -40,13 +40,13 @@ public class ApparenceService {
             public void actionPerformed(ActionEvent e) {
                 int selectedIndex = apparence.getBoxtaille().getSelectedIndex();
                 if(selectedIndex==0){
-                    updateInterfacePolice(50);
+                    updateInterfacePolice(15);
                 }
                 else if(selectedIndex==1){
-                    updateInterfacePolice(75);
+                    updateInterfacePolice(50);
                 }
                 else{
-                    updateInterfacePolice(100);
+                    updateInterfacePolice(75);
                 }
                 
             }

@@ -1,51 +1,13 @@
 ----------------------------------------------------------------
-<<<<<<< HEAD
-Mon Jan 23 15:15:58 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-de8e-7c9a-00000ed2d1d8 
+Fri Jan 27 11:56:04 EAT 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-f270-e71a-00000ec520b8 
 on database directory C:\Users\JD132\Desktop\Dossier\smart\smartVs\deskNew\DeskApp\smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
 Loaded from file:/C:/Users/JD132/Desktop/Dossier/smart/smartVs/deskNew/DeskApp/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=18.0.1.1+2-6
 user.dir=C:\Users\JD132\Desktop\Dossier\smart\smartVs\deskNew\DeskApp
-=======
-<<<<<<< HEAD
-Thu Jan 19 11:22:56 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-c91f-b578-00000373e500 
-=======
-<<<<<<< HEAD
-Tue Jan 17 18:21:58 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-c052-a09a-000007218b00 
-=======
-<<<<<<< HEAD
-Tue Jan 17 16:27:42 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-bfea-02e1-000003726b30 
->>>>>>> 41d84efc69aed818e724eace82b0cbf0c217d13a
-on database directory C:\Users\Masinjaka\DeskApp\smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
-Loaded from file:/C:/Users/Masinjaka/DeskApp/lib/derby.jar
-java.vendor=Microsoft
-java.runtime.version=11.0.17+8-LTS
-user.dir=C:\Users\Masinjaka\DeskApp
-<<<<<<< HEAD
-=======
-=======
-Mon Jan 16 20:26:53 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-bb9e-a00e-000007217df0 
->>>>>>> 874313a4869a612338b7f047c9f44a177d7077a0
-on database directory D:\DeskApp\smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
-Loaded from file:/D:/DeskApp/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=18.0.1.1+2-6
-user.dir=D:\DeskApp
->>>>>>> 84aafef60d106a5c47bec73dce563bfe479d37b2
->>>>>>> 41d84efc69aed818e724eace82b0cbf0c217d13a
->>>>>>> 0b2e1693ed9f458b098c22e5c8d6deaeb1b13ce3
 os.name=Windows 11
 os.arch=amd64
 os.version=10.0
 derby.system.home=null
-------------  Begin Error Message -------------
-
-System may be in a inconsistent state, missing file C:\Users\JD132\Desktop\Dossier\smart\smartVs\deskNew\DeskApp\smartdb\log\log1.dat
-------------  End Error Message -------------
-
 Database Class Loader started - derby.database.classpath=''

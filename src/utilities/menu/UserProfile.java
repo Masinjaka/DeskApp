@@ -17,13 +17,10 @@ public class UserProfile extends JPanel {
     private String imageIcon;
     private String name;
     private String poste;
-<<<<<<< HEAD
     private JLabel nom , post;
     private int size=15;
-=======
-    private JLabel nom ;
-    private JLabel post;
->>>>>>> 0b2e1693ed9f458b098c22e5c8d6deaeb1b13ce3
+
+
     
     public UserProfile(String imageIcon, String name, String poste) {
         this.imageIcon = imageIcon;
@@ -39,13 +36,12 @@ public class UserProfile extends JPanel {
         //Creating elements
         JLabel icon = new JLabel(new ImageIcon(new Sary().Resize("img/profile/"+this.imageIcon+".png", 30,30)));
         JPanel stack = new JPanel(new VerticalFlowLayout());
-<<<<<<< HEAD
+
          nom = new JLabel(this.name);
          post = new JLabel(this.poste);
-=======
+
         nom = new JLabel(this.name);
         post = new JLabel(this.poste);
->>>>>>> 0b2e1693ed9f458b098c22e5c8d6deaeb1b13ce3
 
         //Putting in place
         stack.add(nom);stack.add(post);
@@ -61,7 +57,7 @@ public class UserProfile extends JPanel {
 
      //changer taille police
      public void changeFont(int pourcent){
-        int newSize=(this.size*pourcent)/75;
+        int newSize=(this.size*pourcent)/60;
         this.nom.setFont(new Font("Arial",Font.BOLD,newSize));
     }
 
@@ -105,11 +101,6 @@ public class UserProfile extends JPanel {
     public void setPost(JLabel post) {
         this.post = post;
     }
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 0b2e1693ed9f458b098c22e5c8d6deaeb1b13ce3
     
 
 }
