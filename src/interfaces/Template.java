@@ -1,9 +1,7 @@
 package interfaces;
 
-
 import java.awt.BorderLayout;
 import java.awt.Font;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,7 +25,7 @@ public class Template extends JFrame{
     public static Tables db_tables;
     public static EveController time_control;
 
-    public static MenuServices menuServices;
+    public static MenuServices menuServices=new MenuServices();
 
     //Constructor
     public Template(){

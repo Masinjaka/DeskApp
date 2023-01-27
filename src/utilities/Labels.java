@@ -28,6 +28,12 @@ public class Labels extends JLabel {
         }
     }
 
+    //changer taille police
+    public void changeFont(int pourcent){
+        int newSize=(this.size*pourcent)/50;
+        this.setFont(new Font(this.font,Font.BOLD,newSize));
+    }
+
     //Getters and Setters
     public String getFontString() {
         return font;

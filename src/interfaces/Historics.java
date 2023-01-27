@@ -6,38 +6,32 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.event.MouseInputAdapter;
-
 import com.formdev.flatlaf.ui.FlatLineBorder;
 import com.intellij.openapi.ui.VerticalFlowLayout;
 
-import tasks.WebSocket;
 import utilities.Colors;
 import utilities.Fonts;
-import utilities.ToggleSelectedEvent;
+import utilities.Labels;
 import utilities.dispositif.DateAndTime;
 import utilities.dispositif.DispositifItem;
 import utilities.historic.Historic;
 import utilities.historic.HistoricRenderer;
-import utilities.peronnel.WorkerCard;
-
-import java.awt.event.*;
 
 public class Historics extends JPanel {
 
     private DispositifItem scanner = new DispositifItem("Scanner de badge");
-
+    public static  JLabel title = new JLabel("Historique");
     
 
     JScrollPane pane = new JScrollPane();
     DefaultListModel<Historic> model = new DefaultListModel<>();
     JList<Historic> list = new JList<>();
-
+    private Labels title = new Labels("Historique", Fonts.textFont, Colors.text, 22);
+    private Labels deviceLabel = new Labels("Dispositifs",Fonts.textFont, Colors.text, 22);
+    
     public Historics(){
         this.setLayout(new BorderLayout(10,0));
         this.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
@@ -50,9 +44,11 @@ public class Historics extends JPanel {
         
         //......................................................................
         JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel title = new JLabel("Historique");
+<<<<<<< HEAD
+=======
         title.setForeground(Colors.text);
         title.setFont(new Font(Fonts.textFont,Font.BOLD,22));
+>>>>>>> 0b2e1693ed9f458b098c22e5c8d6deaeb1b13ce3
 
         //......................................................................
         
@@ -89,15 +85,13 @@ public class Historics extends JPanel {
         topDevicePanel.setOpaque(false);
 
         JPanel devicePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel deviceLabel = new JLabel("Dispositifs");
+        
         
         JPanel horlogePanel = new JPanel();
         horlogePanel.setLayout(new BoxLayout(horlogePanel, BoxLayout.Y_AXIS));
         //-----------------------------------------------------------
 
         //Customization
-        deviceLabel.setForeground(Colors.text);
-        deviceLabel.setFont(new Font(Fonts.textFont,Font.BOLD,22));
         devicePanel.setOpaque(false);
         devicePanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
         horlogePanel.setBackground(Colors.purple);
@@ -139,6 +133,22 @@ public class Historics extends JPanel {
 
     public void setList(JList<Historic> list) {
         this.list = list;
+    }
+
+    public Labels getTitle() {
+        return title;
+    }
+
+    public void setTitle(Labels title) {
+        this.title = title;
+    }
+
+    public Labels getDeviceLabel() {
+        return deviceLabel;
+    }
+
+    public void setDeviceLabel(Labels deviceLabel) {
+        this.deviceLabel = deviceLabel;
     }
     
     

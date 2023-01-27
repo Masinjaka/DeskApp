@@ -6,6 +6,7 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< HEAD
             "name": "Launch Server",
             "request": "launch",
             "mainClass": "Server",
@@ -17,6 +18,12 @@
             "request": "launch",
             "mainClass": "App",
             "projectName": "DeskApp_4d61d80f"
+=======
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "DeskApp_dd4a38e2"
+>>>>>>> f9fdc1ff3873ff878379c1002081735c045c01a9
         },
         {
             "type": "java",

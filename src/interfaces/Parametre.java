@@ -12,6 +12,9 @@ import javax.swing.JScrollPane;
 
 import com.formdev.flatlaf.ui.FlatLineBorder;
 
+import services.AccountService;
+import services.ApparenceService;
+import services.ExporterService;
 import utilities.Colors;
 import utilities.menu.Cell;
 import utilities.menu.MenuItems;
@@ -20,16 +23,27 @@ public class Parametre extends JPanel {
 
     private JList<MenuItems> list;
     private JPanel placeholder,thirdParty;
-    private Apparence apparence = new Apparence();
     private ScannerRFID rfid = new ScannerRFID();
-    private Account account = new Account();
     private Apropos aprop= new Apropos();
     private Term_Condition TermCond = new Term_Condition();
-    private Exporter exporte = new Exporter();
+
+    private AccountService accountService = new AccountService();
+    private ExporterService exporterService= new ExporterService();
+    private ApparenceService apparenceService = new ApparenceService();
+    
+    public MenuItems menuApparence=new MenuItems("login", "Apparence");
+    public MenuItems menuScan=new MenuItems("logout", "Scanner RFID");
+    public MenuItems menuCompte=new MenuItems("writing", "Compte");
+    public MenuItems menuExporter=new MenuItems("clipboard", "Exporter");
+    public MenuItems menuApropo=new MenuItems("disposition", "A propos");
+    public MenuItems menuTerm_cond=new MenuItems("login", "Term & condition");
+
+
+    public static String txtApparence,txtScanner,txtCompte,txtExport,txtAbout,txtTerm;
 
     public Parametre(){
 
-        this.thirdParty  = apparence;
+        this.thirdParty  = apparenceService.getApparence();
 
         this.setLayout(new BorderLayout(10,0));
         this.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
@@ -50,12 +64,22 @@ public class Parametre extends JPanel {
         list.setCellRenderer(new Cell());
         pane.setViewportView(list);
 
-        model.addElement(new MenuItems("login", "Apparence"));
+<<<<<<< HEAD
+        model.addElement(menuApparence);
+        model.addElement(menuScan);
+        model.addElement(menuCompte);
+        model.addElement(menuExporter);
+        model.addElement(menuApropo);
+        model.addElement(menuTerm_cond);
+=======
+        txtApparence="Apparence";
+        model.addElement(new MenuItems("login",txtApparence));
         model.addElement(new MenuItems("logout", "Scanner RFID"));
         model.addElement(new MenuItems("writing", "Compte"));
         model.addElement(new MenuItems("clipboard", "Exporter"));
         model.addElement(new MenuItems("disposition", "A propos"));
         model.addElement(new MenuItems("login", "Term & condition"));
+>>>>>>> 0b2e1693ed9f458b098c22e5c8d6deaeb1b13ce3
 
         pane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         pane.setBackground(Colors.backgrounds);
@@ -91,23 +115,11 @@ public class Parametre extends JPanel {
     public void setList(JList<MenuItems> list) {
         this.list = list;
     }
-    public Apparence getApparence() {
-        return apparence;
-    }
-    public void setApparence(Apparence apparence) {
-        this.apparence = apparence;
-    }
     public ScannerRFID getRfid() {
         return rfid;
     }
     public void setRfid(ScannerRFID rfid) {
         this.rfid = rfid;
-    }
-    public Account getAccount() {
-        return account;
-    }
-    public void setAccount(Account account) {
-        this.account = account;
     }
     public  Apropos getApropos() {
         return aprop;
@@ -115,16 +127,34 @@ public class Parametre extends JPanel {
     public void setApropos(Apropos aprop){
         this.aprop= aprop;
     }
-    public Exporter getExporter(){
-        return exporte;
-    }
-    public void setExporter(Exporter exporte){
-        this.exporte= exporte;
-    }
     public Term_Condition getTerm_Condition(){
         return TermCond;
     }
     public void setTerm_Condition (Term_Condition TermCond){
         this.TermCond = TermCond;
     }
+   
+
+    //getter and setter accountService
+    public AccountService getAccountService() {
+        return accountService;
+    }
+    public void setAccountService(AccountService accountService) {
+        this.accountService = accountService;
+    }
+    public ExporterService getExporterService() {
+        return exporterService;
+    }
+    public void setExporterService(ExporterService exporterService) {
+        this.exporterService = exporterService;
+    }
+    public ApparenceService getApparenceService() {
+        return apparenceService;
+    }
+    public void setApparenceService(ApparenceService apparenceService) {
+        this.apparenceService = apparenceService;
+    }
+
+    
+    
 }
