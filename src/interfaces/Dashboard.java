@@ -47,6 +47,10 @@ public class Dashboard extends JPanel {
     private Labels welcomeLabel;
     private JPanel placeholder;
     public UserProfile profile = new UserProfile("user", "Username", "Occupation");
+<<<<<<< HEAD
+=======
+
+>>>>>>> ebd94167d60b0c8c5087b7b75a62b4645f489ead
 
     public Dashboard(){
 
@@ -79,6 +83,13 @@ public class Dashboard extends JPanel {
 
         welcomeLabel = new Labels("Bienvenue",Fonts.textFont, Colors.text, 30);
      
+<<<<<<< HEAD
+=======
+
+        welcomeLabel.setFont(new Font("Arial",Font.BOLD,30));
+        welcomeLabel.setForeground(textColor);
+
+>>>>>>> ebd94167d60b0c8c5087b7b75a62b4645f489ead
 
         welcomePanel.add(welcomeLabel);
 

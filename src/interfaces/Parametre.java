@@ -15,6 +15,7 @@ import com.formdev.flatlaf.ui.FlatLineBorder;
 import services.AccountService;
 import services.ApparenceService;
 import services.ExporterService;
+import services.ScannerRFIDService;
 import utilities.Colors;
 import utilities.menu.Cell;
 import utilities.menu.MenuItems;
@@ -23,13 +24,13 @@ public class Parametre extends JPanel {
 
     private JList<MenuItems> list;
     private JPanel placeholder,thirdParty;
-    private ScannerRFID rfid = new ScannerRFID();
     private Apropos aprop= new Apropos();
     private Term_Condition TermCond = new Term_Condition();
 
     private AccountService accountService = new AccountService();
     private ExporterService exporterService= new ExporterService();
     private ApparenceService apparenceService = new ApparenceService();
+    private ScannerRFIDService scannerRFIDService= new ScannerRFIDService();
     
     public MenuItems menuApparence=new MenuItems("login", "Apparence");
     public MenuItems menuScan=new MenuItems("logout", "Scanner RFID");
@@ -105,12 +106,6 @@ public class Parametre extends JPanel {
     public void setList(JList<MenuItems> list) {
         this.list = list;
     }
-    public ScannerRFID getRfid() {
-        return rfid;
-    }
-    public void setRfid(ScannerRFID rfid) {
-        this.rfid = rfid;
-    }
     public  Apropos getApropos() {
         return aprop;
     }
@@ -144,7 +139,13 @@ public class Parametre extends JPanel {
     public void setApparenceService(ApparenceService apparenceService) {
         this.apparenceService = apparenceService;
     }
-
+    public ScannerRFIDService getScannerRFIDService() {
+        return scannerRFIDService;
+    }
+    public void setScannerRFIDService(ScannerRFIDService scannerRFIDService) {
+        this.scannerRFIDService = scannerRFIDService;
+    }
+    
     
     
 }

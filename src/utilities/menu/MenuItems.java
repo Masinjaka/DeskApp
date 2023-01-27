@@ -20,7 +20,7 @@ public class MenuItems extends JPanel {
 
     private JLabel icon = new JLabel();
     private JLabel menu = new JLabel();
-    private int size=19;
+    private int size = 15;
     boolean activated = false;
     public static boolean remove = true;
     boolean selfSelection = false;
@@ -50,10 +50,12 @@ public class MenuItems extends JPanel {
         if (active == true) {
             setBackground(Colors.purple);
             menu.setForeground(Colors.backgrounds);
-            //this.setBorder(new FlatLineBorder(new Insets(6, 8, 5, 8), Colors.light_stroke, 1, 20));
+            // this.setBorder(new FlatLineBorder(new Insets(6, 8, 5, 8),
+            // Colors.light_stroke, 1, 20));
             activated = true;
         } else {
-            //this.setBorder(new FlatLineBorder(new Insets(6, 8, 5, 8), Colors.light_stroke, 0, 20));
+            // this.setBorder(new FlatLineBorder(new Insets(6, 8, 5, 8),
+            // Colors.light_stroke, 0, 20));
             setBackground(Colors.backgrounds);
             menu.setForeground(Colors.grey);
             activated = false;
@@ -69,10 +71,23 @@ public class MenuItems extends JPanel {
         }
     }
 
-    //changer taille police
-    public void changeFont(int pourcent){
-        int newSize=(this.size*pourcent)/100;
-        this.menu.setFont(new Font(Fonts.textFont,Font.BOLD,newSize));
+    // changer taille police
+    public void changeFont(int pourcent) {
+       // int newSize = (this.size * pourcent) / 100;
+       int newSize=15;
+        switch (pourcent) {
+            case 15:
+                newSize = 10;
+                break;
+            case 50:
+                newSize = 15;
+                break;
+            case 75:
+                newSize = 20;
+                break;
+
+        }
+        this.menu.setFont(new Font(Fonts.textFont, Font.BOLD, newSize));
     }
 
     public JLabel getMenu() {

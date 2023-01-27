@@ -6,6 +6,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -23,7 +24,10 @@ import utilities.historic.HistoricRenderer;
 public class Historics extends JPanel {
 
     private DispositifItem scanner = new DispositifItem("Scanner de badge");
+<<<<<<< HEAD
     //public static  JLabel title = new JLabel("Historique");
+=======
+>>>>>>> ebd94167d60b0c8c5087b7b75a62b4645f489ead
     
 
     JScrollPane pane = new JScrollPane();
@@ -44,6 +48,12 @@ public class Historics extends JPanel {
         
         //......................................................................
         JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+<<<<<<< HEAD
+=======
+
+        title.setForeground(Colors.text);
+        title.setFont(new Font(Fonts.textFont,Font.BOLD,22));
+>>>>>>> ebd94167d60b0c8c5087b7b75a62b4645f489ead
 
         //......................................................................
         

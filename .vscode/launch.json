@@ -10,6 +10,15 @@
             "name": "Launch Server",
             "request": "launch",
             "mainClass": "Server",
+            "projectName": "DeskApp_dd4a38e2"
+        },
+        {
+            "type": "java",
+=======
+<<<<<<< HEAD
+            "name": "Launch Server",
+            "request": "launch",
+            "mainClass": "Server",
             "projectName": "DeskApp_4d61d80f"
         },
         {
@@ -19,6 +28,7 @@
             "mainClass": "App",
             "projectName": "DeskApp_4d61d80f"
 =======
+>>>>>>> e884daef6ff72c799bff795c9e582e0595d6ee45
             "name": "Launch App",
             "request": "launch",
             "mainClass": "App",

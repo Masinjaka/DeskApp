@@ -3,7 +3,7 @@ package interfaces;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
+
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
@@ -14,13 +14,13 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingWorker;
+
 import javax.swing.event.MouseInputAdapter;
 
-import com.fazecast.jSerialComm.SerialPort;
+
 import com.formdev.flatlaf.ui.FlatLineBorder;
 import com.intellij.openapi.ui.VerticalFlowLayout;
 
@@ -35,41 +35,26 @@ public class ScannerRFID extends JPanel{
 
     private JPanelSlider slider;
     private JPanel networkPanel = new JPanel();
-    private JPanel serialPortPanel = new JPanel();
+    private JPanel serialPortPanel = new JPanel(); 
     private JPanel linkModule = new JPanel();
     private JLabel steps = new JLabel();
+  
     JComboBox<String> comPorts;
-    private SerialPort[] serialPorts;
-    private SerialPort serialPort;
-    private boolean scanning = true;
 
+    //create button to pass to the next slide
+    private Buttons bouton = new Buttons("Suivant");
+    private Buttons next = new Buttons("Suivant");
+    private  Buttons previous = new Buttons("Précedent");
+
+    // fields
+    private JTextField ssField = new JTextField();
+    private JTextField passField = new JTextField();
+   
+    
     private Labels port = new Labels("Choisissez le port du", Fonts.textFont, Colors.grey, 25);
     private Labels portSuite = new Labels("module parmis la liste", Fonts.textFont, Colors.grey, 25);
     Labels titre = new Labels("Scanner RFID",Fonts.textFont,Colors.text,25);
-    public Labels getPort() {
-        return port;
-    }
-
-    public void setPort(Labels port) {
-        this.port = port;
-    }
-
-    public Labels getPortSuite() {
-        return portSuite;
-    }
-
-    public void setPortSuite(Labels portSuite) {
-        this.portSuite = portSuite;
-    }
-    
-
-    public Labels getTitre() {
-        return titre;
-    }
-
-    public void setTitre(Labels titre) {
-        this.titre = titre;
-    }
+   
 
     public ScannerRFID(){
         this.setLayout(new BorderLayout());
@@ -82,45 +67,7 @@ public class ScannerRFID extends JPanel{
         this.add(steps(),BorderLayout.SOUTH);
     }
 
-    public void connectToPort(){
-        String selectedPort = (String) comPorts.getSelectedItem();
-        serialPort = SerialPort.getCommPort(selectedPort);
-        serialPort.setComPortParameters(9600, 8, 1, SerialPort.NO_PARITY);
-        serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
-        if(serialPort.openPort()){
-            JOptionPane.showMessageDialog(null, "Connected to "+selectedPort);
-            scanning = false;
-        }else{
-            JOptionPane.showMessageDialog(null, "Failed to connect to "+selectedPort);
-        }
-    }
-
-    public void port_scanning(){
-        SwingWorker worker = new SwingWorker<Void,Void>(){
-
-            @Override
-            protected Void doInBackground() throws Exception {
-
-                while(scanning){
-                    serialPorts = SerialPort.getCommPorts();
-                    for (SerialPort serial:serialPorts){
-                    }
-                }
-                return null;
-            }
-            
-        };
-
-        worker.execute();
-    }
-
-    private JPanel titre(){
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
-        panel.add(titre);
-        panel.setOpaque(false);
-        return panel;
-    }
+   
 
     private JPanel settings(){
 
@@ -144,7 +91,13 @@ public class ScannerRFID extends JPanel{
 
         return slider;
     }
-
+    private JPanel titre(){
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
+        panel.add(titre);
+        panel.setOpaque(false);
+        return panel;
+    }
     // Port selection panel
     private void serialPortPanel(){
         serialPortPanel.setLayout(new BoxLayout(serialPortPanel,BoxLayout.Y_AXIS));
@@ -178,8 +131,7 @@ public class ScannerRFID extends JPanel{
         comPorts.setPreferredSize(new Dimension(100,50));
         comPorts.setBorder(new FlatLineBorder(new Insets(10,10,10,10), Colors.purple,3,20));
 
-        //create button to pass to the next slide
-        Buttons bouton = new Buttons("Suivant");
+        
 
         //add the comPort combo to the comPanel
         comPanel.add(comPorts);
@@ -188,18 +140,6 @@ public class ScannerRFID extends JPanel{
         buttonPanel.add(bouton);
         actionPanel.add(comPanel);
         actionPanel.add(buttonPanel);
-
-        //adding action to the button
-        bouton.addMouseListener(new MouseInputAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                connectToPort();
-                slider.nextPanel(4, networkPanel,JPanelSlider.left);
-                steps.setIcon(new ImageIcon(new Sary().Resize("img/two.png",300,22)));
-            }
-        });
-
         //adding the process and action panel to the main container
         serialPortPanel.add(processPanel);serialPortPanel.add(actionPanel);
     }
@@ -241,40 +181,16 @@ public class ScannerRFID extends JPanel{
         //ssid and pass
         Labels ssid = new Labels("Wifi SSID: ",Fonts.textFont,Colors.grey,15);
         Labels pass = new Labels("mot de passe: ",Fonts.textFont,Colors.grey,15);
-        JTextField ssField = new JTextField();
-        JTextField passField = new JTextField();
+        
         ssField.setPreferredSize(new Dimension(150,40));
         ssField.setBorder(new FlatLineBorder(new Insets(2,10,2,10), Colors.purple,3,20));
         passField.setPreferredSize(new Dimension(150,40));
         passField.setBorder(new FlatLineBorder(new Insets(2,10,2,10), Colors.purple,3,20));
         ssidPanel.setBorder(BorderFactory.createEmptyBorder(13, 0, 0, 0));
         passPanel.setBorder(BorderFactory.createEmptyBorder(13, 0, 0, 0));
- 
-        //Buttons
-        Buttons previous = new Buttons("Précedent");
+
         previous.isOutlined(true);
-        Buttons next = new Buttons("Suivant");
-
-        previous.addMouseListener(new MouseInputAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-                super.mouseClicked(e);
-
-                slider.nextPanel(4, serialPortPanel, JPanelSlider.right);
-                steps.setIcon(new ImageIcon(new Sary().Resize("img/one.png",300,22)));
-            }
-            
-        });
-        next.addMouseListener(new MouseInputAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                slider.nextPanel(4, linkModule, JPanelSlider.left);
-                steps.setIcon(new ImageIcon(new Sary().Resize("img/three.png",300,22)));
-            }   
-        });
+      
 
         //Addings
 
@@ -359,4 +275,160 @@ public class ScannerRFID extends JPanel{
         panel.add(steps);
         return panel;
     }
+
+
+
+    //getter and setter
+    public Labels getPort() {
+        return port;
+    }
+
+    public void setPort(Labels port) {
+        this.port = port;
+    }
+
+    public Labels getPortSuite() {
+        return portSuite;
+    }
+
+    public void setPortSuite(Labels portSuite) {
+        this.portSuite = portSuite;
+    }
+    
+
+    public Labels getTitre() {
+        return titre;
+    }
+
+    public void setTitre(Labels titre) {
+        this.titre = titre;
+    }
+    
+
+    public Buttons getBouton() {
+        return bouton;
+    }
+
+    public void setBouton(Buttons bouton) {
+        this.bouton = bouton;
+    }
+    
+
+    public JPanelSlider getSlider() {
+        return slider;
+    }
+
+    public void setSlider(JPanelSlider slider) {
+        this.slider = slider;
+    }
+
+
+
+    public JPanel getNetworkPanel() {
+        return networkPanel;
+    }
+
+
+
+    public void setNetworkPanel(JPanel networkPanel) {
+        this.networkPanel = networkPanel;
+    }
+
+
+
+    public JPanel getSerialPortPanel() {
+        return serialPortPanel;
+    }
+
+
+
+    public void setSerialPortPanel(JPanel serialPortPanel) {
+        this.serialPortPanel = serialPortPanel;
+    }
+
+
+
+    public JPanel getLinkModule() {
+        return linkModule;
+    }
+
+
+
+    public void setLinkModule(JPanel linkModule) {
+        this.linkModule = linkModule;
+    }
+
+
+
+    public JLabel getSteps() {
+        return steps;
+    }
+
+
+
+    public void setSteps(JLabel steps) {
+        this.steps = steps;
+    }
+
+
+
+    public JComboBox<String> getComPorts() {
+        return comPorts;
+    }
+
+
+
+    public void setComPorts(JComboBox<String> comPorts) {
+        this.comPorts = comPorts;
+    }
+
+
+
+    public Buttons getNext() {
+        return next;
+    }
+
+
+
+    public void setNext(Buttons next) {
+        this.next = next;
+    }
+
+
+
+    public Buttons getPrevious() {
+        return previous;
+    }
+
+
+
+    public void setPrevious(Buttons previous) {
+        this.previous = previous;
+    }
+
+
+
+    public JTextField getSsField() {
+        return ssField;
+    }
+
+
+
+    public void setSsField(JTextField ssField) {
+        this.ssField = ssField;
+    }
+
+
+
+    public JTextField getPassField() {
+        return passField;
+    }
+
+
+
+    public void setPassField(JTextField passField) {
+        this.passField = passField;
+    }
+    
+    
 }
