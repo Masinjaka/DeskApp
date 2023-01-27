@@ -29,12 +29,8 @@ public class HistoricService implements Verifiable{
         load();
 
         // ? Actualiser la liste
-        //actualiser();
-        /*
-         * Ecrit ici une boucle de type Timer qui actualise l'historique tout les 1/3 de séconde 
-         * et qui affiche une nouvelle personne uniquement s'il la nouvelle carte est dans la base de donnée 
-         * 
-         */
+        actualiser();
+
     }
     private void load(){
 
@@ -133,7 +129,7 @@ public class HistoricService implements Verifiable{
 
                                 elts = new String []{
                                     resultat.getString("Photo"),
-                                    resultat.getString("Nom"),
+                                    resultat.getString("Nom")+" "+
                                     resultat.getString("Prenom"),
                                     heure,
                                     resultat.getString("Heure"),
@@ -149,9 +145,6 @@ public class HistoricService implements Verifiable{
                                 // TODO: handle exception
                                 e.printStackTrace();
                             }
-
-                    
-
                             EveController.hasNewHistoricElement = false;
                         }
                 
@@ -164,7 +157,7 @@ public class HistoricService implements Verifiable{
                 protected void process(List<String[]> chunks) {
                     super.process(chunks);
                     String[] lisita = chunks.get(chunks.size()-1);
-                    model.addElement((new Historic(lisita[0], lisita[1]+" "+lisita[2], lisita[3], lisita[4], lisita[5])));
+                    model.addElement((new Historic(lisita[0], lisita[1], lisita[2], lisita[3], lisita[4])));
 
                 }
 

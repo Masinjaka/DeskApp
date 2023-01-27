@@ -33,7 +33,6 @@ public class Apparence extends JPanel{
     Labels language;
     Labels theme;
     Labels taille;
-    Menus men = Template.menuServices.getMenu();
     public Apparence(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
@@ -132,7 +131,7 @@ public class Apparence extends JPanel{
         language.setText(messages.getString("lang"));
         taille.setText(messages.getString("taille"));
         theme.setText(messages.getString("them"));
-        men.dash.getMenu().setText(messages.getString("tab"));
+        Template.menuServices.getMenu().dash.getMenu().setText(messages.getString("tab"));
         //Template.menuServices.getMenu().dash.getMenu().setText(TOOL_TIP_TEXT_KEY);
     }
     

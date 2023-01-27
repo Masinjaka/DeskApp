@@ -70,8 +70,8 @@ public class Historics extends JPanel {
         list.setModel(model);
         list.setCellRenderer(new HistoricRenderer());
         pane.setViewportView(list);
-        model.addElement(new Historic("Dispositif.png", "Ramanandraibe", "09h30-16h00","09h15", "A temps"));
-        model.addElement(new Historic("useraa.png", "Andrianasolo", "09h30-12h00","09h15", "A temps"));
+        //model.addElement(new Historic("Dispositif.png", "Ramanandraibe", "09h30-16h00","09h15", "A temps"));
+        //model.addElement(new Historic("useraa.png", "Andrianasolo", "09h30-12h00","09h15", "A temps"));
 
         // Putting in place in the actual historicPanel
         titlePanel.add(title);
