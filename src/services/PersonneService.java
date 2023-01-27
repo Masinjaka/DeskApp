@@ -290,9 +290,6 @@ public class PersonneService {
                     // ? Récupérer depuis la base
                     if (AjouterService.actualiser) {
 
-                        System.out.println("An actualisation avec la carte: "+ AjouterService.carte );
-
-
                         ResultSet set = Template.db_tables.getTablePersonnel().select_for_list(AjouterService.carte);
                         
                         String[] elements;

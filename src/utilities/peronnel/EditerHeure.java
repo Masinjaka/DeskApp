@@ -288,6 +288,7 @@ public class EditerHeure extends JFrame {
                             // Remplacer l'heure de la personne dans la base de donnée 
                             Template.db_tables.getHeureContinue().modifier_Heures(carte, DataModifiable.debut,
                                     DataModifiable.fin);
+                            System.out.println("Heure continue modifiée");
 
                         // ? Vérifier si la personne est dans la tables des heures avec une pause
                         } else if (Template.db_tables.getDiscontinue_double().verifier(carte)) {

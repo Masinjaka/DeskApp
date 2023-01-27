@@ -28,7 +28,9 @@ public class MenuItems extends JPanel {
     // Constructor
     public MenuItems(String icon, String menuTitle) {
 
-        this.setBorder(new FlatLineBorder(new Insets(6, 8, 5, 8), Colors.stroke, 0, 20));
+        
+        this.setBorder(new FlatLineBorder(new Insets(6, 8, 5, 8), Colors.stroke, 0, 10));
+        this.setBorder(new FlatLineBorder(new Insets(6, 8, 5, 8), Colors.stroke, 0, 10));
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setBackground(Colors.backgrounds);
 
