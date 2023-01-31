@@ -32,9 +32,8 @@ public class ForgetPass extends JPanel{
 	private Labels labPrenom=new Labels("Prenom","Arial",Colors.text,13);
 	private JTextField txtForgotPrenom=new JTextField();
 	
-
 	private Buttons next=new Buttons("Suivant");
-	private Labels retour= new Labels("Précedent","Arial",Colors.blue,15);
+	private Labels retour= new Labels("Rétour","Arial",Colors.blue,15);
 	
 	private JPanel panBackLogin=new JPanel(new FlowLayout(FlowLayout.CENTER));
 	private Labels backLogForgot=new Labels("LogIn","Arial",Colors.blue,15);
@@ -56,6 +55,9 @@ public class ForgetPass extends JPanel{
 	private JPanel panRecoveryPass=new JPanel();
 
 	private JPanelSlider slider=new JPanelSlider();
+
+	private Labels LabFanazavana=new Labels("<html>Tsy maintsy ampidirinao eto <br>le valiny nataonao tamin nanao creation compte iny"
+				+ "<br>mba ahafana mamantatra hoe anao le compte!!!</html>","Arial",Colors.grey,15);
 
 	//statut pour chaque panel
 	private Labels statutAutentification=new Labels("","Arial",Colors.blue,15);
@@ -111,7 +113,7 @@ public class ForgetPass extends JPanel{
 
 		txtForgotNom.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
 		txtForgotPrenom.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
-				
+
 		pan.add(fanazavana);
 		pan.add(panNomForgot);
 		pan.add(txtForgotNom);
@@ -131,11 +133,7 @@ public class ForgetPass extends JPanel{
 	//panel Question
 	public JPanel forgotPanQuestion() {
 		JPanel pan=new JPanel(new VerticalFlowLayout(VerticalFlowLayout. MIDDLE,10,10,true,false));
-			
-		Labels LabFanazavana=new Labels("<html>Tsy maintsy ampidirinao eto le valiny nataonao tamin nanao creation compte iny"
-				+ "mba ahafana mamantatra hoe anao le compte!!!</html>","Arial",Colors.grey,15);
-		
-		
+				
 		txtReponseForgot.setBorder(new FlatLineBorder(new Insets(12, 10, 12, 10), Colors.purple, 3, 20));
 		
 		pan.add(LabFanazavana);
@@ -301,6 +299,48 @@ public class ForgetPass extends JPanel{
 		}
 		public void setStatuPassForgot2(JLabel statuPassForgot2) {
 			this.statuPassForgot2 = statuPassForgot2;
+		}
+		public Labels getLabTitre() {
+			return labTitre;
+		}
+		public void setLabTitre(Labels labTitre) {
+			this.labTitre = labTitre;
+		}
+		public Labels getFanazavana() {
+			return fanazavana;
+		}
+		public void setFanazavana(Labels fanazavana) {
+			this.fanazavana = fanazavana;
+		}
+		public Labels getLabNom() {
+			return labNom;
+		}
+		public void setLabNom(Labels labNom) {
+			this.labNom = labNom;
+		}
+		public Labels getLabPrenom() {
+			return labPrenom;
+		}
+		public void setLabPrenom(Labels labPrenom) {
+			this.labPrenom = labPrenom;
+		}
+		public Buttons getNext() {
+			return next;
+		}
+		public void setNext(Buttons next) {
+			this.next = next;
+		}
+		public Labels getRetour() {
+			return retour;
+		}
+		public void setRetour(Labels retour) {
+			this.retour = retour;
+		}
+		public Labels getLabFanazavana() {
+			return LabFanazavana;
+		}
+		public void setLabFanazavana(Labels labFanazavana) {
+			LabFanazavana = labFanazavana;
 		}
 		
 		

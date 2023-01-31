@@ -1,7 +1,11 @@
 package interfaces;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -9,11 +13,13 @@ import javax.swing.JPanel;
 import database.CreateTables;
 import database.Database;
 import database.Tables;
+import services.LogInService;
 import services.MenuServices;
 import tasks.DataModifiable;
 import tasks.EveController;
 import utilities.Colors;
 import utilities.Fonts;
+import javax.swing.Timer;
 
 public class Template extends JFrame{
     
@@ -26,23 +32,74 @@ public class Template extends JFrame{
     public static EveController time_control;
 
     public static MenuServices menuServices=new MenuServices();
+    
+    public static boolean autorizeLogin=false;
+    public static boolean autoriseLogOut=false;
+    public static LogInService logInService=new LogInService();
+
+     //constructeur pour le Login
+     public Template(int log){
+
+        super("Login");
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setContentPane(logInService.getLogin().login());
+        this.setSize(600,500);
+        this.setMinimumSize(new Dimension(750,600));
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        
+        //Connect to database 
+        this.db.ConnectBase();
+        this.createTables=new CreateTables();
+        db_tables = new Tables();
+
+        //verification Login
+        Timer thread=new Timer(1,new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(autorizeLogin) {
+                Template t=new Template();
+				Template.this.dispose();
+                renitialise();
+                autoriseLogOut=false;
+				((Timer)e.getSource()).stop();
+			}
+            
+        }
+		
+	});
+	thread.start();
+	thread.setRepeats(true);
+    }
 
     //Constructor
     public Template(){
 
+        // verification Logout
+        Timer thread=new Timer(1,new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(autoriseLogOut) {
+                    Template t=new Template(1);
+                    Template.this.dispose();
+                    autorizeLogin=false;
+                    ((Timer)e.getSource()).stop();
+                    
+                }
+                
+            }
+            
+        });
+        thread.start();
+	    thread.setRepeats(true);
+
         DataModifiable.frame = this;
 
-        // ? Connecter à la base de donnée 
-        this.db.ConnectBase();
-        createTables = new CreateTables();
-        db_tables = new Tables();
         menuServices = new MenuServices();
         time_control = new EveController();
 
         // ? initialiser UI
-        initialiserUI();
-
-        
+        initialiserUI();  
          
     }
     //footer
@@ -72,6 +129,11 @@ public class Template extends JFrame{
         this.setVisible(true);
 
     }
-
+    // renitialize
+    public void renitialise() {
+        logInService.getLogin().getBtnConnect().getTextLabel().setText("Se connecter");
+        logInService.getLogin().getTxtUserName().setText("");
+        logInService.getLogin().getTxtPass().setText("");
+    }
 
 }

@@ -19,12 +19,16 @@ import com.intellij.openapi.ui.VerticalFlowLayout;
 
 import utilities.Colors;
 import utilities.Fonts;
+import utilities.Labels;
 import utilities.Sary;
 import utilities.historic.HistoricRenderer;
 
 public class Overview extends JPanel {
     
     private JList<LazyWorker> list;
+    private Labels title;
+    private Pourcentage presPourcent=new Pourcentage("presence.png", "Taux de présence", "85%");
+    private Pourcentage ponctPourcent=new Pourcentage("ponctuel.png", "Taux de ponctualité", "93%");
 
     public Overview(){}
 
@@ -42,9 +46,9 @@ public class Overview extends JPanel {
         percentagePanel.setBorder(new FlatLineBorder(new Insets(10,0,10,0), Colors.stroke,0,20));
         percentagePanel.setBackground(Colors.backgrounds);
 
-        percentagePanel.add(new Pourcentage("presence.png", "Taux de présence", "85%"));
+        percentagePanel.add(presPourcent);
         percentagePanel.add(Box.createVerticalStrut(10));
-        percentagePanel.add(new Pourcentage("ponctuel.png", "Taux de ponctualité", "93%"));
+        percentagePanel.add(ponctPourcent);
 
         //---------------------  ABSCENCE PANEL -------------------------------
 
@@ -59,9 +63,7 @@ public class Overview extends JPanel {
         JLabel icon = new JLabel(new ImageIcon(new Sary().Resize("img/writing.png", 20, 20)));
         icon.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 5));
         
-        JLabel title = new JLabel("Résumé d'hier");
-        title.setForeground(Colors.text);
-        title.setFont(new Font(Fonts.textFont,Font.BOLD,18));
+         title = new Labels("Résumé d'hier",Fonts.textFont,Colors.text,18);
 
         //---------------------- LIST OF LAZY PERSON ------------------
         JScrollPane pane = new JScrollPane();
@@ -91,6 +93,30 @@ public class Overview extends JPanel {
 
     public void setList(JList<LazyWorker> list) {
         this.list = list;
+    }
+
+    public Labels getTitle() {
+        return title;
+    }
+
+    public void setTitle(Labels title) {
+        this.title = title;
+    }
+
+    public Pourcentage getPresPourcent() {
+        return presPourcent;
+    }
+
+    public void setPresPourcent(Pourcentage presPourcent) {
+        this.presPourcent = presPourcent;
+    }
+
+    public Pourcentage getPonctPourcent() {
+        return ponctPourcent;
+    }
+
+    public void setPonctPourcent(Pourcentage ponctPourcent) {
+        this.ponctPourcent = ponctPourcent;
     }
 
     

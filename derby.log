@@ -1,95 +1,13 @@
 ----------------------------------------------------------------
-<<<<<<< HEAD
-Fri Jan 27 15:24:31 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-f32f-beec-0000048a3950 
-=======
-<<<<<<< HEAD
-Fri Jan 27 12:47:08 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-f29f-aa97-0000077da2d0 
-=======
-<<<<<<< HEAD
-Sat Jan 21 16:23:07 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-d47f-3e41-000007224690 
-=======
-<<<<<<< HEAD
-Mon Jan 23 15:15:58 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-de8e-7c9a-00000ed2d1d8 
->>>>>>> e884daef6ff72c799bff795c9e582e0595d6ee45
+Tue Jan 31 10:27:57 EAT 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0186-06b9-abf8-000003b1d1f0 
 on database directory C:\Users\JD132\Desktop\Dossier\smart\smartVs\deskNew\DeskApp\smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
 Loaded from file:/C:/Users/JD132/Desktop/Dossier/smart/smartVs/deskNew/DeskApp/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=18.0.1.1+2-6
 user.dir=C:\Users\JD132\Desktop\Dossier\smart\smartVs\deskNew\DeskApp
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
-Thu Jan 19 11:22:56 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-c91f-b578-00000373e500 
-=======
-<<<<<<< HEAD
-Tue Jan 17 18:21:58 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-c052-a09a-000007218b00 
-=======
-<<<<<<< HEAD
-Tue Jan 17 16:27:42 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-bfea-02e1-000003726b30 
->>>>>>> 41d84efc69aed818e724eace82b0cbf0c217d13a
-on database directory C:\Users\Masinjaka\DeskApp\smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@30946e09 
-Loaded from file:/C:/Users/Masinjaka/DeskApp/lib/derby.jar
-java.vendor=Microsoft
-java.runtime.version=11.0.17+8-LTS
-user.dir=C:\Users\Masinjaka\DeskApp
-<<<<<<< HEAD
-=======
-=======
-Mon Jan 16 20:26:53 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0185-bb9e-a00e-000007217df0 
->>>>>>> 874313a4869a612338b7f047c9f44a177d7077a0
->>>>>>> f9fdc1ff3873ff878379c1002081735c045c01a9
->>>>>>> ebd94167d60b0c8c5087b7b75a62b4645f489ead
-on database directory D:\DeskApp\smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
-Loaded from file:/D:/DeskApp/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=18.0.1.1+2-6
-user.dir=D:\DeskApp
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 84aafef60d106a5c47bec73dce563bfe479d37b2
->>>>>>> 41d84efc69aed818e724eace82b0cbf0c217d13a
->>>>>>> 0b2e1693ed9f458b098c22e5c8d6deaeb1b13ce3
->>>>>>> f9fdc1ff3873ff878379c1002081735c045c01a9
->>>>>>> e884daef6ff72c799bff795c9e582e0595d6ee45
->>>>>>> ebd94167d60b0c8c5087b7b75a62b4645f489ead
 os.name=Windows 11
 os.arch=amd64
 os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-Fri Jan 27 15:24:34 EAT 2023 Thread[SwingWorker-pool-1-thread-1,5,main] (XID = 33650), (SESSIONID = 1), (DATABASE = smartdb), (DRDAID = null), Cleanup action starting
-Fri Jan 27 15:24:34 EAT 2023 Thread[SwingWorker-pool-1-thread-1,5,main] (XID = 33650), (SESSIONID = 1), (DATABASE = smartdb), (DRDAID = null), Failed Statement is: select Nom, Prenom, Poste, CIN, Carte, id,Heures, Photo from personne
-java.lang.NullPointerException: Cannot invoke "org.apache.derby.iapi.sql.dictionary.ConglomerateDescriptor.getConglomerateNumber()" because "<local1>" is null
-	at org.apache.derby.iapi.sql.dictionary.TableDescriptor.getHeapConglomerateId(Unknown Source)
-	at org.apache.derby.impl.sql.compile.FromBaseTable.bindNonVTITables(Unknown Source)
-	at org.apache.derby.impl.sql.compile.FromList.bindTables(Unknown Source)
-	at org.apache.derby.impl.sql.compile.SelectNode.bindNonVTITables(Unknown Source)
-	at org.apache.derby.impl.sql.compile.DMLStatementNode.bindTables(Unknown Source)
-	at org.apache.derby.impl.sql.compile.DMLStatementNode.bind(Unknown Source)
-	at org.apache.derby.impl.sql.compile.CursorNode.bindStatement(Unknown Source)
-	at org.apache.derby.impl.sql.GenericStatement.prepMinion(Unknown Source)
-	at org.apache.derby.impl.sql.GenericStatement.prepare(Unknown Source)
-	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedStatement.execute(Unknown Source)
-	at org.apache.derby.impl.jdbc.EmbedStatement.executeQuery(Unknown Source)
-	at database.model.Personnel.select(Personnel.java:117)
-	at services.PersonneService$7.doInBackground(PersonneService.java:234)
-	at services.PersonneService$7.doInBackground(PersonneService.java:1)
-	at java.desktop/javax.swing.SwingWorker$1.call(SwingWorker.java:304)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.desktop/javax.swing.SwingWorker.run(SwingWorker.java:343)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:833)
-Cleanup action completed

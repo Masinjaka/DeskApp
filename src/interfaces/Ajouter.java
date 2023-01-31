@@ -137,6 +137,32 @@ public class Ajouter extends JPanel {
 	// Liste de champs de texte
 	private ArrayList<JTextField> field;
 
+
+	public Labels getHintCarte() {
+		return hintCarte;
+	}
+
+	public void setHintCarte(Labels hintCarte) {
+		this.hintCarte = hintCarte;
+	}
+	
+
+	public JPanel getpCarte() {
+		return pCarte;
+	}
+
+	public void setpCarte(JPanel pCarte) {
+		this.pCarte = pCarte;
+	}
+	
+	public JPanel getPanelContinuite() {
+		return panelContinuite;
+	}
+
+	public void setPanelContinuite(JPanel panelContinuite) {
+		this.panelContinuite = panelContinuite;
+	}
+
 	// Constructor
 	public Ajouter(JFrame fr) {
 
@@ -192,9 +218,9 @@ public class Ajouter extends JPanel {
 		infoPoste.setBorder(BorderFactory.createTitledBorder("Information sur le poste"));
 
 		titre = new Labels("Titre du poste", Fonts.textFont, Colors.text, 12);
-		new Labels("Heure de travail", Fonts.textFont, Colors.text, 12);
-		new Labels("Debut et fin de service", Fonts.textFont, Colors.text, 12);
-		new Labels("Continuité", Fonts.textFont, Colors.text, 12);
+		// new Labels("Heure de travail", Fonts.textFont, Colors.text, 12);
+		// new Labels("Debut et fin de service", Fonts.textFont, Colors.text, 12);
+		// new Labels("Continuité", Fonts.textFont, Colors.text, 12);
 		entree = new Labels("Début", Fonts.textFont, Colors.text, 12);
 		sortie = new Labels("Fin", Fonts.textFont, Colors.text, 12);
 		semaine = new Labels("/Semaine", Fonts.textFont, Colors.text, 12);
@@ -506,6 +532,16 @@ public class Ajouter extends JPanel {
 		return tprenom;
 	}
 
+	
+
+	public JPanel getInfoPerso() {
+		return infoPerso;
+	}
+
+	public void setInfoPerso(JPanel infoPerso) {
+		this.infoPerso = infoPerso;
+	}
+
 	public void setTprenom(JTextField tprenom) {
 		this.tprenom = tprenom;
 	}
@@ -588,6 +624,102 @@ public class Ajouter extends JPanel {
 
 	public void sethDiscontinue(JRadioButton hDiscontinue) {
 		this.hDiscontinue = hDiscontinue;
+	}
+
+	public Labels getNom() {
+		return nom;
+	}
+
+	public void setNom(Labels nom) {
+		this.nom = nom;
+	}
+
+	public Labels getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(Labels prenom) {
+		this.prenom = prenom;
+	}
+
+	public Labels getCin() {
+		return cin;
+	}
+
+	public void setCin(Labels cin) {
+		this.cin = cin;
+	}
+
+	public Labels getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(Labels photo) {
+		this.photo = photo;
+	}
+
+	public JPanel getInfoPoste() {
+		return infoPoste;
+	}
+
+	public void setInfoPoste(JPanel infoPoste) {
+		this.infoPoste = infoPoste;
+	}
+
+	public JPanel getInfoId() {
+		return infoId;
+	}
+
+	public void setInfoId(JPanel infoId) {
+		this.infoId = infoId;
+	}
+
+	public Labels getTitre() {
+		return titre;
+	}
+
+	public void setTitre(Labels titre) {
+		this.titre = titre;
+	}
+
+	public Labels getEntree() {
+		return entree;
+	}
+
+	public void setEntree(Labels entree) {
+		this.entree = entree;
+	}
+
+	public Labels getSortie() {
+		return sortie;
+	}
+
+	public void setSortie(Labels sortie) {
+		this.sortie = sortie;
+	}
+
+	public Labels getSemaine() {
+		return semaine;
+	}
+
+	public void setSemaine(Labels semaine) {
+		this.semaine = semaine;
+	}
+
+	public JPanel getpHeure() {
+		return pHeure;
+	}
+
+	public void setpHeure(JPanel pHeure) {
+		this.pHeure = pHeure;
+	}
+
+	public JPanel getpService() {
+		return pService;
+	}
+
+	public void setpService(JPanel pService) {
+		this.pService = pService;
 	}
 	
 	

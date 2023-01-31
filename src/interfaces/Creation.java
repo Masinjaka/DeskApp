@@ -27,7 +27,7 @@ public class Creation extends JPanel {
     private JTextField nomField = new JTextField();
     private JTextField prenomField = new JTextField();
     private JTextField field = new JTextField();
-    private Buttons next = new Buttons("suivant");
+    private Buttons next = new Buttons("Suivant");
     private JPasswordField passField = new JPasswordField();
     private JPasswordField confirmField = new JPasswordField();
     private String questions[] = { "Quelle est ton surnom?",
@@ -44,6 +44,11 @@ public class Creation extends JPanel {
     private JPanel creation2 = createPanel(2);
     private JPanel creation3 = createPanel(3);
 
+    // labels
+    private Labels nomLabel, prenomLabel, usernameLabel, passLabel, confirmLabel, fanazavana, titre;
+
+    // getter and setter
+
     public Creation() {
         setLayout(new VerticalFlowLayout());
         add(topPanelCreate());
@@ -55,15 +60,70 @@ public class Creation extends JPanel {
         slider.setBorder(null);
         add(slider);
 
-        JPanel panNext=new JPanel(new FlowLayout());
-        next.setPreferredSize(new Dimension(100,40));
+        JPanel panNext = new JPanel(new FlowLayout());
+        next.setPreferredSize(new Dimension(100, 40));
         panNext.add(next);
         add(panNext);
-        JPanel panBtn = new JPanel(new FlowLayout( FlowLayout.LEFT));
+        JPanel panBtn = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panBtn.add(retour);
         add(panBtn);
 
+    }
 
+    public Labels getNomLabel() {
+        return nomLabel;
+    }
+
+    public void setNomLabel(Labels nomLabel) {
+        this.nomLabel = nomLabel;
+    }
+
+    public Labels getPrenomLabel() {
+        return prenomLabel;
+    }
+
+    public void setPrenomLabel(Labels prenomLabel) {
+        this.prenomLabel = prenomLabel;
+    }
+
+    public Labels getUsernameLabel() {
+        return usernameLabel;
+    }
+
+    public void setUsernameLabel(Labels usernameLabel) {
+        this.usernameLabel = usernameLabel;
+    }
+
+    public Labels getPassLabel() {
+        return passLabel;
+    }
+
+    public void setPassLabel(Labels passLabel) {
+        this.passLabel = passLabel;
+    }
+
+    public Labels getConfirmLabel() {
+        return confirmLabel;
+    }
+
+    public void setConfirmLabel(Labels confirmLabel) {
+        this.confirmLabel = confirmLabel;
+    }
+
+    public Labels getFanazavana() {
+        return fanazavana;
+    }
+
+    public void setFanazavana(Labels fanazavana) {
+        this.fanazavana = fanazavana;
+    }
+
+    public Labels getTitre() {
+        return titre;
+    }
+
+    public void setTitre(Labels titre) {
+        this.titre = titre;
     }
 
     public JPanel createPanel(int index) {
@@ -76,71 +136,40 @@ public class Creation extends JPanel {
         JPanel changes = new JPanel(new VerticalFlowLayout());
         changes.setBorder(new FlatLineBorder(new Insets(10, 10, 10, 10), Colors.stroke, 1, 20));
         JPanel midButton = new JPanel();
-       
 
         // Removings
         middelChanges.setOpaque(false);
         midButton.setOpaque(false);
         changes.setBackground(Color.white);
-      
 
         // -------------- New username--------------
         // index
         // 1**************************************************************************************************************
-        // Nom label
-        Labels nomLabel = new Labels("Nom", "Arial", Colors.text, 15);
-        nomLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
 
-        // Changind name textfield
-        nomField.setPreferredSize(new Dimension(200, 40));
-        nomField.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
-
-        // prenom Label
-        Labels prenomLabel = new Labels("Prénom", "Arial", Colors.text, 15);
-        prenomLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
-        // Changind name textfield
-        prenomField.setPreferredSize(new Dimension(200, 40));
-        prenomField.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
 
         // index2**************************************************************************************************************
-        // username label
-        Labels usernameLabel = new Labels("Nom d'utilisateur", "Arial", Colors.text, 15);
-        usernameLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
-
-        // Changind name textfield
-        field.setPreferredSize(new Dimension(150, 40));
-        field.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
-
-        // -------------- New passWord--------------
-        Labels passLabel = new Labels("Créer un mot de passe", "Arial", Colors.text, 15);
-        usernameLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
-
-        // Changind name textfield
-        passField.setPreferredSize(new Dimension(150, 40));
-        passField.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
-
-        // -------------- Confirm passWord--------------
-        Labels confirmLabel = new Labels("Confirmer le mot de passe", "Arial", Colors.text, 15);
-        usernameLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
-
-        // Changind name textfield
-        confirmField.setPreferredSize(new Dimension(150, 40));
-        confirmField.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
+       
 
         // index3**************************************************************************************************************
         // label fanazavana
-        Labels fanazavana = new Labels("<html> En cas d'oublie votre mod de pass,"
-                + "\n" + "<br> cette question vous permet de le renitialisé</html> ", "Arial", Colors.text, 15);
-        // question
-        questionsBox.setFont(new Font("Arial", Font.PLAIN, 15));
-        questionsBox.setPreferredSize(new Dimension(150, 40));
-
-        // Changind name textfield
-        reponseField.setPreferredSize(new Dimension(150, 40));
-        reponseField.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
 
         // Addings
         if (index == 1) {
+            // Nom label
+            nomLabel = new Labels("Nom", "Arial", Colors.text, 15);
+            nomLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
+            // prenom Label
+            prenomLabel = new Labels("Prénom", "Arial", Colors.text, 15);
+            prenomLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
+      
+            // Changind name textfield
+            nomField.setPreferredSize(new Dimension(200, 40));
+            nomField.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
+
+            // Changind name textfield
+            prenomField.setPreferredSize(new Dimension(200, 40));
+            prenomField.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
+
             changes.removeAll();
             changes.add(Box.createVerticalStrut(30));
             changes.add(nomLabel);
@@ -151,6 +180,28 @@ public class Creation extends JPanel {
             changes.add(Box.createVerticalStrut(30));
 
         } else if (index == 2) {
+            // username
+            usernameLabel=new Labels("Username", "Arial", Colors.text, 15);
+            usernameLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
+            // Changind name textfield
+            field.setPreferredSize(new Dimension(150, 40));
+            field.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
+
+            // -------------- New passWord--------------
+            passLabel = new Labels("Créer un mot de passe", "Arial", Colors.text, 15);
+            passLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
+
+            // Changind name textfield
+            passField.setPreferredSize(new Dimension(150, 40));
+            passField.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
+
+            // -------------- Confirm passWord--------------
+            confirmLabel = new Labels("Confirmer le mot de passe", "Arial", Colors.text, 15);
+            confirmLabel.setBorder(BorderFactory.createEmptyBorder(0, 3, 0, 0));
+
+            // Changind name textfield
+            confirmField.setPreferredSize(new Dimension(150, 40));
+            confirmField.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
             changes.removeAll();
             changes.add(Box.createVerticalStrut(10));
             changes.add(usernameLabel);
@@ -162,9 +213,17 @@ public class Creation extends JPanel {
             changes.add(confirmLabel);
             changes.add(confirmField);
             // changesButton.add(next);
-           
 
         } else if (index == 3) {
+            // question
+            questionsBox.setFont(new Font("Arial", Font.PLAIN, 15));
+            questionsBox.setPreferredSize(new Dimension(150, 40));
+
+            // Changind name textfield
+            reponseField.setPreferredSize(new Dimension(150, 40));
+            reponseField.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
+            fanazavana = new Labels("<html> En cas d'oublie votre mod de pass,"
+                    + "\n" + "<br> cette question vous permet de le renitialisé</html> ", "Arial", Colors.text, 15);
             changes.removeAll();
             changes.add(fanazavana);
             changes.add(Box.createVerticalStrut(10));
@@ -173,7 +232,7 @@ public class Creation extends JPanel {
             changes.add(reponseField);
 
         }
-        
+
         middelChanges.add(changes);
         middle.add(middelChanges);
 
@@ -184,7 +243,7 @@ public class Creation extends JPanel {
 
     public JPanel topPanelCreate() {
         // Panels
-        Labels titre = new Labels("Créer un compte", Fonts.textFont, Colors.blue, 25);
+        titre = new Labels("Créer un compte", Fonts.textFont, Colors.blue, 25);
 
         JPanel panel = new JPanel();
         panel.setOpaque(false);

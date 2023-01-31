@@ -17,6 +17,7 @@ import utilities.Labels;
 
 public class Exporter extends JPanel{
     private Buttons exporterBtn=new Buttons("Exporter");
+    Labels titre = new Labels("Exporter",Fonts.textFont,Colors.text,25);
 
     public Exporter(){
         this.setLayout(new BorderLayout());
@@ -27,9 +28,7 @@ public class Exporter extends JPanel{
     }
     private JPanel titre(){
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel titre = new JLabel("Exporter");
-        titre.setFont(new Font(Fonts.textFont,Font.BOLD,25));
-        titre.setForeground(Colors.text);
+       
         titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
         panel.add(titre);
         panel.setOpaque(false);
@@ -68,6 +67,12 @@ public class Exporter extends JPanel{
     }
     public void setExporterBtn(Buttons exporterBtn) {
         this.exporterBtn = exporterBtn;
+    }
+    public Labels getTitre() {
+        return titre;
+    }
+    public void setTitre(Labels titre) {
+        this.titre = titre;
     }
     
 }

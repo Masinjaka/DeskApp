@@ -14,11 +14,13 @@ import com.intellij.openapi.ui.VerticalFlowLayout;
 
 import utilities.Colors;
 import utilities.Fonts;
+import utilities.Labels;
 import utilities.Sary;
 
 public class Pourcentage extends JPanel{
     
     private String icon,titre,taux;
+    private Labels name, percentage;
 
     public Pourcentage(String icon,String titre, String taux) {
         this.icon = icon;
@@ -37,8 +39,8 @@ public class Pourcentage extends JPanel{
         JLabel icon = new JLabel(new ImageIcon(new Sary().Resize("img/"+this.icon, 50, 50)));
         
         JPanel namePanel = new JPanel(new VerticalFlowLayout());
-        JLabel name  = new JLabel(this.titre);
-        JLabel percentage = new JLabel(this.taux);
+         name  = new Labels(this.titre,Fonts.textFont,Colors.text,15);
+         percentage = new Labels(this.taux,Fonts.textFont,Colors.dark_purple,30);
 
         //Customization
         percentage.setFont(new Font(Fonts.textFont,Font.BOLD,30));
@@ -80,6 +82,22 @@ public class Pourcentage extends JPanel{
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public Labels getNam() {
+        return name;
+    }
+
+    public void setName(Labels name) {
+        this.name = name;
+    }
+
+    public Labels getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(Labels percentage) {
+        this.percentage = percentage;
     }
     
     

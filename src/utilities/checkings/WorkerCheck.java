@@ -17,10 +17,12 @@ import com.intellij.openapi.ui.VerticalFlowLayout;
 import utilities.Colors;
 import utilities.Fonts;
 import utilities.ImageProfile;
+import utilities.Labels;
 
 public class WorkerCheck extends JPanel{
     
     private String icon,name,work_time,clock_in;
+    Labels nam, schedule;
 
     public WorkerCheck(String icon, String name, String work_time, String clock_in) {
         this.icon = icon;
@@ -41,18 +43,14 @@ public class WorkerCheck extends JPanel{
         JLabel icon = new JLabel(new ImageIcon(new ImageProfile().ResizeCercle("img/workers/"+this.icon, 50, 50, Colors.purple)));
         
         JPanel namePanel = new JPanel(new VerticalFlowLayout());
-        JLabel name  = new JLabel(this.name);
-        JLabel schedule = new JLabel("prévu: "+this.work_time);
+         nam  = new Labels(this.name,Fonts.textFont,Colors.text,15);
+         schedule = new Labels("prévu: "+this.work_time,Fonts.textFont,Color.gray,11);
 
         //Customization
-        schedule.setFont(new Font(Fonts.textFont,Font.BOLD,11));
-        schedule.setForeground(Color.gray);
-        name.setFont(new Font(Fonts.textFont,Font.BOLD,15));
-        name.setForeground(Colors.text);
         panel.setOpaque(false);namePanel.setOpaque(false);
 
         //Laying out elements
-        namePanel.add(name);namePanel.add(schedule);
+        namePanel.add(nam);namePanel.add(schedule);
 
         panel.add(icon);
         panel.add(namePanel);
@@ -110,6 +108,22 @@ public class WorkerCheck extends JPanel{
 
     public void setClock_in(String clock_in) {
         this.clock_in = clock_in;
+    }
+
+    public Labels getNam() {
+        return nam;
+    }
+
+    public void setNam(Labels nam) {
+        this.nam = nam;
+    }
+
+    public Labels getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Labels schedule) {
+        this.schedule = schedule;
     }
     
 }

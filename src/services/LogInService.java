@@ -28,7 +28,13 @@ public class LogInService {
         login.getBtnConnect().addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-              try {
+                try {
+                    // por le language------------------------------------------------------------
+                    if (login.getBtnConnect().getTextLabel().getText().equals("Se connecter"))
+                        login.getBtnConnect().getTextLabel().setText("connexion...");
+                    else 
+                        login.getBtnConnect().getTextLabel().setText("Fidirana...");
+                    // ------------------------------------------------------------------------
                     verifierUtilisateur(login.getTxtUserName(), login.getTxtPass());
                 } catch (NoSuchAlgorithmException e1) {
                     e1.printStackTrace();
@@ -71,57 +77,77 @@ public class LogInService {
 
     }
 
-    // *************************verification utilisateur dans la base*************************
-    public  void verifierUtilisateur(JTextField userName,JPasswordField pass) throws NoSuchAlgorithmException {
-			if(userName.getText().equals("")||new String(pass.getPassword()).equals("")) {
-                 if(userName.getText().equals("")) {
-                    login.getUserNamePanel().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
-                    login.getLabStatutUserName().setForeground(Color.red);
-                    login.getLabStatutUserName().setText("veuiller remplir");
-                    }
-                 if(new String(pass.getPassword()).equals("")){
-                    login.getPassPanel().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
-                    login.getLabStatutTxtPass().setForeground(Color.red);
-                    login.getLabStatutTxtPass().setText("veuiller remplir");
-                }
-                    
-			}else {
-	    	 ResultSet res=null;
-	   			try {
-	   			  res=Template.db_tables.getUtilisateur().select();
-	   				while(res.next()) {
-                            if(userName.getText().equalsIgnoreCase(res.getString("UserName"))) {
-                               // byte[] passEntered=new hash(pass.getText().toCharArray()).hasher();
-                                    String passEntered=new String(pass.getPassword());
+    // *************************verification utilisateur dans la
+    // base*************************
+    public void verifierUtilisateur(JTextField userName, JPasswordField pass) throws NoSuchAlgorithmException {
+        if (userName.getText().equals("") || new String(pass.getPassword()).equals("")) {
+            // pour le
+            // language------------------------------------------------------------------------------
+            if (login.getBtnConnect().getTextLabel().getText().equals("conexion..."))
+                login.getBtnConnect().getTextLabel().setText("Se connecter");
+            else
+                login.getBtnConnect().getTextLabel().setText("Hiditra");
+            // ----------------------------------------------------------------------------------------------------------
 
-                                if(res.getString("Mdp").equals(passEntered)) {
-                                   Account.fieldUsername.setText(login.getTxtUserName().getText());
-                                    System.out.println("you are logged in!!");
-                                    login.getStatut().setText("");
-                                   // Template.autorizeLogin=true;
-                                    break;
-                                }
-                                else {
-                                    
-                                    login.getStatut().setText("Mot de passe incorrect");
-                                    login.getLabStatutTxtPass().setText("* Incorrect!!");
-                                    login.getLabStatutTxtPass().setForeground(Color.red);
-                                    break;
-                                }
-                            }
-                           else{
-                                login.getLabStatutUserName().setForeground(Color.red);
-                                login.getLabStatutTxtPass().setForeground(Color.red);
-                                login.getStatut().setText("Mot de pass ou username incorrect");
-                            }
-	   				 }
-	   			
-	   			} catch (SQLException e1) {
-	   				e1.printStackTrace();
-	   			}
-
-             }
+            if (userName.getText().equals("")) {
+                login.getUserNamePanel().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
+                login.getLabStatutUserName().setForeground(Color.red);
+                login.getLabStatutUserName().setText("veuiller remplir");
             }
+            if (new String(pass.getPassword()).equals("")) {
+                login.getPassPanel().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
+                login.getLabStatutTxtPass().setForeground(Color.red);
+                login.getLabStatutTxtPass().setText("veuiller remplir");
+            }
+
+        } else {
+            ResultSet res = null;
+            try {
+                res = Template.db_tables.getUtilisateur().select();
+                while (res.next()) {
+                    if (userName.getText().equalsIgnoreCase(res.getString("UserName"))) {
+                        // byte[] passEntered=new hash(pass.getText().toCharArray()).hasher();
+                        String passEntered = new String(pass.getPassword());
+
+                        if (res.getString("Mdp").equals(passEntered)) {
+                            Account.fieldUsername.setText(login.getTxtUserName().getText());
+                            System.out.println("you are logged in!!");
+                            login.getStatut().setText("");
+                            Template.autorizeLogin = true;
+                            break;
+                        } else {
+                            // pour le
+                            // language------------------------------------------------------------------------------
+                            if (login.getBtnConnect().getTextLabel().getText().equals("conexion..."))
+                                login.getBtnConnect().getTextLabel().setText("Se connecter");
+                            else
+                                login.getBtnConnect().getTextLabel().setText("Hiditra");
+                            // ----------------------------------------------------------------------------------------------------------
+                            login.getStatut().setText("Mot de passe incorrect");
+                            login.getLabStatutTxtPass().setText("* Incorrect!!");
+                            login.getLabStatutTxtPass().setForeground(Color.red);
+                            break;
+                        }
+                    } else {
+                        // pour le
+                        // language------------------------------------------------------------------------------
+                        if (login.getBtnConnect().getTextLabel().getText().equals("conexion..."))
+                            login.getBtnConnect().getTextLabel().setText("Se connecter");
+                        else
+                            login.getBtnConnect().getTextLabel().setText("Hiditra");
+                        // ----------------------------------------------------------------------------------------------------------
+                        login.getLabStatutUserName().setForeground(Color.red);
+                        login.getLabStatutTxtPass().setForeground(Color.red);
+                        login.getStatut().setText("Mot de pass ou username incorrect");
+                    }
+                }
+
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+
+        }
+    }
 
     public Login getLogin() {
         return login;

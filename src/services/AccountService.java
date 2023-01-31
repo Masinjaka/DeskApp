@@ -134,6 +134,14 @@ public class AccountService {
             }
         });
 
+        //LogOut----------------------------------------------------------------------------------------------------------
+        account.getLogout().addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               Template.autoriseLogOut=true;
+            }
+        });
+
     }
 
     // methode pour verifier le mot de passe actuel

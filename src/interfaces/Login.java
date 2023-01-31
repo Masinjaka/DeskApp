@@ -41,10 +41,12 @@ public class Login extends JPanel {
     private JLabel labLogo = new JLabel();
 
     // panels dans Panel creation
-    private JPanel panelCreation=new CreationService().getCreation();
+    private CreationService creationService=new CreationService();
+    private JPanel panelCreation=creationService.getCreation();
 
     // panels forgot pass
-     private JPanel panForgotPass=new ForgetPassService().getForgetPass();
+    private ForgetPassService forgetPassService=new ForgetPassService();
+    private JPanel panForgotPass=forgetPassService.getForgetPass();
 
     public JTextField txtUserName = new JTextField();
    
@@ -58,7 +60,7 @@ public class Login extends JPanel {
     private JPanel panTxtPass = new JPanel(new FlowLayout(FlowLayout.LEFT));
     public JLabel labStatutTxtPass = new JLabel("");
     
-    public Buttons btnConnect = new Buttons("Se connecter");
+    public  Buttons btnConnect = new Buttons("Se connecter");
     private JPanel panBtnConnect = new JPanel(new FlowLayout());
     private Labels labPhrase = new Labels(" pas de compte?", "Arial", Colors.grey, 11);
     public Labels labCreer = new Labels("Créer un compte", "Arial", Colors.text, 12);
@@ -304,6 +306,46 @@ public class Login extends JPanel {
 
     public void setPanelCreation(JPanel panelCreation) {
         this.panelCreation = panelCreation;
+    }
+
+    public Labels getLabUserName() {
+        return labUserName;
+    }
+
+    public void setLabUserName(Labels labUserName) {
+        this.labUserName = labUserName;
+    }
+
+    public Labels getLabPass() {
+        return labPass;
+    }
+
+    public void setLabPass(Labels labPass) {
+        this.labPass = labPass;
+    }
+
+    public Labels getLabPhrase() {
+        return labPhrase;
+    }
+
+    public void setLabPhrase(Labels labPhrase) {
+        this.labPhrase = labPhrase;
+    }
+
+    public CreationService getCreationService() {
+        return creationService;
+    }
+
+    public void setCreationService(CreationService creationService) {
+        this.creationService = creationService;
+    }
+
+    public ForgetPassService getForgetPassService() {
+        return forgetPassService;
+    }
+
+    public void setForgetPassService(ForgetPassService forgetPassService) {
+        this.forgetPassService = forgetPassService;
     }
     
    

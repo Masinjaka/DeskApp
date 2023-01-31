@@ -15,6 +15,7 @@ import utilities.Colors;
 import utilities.Fonts;
 import utilities.Labels;
 public class Apropos extends JPanel {
+    private Labels titre = new Labels("A propos",Fonts.textFont,Colors.text, 25);
     public Apropos(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
@@ -25,9 +26,7 @@ public class Apropos extends JPanel {
     }
     private JPanel titre(){
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel titre = new JLabel("A propos");
-        titre.setFont(new Font(Fonts.textFont,Font.BOLD,25));
-        titre.setForeground(Colors.text);
+    
         titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
         panel.add(titre);
         panel.setOpaque(false);
@@ -55,9 +54,13 @@ public class Apropos extends JPanel {
         apropos.setBackground(Colors.backgrounds);
    
         panel.add(mini_Labels);panel.add(apropos);
-
-
-
         return panel;
     }
+    public Labels getTitre() {
+        return titre;
+    }
+    public void setTitre(Labels titre) {
+        this.titre = titre;
+    }
+    
 }

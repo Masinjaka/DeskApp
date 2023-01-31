@@ -60,5 +60,13 @@ public class Buttons extends JPanel {
         this.stroke = stroke;
     }
 
+    public Labels getTextLabel() {
+        return textLabel;
+    }
+
+    public void setTextLabel(Labels textLabel) {
+        this.textLabel = textLabel;
+    }
+
     
 }

@@ -20,6 +20,8 @@ import utilities.Colors;
 import utilities.Fonts;
 import utilities.Labels;
 public class Term_Condition extends JPanel{
+    private Labels titre = new Labels("Termes et conditions",Fonts.textFont,Colors.text,25);
+    private Labels Mini_titre = new Labels("SMART TEKNOLOJIA", Fonts.textFont, Colors.purple, 20);
     public Term_Condition(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
@@ -29,9 +31,7 @@ public class Term_Condition extends JPanel{
     }
     private JPanel titre(){
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel titre = new JLabel("Termes et conditions");
-        titre.setFont(new Font(Fonts.textFont,Font.BOLD,25));
-        titre.setForeground(Colors.text);
+       
         titre.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
         panel.add(titre);
         panel.setOpaque(false);
@@ -56,7 +56,7 @@ public class Term_Condition extends JPanel{
         panel.setOpaque(false);
 //-----******************* LABELS ************-*--------
 
-        Labels Mini_titre = new Labels("SMART TEKNOLOJIA", Fonts.textFont, Colors.purple, 20);
+       
 
         JTextArea Term_condition = new JTextArea("");
         Term_condition.setEditable(false);
@@ -99,7 +99,19 @@ public class Term_Condition extends JPanel{
         panel.add(Mini_titre);
         panel.add(Scroll);
 
-        
         return panel;
     }
+    public Labels getTitre() {
+        return titre;
+    }
+    public void setTitre(Labels titre) {
+        this.titre = titre;
+    }
+    public Labels getMini_titre() {
+        return Mini_titre;
+    }
+    public void setMini_titre(Labels mini_titre) {
+        Mini_titre = mini_titre;
+    }
+    
 }

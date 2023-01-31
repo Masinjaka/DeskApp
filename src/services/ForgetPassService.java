@@ -34,51 +34,56 @@ public class ForgetPassService {
         forgetPass.getNextForgot1().addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (countNext==0){ forgetPass.getStatutAutentification().setText("");
-                if (forgetPass.getTxtForgotNom().getText().equals("")
-                        || forgetPass.getTxtForgotNom().getText().equals("")) {
-                    redMarkPan1();
-                } else if (haveAccount()) {
-                    forgetPass.getSlider().nextPanel(2, forgetPass.getPanQuestion(), JPanelSlider.right);
-                    countNext++;
-                } else {
-                    forgetPass.getStatutAutentification().setForeground(Color.red);
-                    forgetPass.getStatutAutentification().setText("Aucune compte trouvée");
-                    redMarkPan1();
-                }
-            }
-            else if(countNext==1){
-                forgetPass.getStatutQuestion().setText("");
-                if (forgetPass.getTxtReponseForgot().getText().equals("")) {
-                    redMarkPan2();
-                }
-                // verifier si la réponse est correct
-                else if (forgetPass.getTxtReponseForgot().getText().equals(valiny)) {
-                    forgetPass.getSlider().nextPanel(2, forgetPass.getPanRecoveryPass(), JPanelSlider.right);
-                    countNext++;
-                    forgetPass.getNextForgot1().setText("Valider");
-                } else {
-                    forgetPass.getStatutQuestion().setForeground(Color.red);
-                    forgetPass.getStatutQuestion().setText("incorrect");
+                if (countNext == 0) {
+                    forgetPass.getStatutAutentification().setText("");
+                    if (forgetPass.getTxtForgotNom().getText().equals("")
+                            || forgetPass.getTxtForgotNom().getText().equals("")) {
+                        redMarkPan1();
+                    } else if (haveAccount()) {
+                        forgetPass.getSlider().nextPanel(2, forgetPass.getPanQuestion(), JPanelSlider.right);
+                        countNext++;
+                    } else {
+                        forgetPass.getStatutAutentification().setForeground(Color.red);
 
-                }
-            }
-            else if(countNext==2){
-                if (correctMdp()) {
-                    try {
-                        Template.db_tables.getUtilisateur().modifierPass(id,
-                                new String(forgetPass.getTxtNewPass1().getPassword()));
-                        System.out.println("Modifier avec succès");
-                        countNext=0;
-                        Login.slidePan.remove(1);
+                        // pour le
+                        // language-------------------------------------------------------------------
+                        if (forgetPass.getLabNom().getText().equals("Nom"))
+                            forgetPass.getStatutAutentification().setText("Aucune compte trouvée");
+                        else if (forgetPass.getLabNom().getText().equals("Anarana"))
+                            forgetPass.getStatutAutentification().setText("Tsy manan kaonty io");
+                        // -------------------------------------------------------------------------------------
+                        redMarkPan1();
+                    }
+                } else if (countNext == 1) {
+                    forgetPass.getStatutQuestion().setText("");
+                    if (forgetPass.getTxtReponseForgot().getText().equals("")) {
+                        redMarkPan2();
+                    }
+                    // verifier si la réponse est correct
+                    else if (forgetPass.getTxtReponseForgot().getText().equals(valiny)) {
+                        forgetPass.getSlider().nextPanel(2, forgetPass.getPanRecoveryPass(), JPanelSlider.right);
+                        countNext++;
+                        forgetPass.getNextForgot1().setText("Valider");
+                    } else {
+                        forgetPass.getStatutQuestion().setForeground(Color.red);
+                        forgetPass.getStatutQuestion().setText("incorrect");
 
-                    } catch (SQLException e1) {
-                        System.out.println("Eurreur de modification");
-                        e1.printStackTrace();
+                    }
+                } else if (countNext == 2) {
+                    if (correctMdp()) {
+                        try {
+                            Template.db_tables.getUtilisateur().modifierPass(id,
+                                    new String(forgetPass.getTxtNewPass1().getPassword()));
+                            System.out.println("Modifier avec succès");
+                            countNext = 0;
+                            Login.slidePan.remove(1);
+
+                        } catch (SQLException e1) {
+                            System.out.println("Eurreur de modification");
+                            e1.printStackTrace();
+                        }
                     }
                 }
-            }
-               
 
             }
 
@@ -88,13 +93,12 @@ public class ForgetPassService {
         forgetPass.getBackForgot1().addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(countNext==0){
+                if (countNext == 0) {
                     Login.slidePan.remove(1);
-                }
-                else if(countNext==1){
+                } else if (countNext == 1) {
                     forgetPass.getSlider().nextPanel(2, forgetPass.getPanAutentification(), JPanelSlider.left);
                     countNext--;
-                }else if(countNext==2){
+                } else if (countNext == 2) {
                     forgetPass.getSlider().nextPanel(2, forgetPass.getPanQuestion(), JPanelSlider.left);
                     countNext--;
                     forgetPass.getNextForgot1().setText("Suivant");
@@ -102,8 +106,6 @@ public class ForgetPassService {
 
             }
         });
-
-
 
         // Mot de pass visible et non visible
         forgetPass.getSaryMaso().addMouseListener(new MouseInputAdapter() {
@@ -113,11 +115,11 @@ public class ForgetPassService {
                 if (testEyes) {
                     showHidePasse.showPass(forgetPass.getTxtNewPass1(), forgetPass.getSaryMaso());
                     showHidePasse.showPass(forgetPass.getTxtNewPass2(), forgetPass.getSaryMaso());
-                    testEyes=false;
+                    testEyes = false;
                 } else {
                     showHidePasse.hidePass(forgetPass.getTxtNewPass1(), forgetPass.getSaryMaso());
                     showHidePasse.hidePass(forgetPass.getTxtNewPass2(), forgetPass.getSaryMaso());
-                    testEyes=true;
+                    testEyes = true;
 
                 }
             }
@@ -128,7 +130,8 @@ public class ForgetPassService {
 
     }
 
-    // **********************verification nom,prenom,Question***************************************
+    // **********************verification
+    // nom,prenom,Question***************************************
     public boolean haveAccount() {
         String nomTest, prenomTest;
         boolean test = false;
@@ -168,7 +171,8 @@ public class ForgetPassService {
             forgetPass.getTxtForgotPrenom().setForeground(Color.red);
             forgetPass.getTxtForgotPrenom().setText("veuiller remplir");
         }
-        if (forgetPass.getStatutAutentification().getText().equals("Aucune compte trouvée")) {
+        if (forgetPass.getStatutAutentification().getText().equals("Aucune compte trouvée") ||
+                forgetPass.getStatutAutentification().getText().equals("Tsy manan kaonty io")) {
             forgetPass.getTxtForgotNom().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
             forgetPass.getTxtForgotPrenom().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
         }
