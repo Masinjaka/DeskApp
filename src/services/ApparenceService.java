@@ -67,7 +67,7 @@ public class ApparenceService {
         });
     }
 
-    // Methode update langue
+    // -------------------------------------------------------------------Methode update langue---------------------------------------------------------------------------------------------------------------------------------
     private void updateInterfaceLangue(){
         apparence.titre.setText(messages.getString("titre"));
         apparence.language.setText(messages.getString("lang"));
@@ -201,7 +201,7 @@ public class ApparenceService {
         
     }
 
-    //Methode update police------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------Methode update police------------------------------------------------------------------------------------------------------------------------------------------
     public void updateInterfacePolice(int pourcentage){
         apparence.titre.changeFont(pourcentage);
         apparence.language.changeFont(pourcentage);
@@ -261,6 +261,27 @@ public class ApparenceService {
           Template.logInService.getLogin().getLabPass().changeFont(pourcentage);
           Template.logInService.getLogin().getLabCreer().changeFont(pourcentage);
           Template.logInService.getLogin().getLabForgotPass().changeFont(pourcentage);
+
+          //creation compte
+         Template.logInService.getLogin().getCreationService().getCreation().getNomLabel().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getCreation().getPrenomLabel().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getCreation().getUsernameLabel().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getCreation().getPassLabel().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getCreation().getConfirmLabel().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getCreation().getFanazavana().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getCreation().getTitre().changeFont(pourcentage);
+        //  Template.logInService.getLogin().getCreationService().getCreation().getNext().getTextLabel().setText(messages.getString("btn_suivant"));
+        //  Template.logInService.getLogin().getCreationService().getCreation().getRetour().setText(messages.getString("btn_retour"));
+        // Template.logInService.getLogin().getCreationService().getCreation().getQuestionsBox().setModel(modele);
+         
+        //mot de passe oublié
+        Template.logInService.getLogin().getForgetPassService().getForgetPass().getLabTitre().changeFont(pourcentage);
+        Template.logInService.getLogin().getForgetPassService().getForgetPass().getLabNom().changeFont(pourcentage);
+        Template.logInService.getLogin().getForgetPassService().getForgetPass().getLabPrenom().changeFont(pourcentage);
+        Template.logInService.getLogin().getForgetPassService().getForgetPass().getLabFanazavana().changeFont(pourcentage);
+        Template.logInService.getLogin().getForgetPassService().getForgetPass().getFanazavana().changeFont(pourcentage);
+        // Template.logInService.getLogin().getForgetPassService().getForgetPass().getNext().getTextLabel().setText(messages.getString("btn_suivant"));
+        // Template.logInService.getLogin().getForgetPassService().getForgetPass().getRetour().setText(messages.getString("btn_retour"));
  
          //Exporter
          Template.menuServices.getDashboard().getParametreService().getParametre().getExporterService().getExporter().getTitre().changeFont(pourcentage);
