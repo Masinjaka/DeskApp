@@ -21,13 +21,7 @@ import utilities.menu.MenuItems;
 
 public class Menus extends JPanel {
 
-<<<<<<< HEAD
     public MenuItems dash,debut,fin,list,setting;
-=======
-
-    public MenuItems dash,debut,fin,list,setting;
-
->>>>>>> ebd94167d60b0c8c5087b7b75a62b4645f489ead
     
     public void setDash(MenuItems dash) {
         this.dash = dash;

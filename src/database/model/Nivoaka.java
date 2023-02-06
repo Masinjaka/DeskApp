@@ -29,7 +29,6 @@ public class Nivoaka {
 		
 		result = stm.executeQuery(query);
 		
-		
 		return result;
 	}
 

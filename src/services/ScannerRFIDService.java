@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class ScannerRFIDService {
     private ScannerRFID scanner = new ScannerRFID();
@@ -126,21 +127,27 @@ public class ScannerRFIDService {
 
     //Methode pour verifier et envoyer le ussid et le mot de passe -----------------------------------------------------------------
     public void  checkAndSendData(){
-        out=(OutputStream) serialPort.getOutputStream();
+
+        PrintWriter writer = new PrintWriter(serialPort.getOutputStream());
         
         if(scanner.getSsField().getText().equals("")|| scanner.getPassField().getText().equals("")){
             JOptionPane.showMessageDialog(null, "Remplissez les champs vide", "champ vide", 0, new ImageIcon(new Sary().Resize("img/alert.png", 50, 50)));
         }
         else{
-            byte[] ssid=("a"+scanner.getSsField().getText()).getBytes();
+
+            writer.println(scanner.getSsField().getText() +"/"+scanner.getPassField().getText());
+            writer.flush();
+            writer.close();
+           /*  byte[] ssid=("a"+scanner.getSsField().getText()).getBytes();
            // byte[] pass=("b"+scanner.getPassField().getText()).getBytes();
             try {
                 out.write(ssid);
                 out.flush();
-                System.out.println("envoye de donné terminer");
+                
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }*/
+            System.out.println("envoye de donné terminer");
 
         }
 
