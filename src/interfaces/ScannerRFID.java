@@ -51,10 +51,12 @@ public class ScannerRFID extends JPanel{
     private JTextField passField = new JTextField();
    
     
-    private Labels port = new Labels("Choisissez le port du", Fonts.textFont, Colors.grey, 25);
-    private Labels portSuite = new Labels("module parmis la liste", Fonts.textFont, Colors.grey, 25);
-    Labels titre = new Labels("Scanner RFID",Fonts.textFont,Colors.text,25);
-   
+     private Labels port = new Labels("Choisissez le port du", Fonts.textFont, Colors.grey, 25);
+     private Labels portSuite = new Labels("module parmis la liste", Fonts.textFont, Colors.grey, 25);
+     private Labels titre = new Labels("Scanner RFID",Fonts.textFont,Colors.text,25);
+     
+     private Labels ssid = new Labels("Wifi SSID: ",Fonts.textFont,Colors.grey,15);
+     private Labels pass = new Labels("mot de passe: ",Fonts.textFont,Colors.grey,15);
 
     public ScannerRFID(){
         this.setLayout(new BorderLayout());
@@ -173,15 +175,12 @@ public class ScannerRFID extends JPanel{
         //Customize some panel
         gridTest.setBorder(new FlatLineBorder(new Insets(10,10,10,10), Colors.stroke, 1, 20));
 
-        Labels port = new Labels("Connecter le module ", Fonts.textFont, Colors.grey, 25);
-        Labels portSuite = new Labels("à un réseau wifi", Fonts.textFont, Colors.grey, 25);
+       
         port.isLight(true);
         portSuite.isLight(true);
         
         //ssid and pass
-        Labels ssid = new Labels("Wifi SSID: ",Fonts.textFont,Colors.grey,15);
-        Labels pass = new Labels("mot de passe: ",Fonts.textFont,Colors.grey,15);
-        
+     
         ssField.setPreferredSize(new Dimension(150,40));
         ssField.setBorder(new FlatLineBorder(new Insets(2,10,2,10), Colors.purple,3,20));
         passField.setPreferredSize(new Dimension(150,40));
@@ -279,9 +278,34 @@ public class ScannerRFID extends JPanel{
 
 
     //getter and setter
+    
     public Labels getPort() {
         return port;
     }
+
+    public Labels getSsid() {
+        return ssid;
+    }
+
+
+
+    public void setSsid(Labels ssid) {
+        this.ssid = ssid;
+    }
+
+
+
+    public Labels getPass() {
+        return pass;
+    }
+
+
+
+    public void setPass(Labels pass) {
+        this.pass = pass;
+    }
+
+
 
     public void setPort(Labels port) {
         this.port = port;

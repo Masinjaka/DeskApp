@@ -36,6 +36,9 @@ public class Account extends JPanel {
     private  JLabel editPass = new JLabel(new ImageIcon(new Sary().Resize("img/edit_blue.png",25,25)));
     private JLabel editSQ = new JLabel(new ImageIcon(new Sary().Resize("img/edit_blue.png",25,25)));
 
+    //LogOut
+    private JLabel logout = new JLabel(new ImageIcon(new Sary().Resize("img/getout.png",30,30)));
+
     Labels usernameLabel,changePass,changeSQ,changeCompte;
     public Account(){
         changePass = new Labels("Changer de compte",Fonts.textFont,Colors.text,15);
@@ -57,10 +60,8 @@ public class Account extends JPanel {
 
     public JPanel topPanel(){
         //Panels
-        JLabel logout = new JLabel(new ImageIcon(new Sary().Resize("img/getout.png",30,30)));
         logout.setBorder(BorderFactory.createEmptyBorder(18, 0, 0, 0));
         AsideLayout aside = new AsideLayout(profile, logout);
-
         return aside;
     }
     public JPanel centerPanel(){
@@ -135,12 +136,11 @@ public class Account extends JPanel {
     public JPanel bottomPanel(){
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panel.setOpaque(false);
-        changePass.setForeground(Colors.blue);
 
        changePass.addMouseListener(new MouseInputAdapter() {
             
        });
-         changeCompte= new Labels("Changer compte","Arial",Colors.text,15);
+         changeCompte= new Labels("Changer compte","Arial",Colors.purple,15);
        
         panel.add(changeCompte);
         return panel;
@@ -235,6 +235,22 @@ public class Account extends JPanel {
 
     public void setChangeCompte(Labels changeCompte) {
         this.changeCompte = changeCompte;
+    }
+
+    public UserProfile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(UserProfile profile) {
+        this.profile = profile;
+    }
+
+    public JLabel getLogout() {
+        return logout;
+    }
+
+    public void setLogout(JLabel logout) {
+        this.logout = logout;
     }
     
 

@@ -13,11 +13,14 @@ import com.formdev.flatlaf.ui.FlatLineBorder;
 import com.intellij.openapi.ui.VerticalFlowLayout;
 
 import utilities.Colors;
+import utilities.Fonts;
 import utilities.ImageProfile;
+import utilities.Labels;
 
 public class LazyWorker extends JPanel{
     
     private String icon,name,missing;
+    Labels nam, skipped;
 
     public LazyWorker(String icon, String name, String missing) {
         this.icon = icon;
@@ -36,18 +39,15 @@ public class LazyWorker extends JPanel{
         JLabel icon = new JLabel(new ImageIcon(new ImageProfile().ResizeCercle("img/workers/"+this.icon, 40, 40, Colors.purple)));
         
         JPanel namePanel = new JPanel(new VerticalFlowLayout());
-        JLabel name  = new JLabel(this.name);
-        JLabel skipped = new JLabel("n'a pas enregistré son "+this.missing);
+         nam  = new Labels(this.name,Fonts.textFont,Colors.text,13);
+         skipped = new Labels("n'a pas enregistré son "+this.missing,Fonts.textFont,Colors.text,13);
 
         //Customization
         skipped.setFont(new Font("Century Gothic",Font.BOLD,13));
-        skipped.setForeground(Colors.text);
-        name.setFont(new Font("Century Gothic",Font.BOLD,13));
-        name.setForeground(Colors.text);
         panel.setOpaque(false);namePanel.setOpaque(false);
 
         //Laying out elements
-        namePanel.add(name);namePanel.add(skipped);
+        namePanel.add(nam);namePanel.add(skipped);
 
         panel.add(icon);
         panel.add(namePanel);
@@ -79,4 +79,21 @@ public class LazyWorker extends JPanel{
     public void setWork_time(String missing) {
         this.missing = missing;
     }
+
+    public Labels getNam() {
+        return nam;
+    }
+
+    public void setNam(Labels nam) {
+        this.nam = nam;
+    }
+
+    public Labels getSkipped() {
+        return skipped;
+    }
+
+    public void setSkipped(Labels skipped) {
+        this.skipped = skipped;
+    }
+    
 }

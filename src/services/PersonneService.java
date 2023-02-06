@@ -28,6 +28,7 @@ public class PersonneService {
     private boolean actualiser = true;
     DefaultListModel<WorkerCard> model = (DefaultListModel<WorkerCard>) personnels.getList().getModel();
     private String nom, prenom;
+    private  AjouterService AJService=new AjouterService();
 
     public PersonneService() {
 
@@ -86,7 +87,7 @@ public class PersonneService {
                 super.mouseClicked(e);
 
                 // Afficher une fenêtre d'ajout
-                AjouterService AJService = new AjouterService();
+                //  AJService = new AjouterService();
                 AJService.setVisible(true);
                 // ? Actualiser la liste de personnel
                 actualiser(AJService);
@@ -413,6 +414,14 @@ public class PersonneService {
 
     public void setPersonnels(Personnels personnels) {
         this.personnels = personnels;
+    }
+
+    public AjouterService getAJService() {
+        return AJService;
+    }
+
+    public void setAJService(AjouterService aJService) {
+        AJService = aJService;
     }
 
 }

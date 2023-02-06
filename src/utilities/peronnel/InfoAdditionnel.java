@@ -166,4 +166,12 @@ public class InfoAdditionnel extends JPanel {
         Fvalue = fvalue;
     }
 
+    public Labels getLkey() {
+        return Lkey;
+    }
+
+    public void setLkey(Labels lkey) {
+        Lkey = lkey;
+    }
+
 }

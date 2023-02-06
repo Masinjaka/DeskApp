@@ -26,6 +26,10 @@ public class Apparence extends JPanel{
    public Labels language,theme, taille;
    private JComboBox<String> box = new JComboBox<>();
    private JComboBox<String> boxtaille = new JComboBox<>();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 12eb9eea50df10d284cd9cf2f1a37ab0222e486f
     public Apparence(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));

@@ -35,6 +35,8 @@ public class Personnels extends JPanel {
     private List<InfoAdditionnel> infoList = new ArrayList<InfoAdditionnel>();
     private String poste="",cin="",heures="";
     InfoAdditionnel Carte;
+
+    private InfoAdditionnel CIN, Posta;
     
     public Personnels(){
         this.setLayout(new BorderLayout(10,0));
@@ -100,20 +102,20 @@ public class Personnels extends JPanel {
         // ? Ajouter des informations en bas du photo et du nom de la personne
 
         // * Informations
-        InfoAdditionnel CIN = new InfoAdditionnel("CIN",this.cin,false);
-        InfoAdditionnel Poste = new InfoAdditionnel("Poste",this.poste,false);
+        CIN = new InfoAdditionnel("CIN",this.cin,false);
+        Posta = new InfoAdditionnel("Poste",this.poste,false);
         Carte = new InfoAdditionnel("Carte rfid ", "",true);
         InfoAdditionnel Heure = new InfoAdditionnel("Heure de service",this.heures,true);
 
         infoList.add(CIN);
-        infoList.add(Poste);
+        infoList.add(Posta);
         infoList.add(Carte);
         infoList.add(Heure);
          
         
         infoPanel.add(CIN);
         //infoPanel.add(Box.createVerticalStrut(2));
-        infoPanel.add(Poste);
+        infoPanel.add(Posta);
         //infoPanel.add(Box.createVerticalStrut(2));
         infoPanel.add(Heure);
         //infoPanel.add(Box.createVerticalStrut(2));
@@ -216,6 +218,29 @@ public class Personnels extends JPanel {
 
     public void setEdit(Buttons edit) {
         this.edit = edit;
+    }
+
+    public InfoAdditionnel getCarte() {
+        return Carte;
+    }
+
+    public void setCarte(InfoAdditionnel carte) {
+        Carte = carte;
+    }
+
+    public InfoAdditionnel getCIN() {
+        return CIN;
+    }
+
+    public void setCIN(InfoAdditionnel cIN) {
+        CIN = cIN;
+    }
+
+    public void setPoste(InfoAdditionnel poste) {
+        Posta = poste;
+    }
+    public InfoAdditionnel getPosta(){
+        return Posta;
     }
     
     

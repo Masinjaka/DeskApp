@@ -14,8 +14,10 @@ import com.formdev.flatlaf.ui.FlatLineBorder;
 
 import services.AccountService;
 import services.ApparenceService;
+import services.AproposService;
 import services.ExporterService;
 import services.ScannerRFIDService;
+import services.Term_conditionService;
 import utilities.Colors;
 import utilities.menu.Cell;
 import utilities.menu.MenuItems;
@@ -24,13 +26,13 @@ public class Parametre extends JPanel {
 
     private JList<MenuItems> list;
     private JPanel placeholder,thirdParty;
-    private Apropos aprop= new Apropos();
-    private Term_Condition TermCond = new Term_Condition();
 
     private AccountService accountService = new AccountService();
     private ExporterService exporterService= new ExporterService();
     private ApparenceService apparenceService = new ApparenceService();
     private ScannerRFIDService scannerRFIDService= new ScannerRFIDService();
+    private AproposService aproposService=new AproposService();
+    private Term_conditionService term_conditionService=new Term_conditionService();
     
     public MenuItems menuApparence=new MenuItems("login", "Apparence");
     public MenuItems menuScan=new MenuItems("logout", "Scanner RFID");
@@ -106,18 +108,6 @@ public class Parametre extends JPanel {
     public void setList(JList<MenuItems> list) {
         this.list = list;
     }
-    public  Apropos getApropos() {
-        return aprop;
-    }
-    public void setApropos(Apropos aprop){
-        this.aprop= aprop;
-    }
-    public Term_Condition getTerm_Condition(){
-        return TermCond;
-    }
-    public void setTerm_Condition (Term_Condition TermCond){
-        this.TermCond = TermCond;
-    }
    
 
     //getter and setter accountService
@@ -144,6 +134,18 @@ public class Parametre extends JPanel {
     }
     public void setScannerRFIDService(ScannerRFIDService scannerRFIDService) {
         this.scannerRFIDService = scannerRFIDService;
+    }
+    public AproposService getAproposService() {
+        return aproposService;
+    }
+    public void setAproposService(AproposService aproposService) {
+        this.aproposService = aproposService;
+    }
+    public Term_conditionService getTerm_conditionService() {
+        return term_conditionService;
+    }
+    public void setTerm_conditionService(Term_conditionService term_conditionService) {
+        this.term_conditionService = term_conditionService;
     }
     
     

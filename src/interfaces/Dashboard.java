@@ -4,10 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.Insets;
-import java.net.http.WebSocket;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -15,15 +12,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.jdesktop.swingx.auth.LoginService;
+
 import com.formdev.flatlaf.ui.FlatLineBorder;
 
+import services.AproposService;
 import services.ClockInService;
 import services.ClockOutService;
 import services.HistoricService;
 import services.OverviewService;
 import services.ParametreService;
 import services.PersonneService;
-import services.ScannerRFIDService;
 import services.WebSocketService;
 import utilities.Colors;
 import utilities.Fonts;
@@ -40,7 +39,6 @@ public class Dashboard extends JPanel {
     private ClockOutService clockOutService = new ClockOutService();
     private ParametreService parametreService = new ParametreService();
     private OverviewService overviewService = new OverviewService();
-    private ScannerRFIDService scannerRFIDService=new ScannerRFIDService();
     private WebSocketService webService ;
 
 
@@ -79,10 +77,13 @@ public class Dashboard extends JPanel {
 
         welcomeLabel = new Labels("Bienvenue",Fonts.textFont, Colors.text, 30);
      
+<<<<<<< HEAD
 
         welcomeLabel.setFont(new Font("Arial",Font.BOLD,30));
         welcomeLabel.setForeground(textColor);
 
+=======
+>>>>>>> 12eb9eea50df10d284cd9cf2f1a37ab0222e486f
 
         welcomePanel.add(welcomeLabel);
 
@@ -167,13 +168,7 @@ public class Dashboard extends JPanel {
         this.overviewService = overviewService;
     }
 
-    public ScannerRFIDService getScannerRFIDService() {
-        return scannerRFIDService;
-    }
-
-    public void setScannerRFIDService(ScannerRFIDService scannerRFIDService) {
-        this.scannerRFIDService = scannerRFIDService;
-    }
+    
     
     
     

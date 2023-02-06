@@ -40,7 +40,13 @@ public class CreationService {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (countNext == 1) {
-                    creation.getRetour().setText("Log in");
+                    // pour le changement de
+                    // langue----------------------------------------------------------
+                    if (creation.getRetour().getText().equals("retour"))
+                        creation.getRetour().setText("Log in");
+                    else if (creation.getRetour().getText().equals("Miverina"))
+                        creation.getRetour().setText("Hiditra");
+                    // -----------------------------------------------------------------------------
                     creation.getSlider().nextPanel(1, creation.getCreation1(), JPanelSlider.left);
                     countNext--;
                 } else if (countNext == 2) {
@@ -67,10 +73,17 @@ public class CreationService {
                 redMark1();
             }
             // ------- verification personnel dans la base------------------
-            else if (isPersonnel(creation.getNomField().getText(), creation.getPrenomField().getText())) {
+            else if (!isPersonnel(creation.getNomField().getText(), creation.getPrenomField().getText())) {
                 creation.getSlider().nextPanel(1, creation.getCreation2(), JPanelSlider.right);
-                creation.getRetour().setText("retour");
+
+                // pour le changement de langue-------------------------------------------------
+                if (creation.getRetour().getText().equals("Log in"))
+                    creation.getRetour().setText("retour");
+                else if (creation.getRetour().getText().equals("Hiditra"))
+                    creation.getRetour().setText("Miverina");
                 countNext++;
+                // ---------------------------------------------------------------------------------
+
             } else {
                 JOptionPane.showMessageDialog(null, "Désolé ce personnel est introuvable");
             }
@@ -81,17 +94,25 @@ public class CreationService {
                     new String(creation.getConfirmField().getPassword()).equals("")) {
                 redMark2();
 
-                //---verifie si l'username est déja utilisé par une autre compte------------------
+                // ---verifie si l'username est déja utilisé par une autre
+                // compte------------------
             } else if (!usernameUsed(creation.getField().getText())) {
                 if (new String(creation.getPassField().getPassword())
                         .equals(new String(creation.getConfirmField().getPassword()))) {
-                    creation.getNext().setText("Create");
+
+                    // pour le changement de langue------------------------------------------------------
+                    if (creation.getNext().getTextLabel().getText().equals("Suivant"))
+                        creation.getNext().getTextLabel().setText("Créer");
+                    else if (creation.getNext().getTextLabel().getText().equals("Manaraka"))
+                        creation.getNext().getTextLabel().setText("Foronina");
+                    // -----------------------------------------------------------------------------------------------------------
+
                     creation.getSlider().nextPanel(1, creation.getCreation3(), JPanelSlider.right);
                     countNext++;
                 } else {
                     JOptionPane.showMessageDialog(null, "Mot de passe non identique");
                 }
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Username est déja utilisé par autre compte");
             }
         } else if (countNext == 2) {
@@ -106,7 +127,7 @@ public class CreationService {
                             password,
                             creation.getQuestionsBox().getSelectedItem().toString(),
                             creation.getReponseField().getText());
-                            JOptionPane.showMessageDialog(null, "Enregistrement compre effectué");
+                    JOptionPane.showMessageDialog(null, "Enregistrement compre effectué");
                     Login.slidePan.remove(1);
                 } catch (SQLException e) {
                     e.printStackTrace();

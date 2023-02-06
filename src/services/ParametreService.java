@@ -18,6 +18,7 @@ public class ParametreService {
             public void valueChanged(ListSelectionEvent e) {
                 
                 if(!e.getValueIsAdjusting()){
+                    
                     switch(parametre.getList().getSelectedIndex()){
                         case 0:
                             parametre.load(parametre.getApparenceService().getApparence());
@@ -32,10 +33,10 @@ public class ParametreService {
                             parametre.load(parametre.getExporterService().getExporter());
                             break;
                         case 4:
-                        parametre.load(parametre.getApropos());
+                        parametre.load(parametre.getAproposService().getApropos());
                             break;
                         case 5:
-                            parametre.load(parametre.getTerm_Condition());
+                            parametre.load(parametre.getTerm_conditionService().getTerm_Condition());
                             break;
                     }
                 }

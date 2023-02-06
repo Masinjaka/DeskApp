@@ -21,6 +21,9 @@ public class ClockIn extends JPanel{
 
     private JList<WorkerCheck> list;
     public static Overview overview = new Overview();
+    private WorkerCheck emma=new WorkerCheck("emma.jpg", "MAHAVIARISOA Sitraka Emma", "7h00-18h00", "7h15");
+    private WorkerCheck cecil=new WorkerCheck("cecilia.jpg", "RAZAKAHARISOA Cecilia", "7h00-18h00", "7h15");
+
 
     public ClockIn(){
         this.setLayout(new BorderLayout(10,0));
@@ -46,8 +49,8 @@ public class ClockIn extends JPanel{
         list.setModel(model);
         list.setCellRenderer(new HistoricRenderer());
         pane.setViewportView(list);
-        model.addElement(new WorkerCheck("emma.jpg", "MAHAVIARISOA Sitraka Emma", "7h00-18h00", "7h15"));
-        model.addElement(new WorkerCheck("cecilia.jpg", "RAZAKAHARISOA Cecilia", "7h00-18h00", "7h15"));
+        model.addElement(emma);
+        model.addElement(cecil);
 
         panel.add(pane);
         return panel;
@@ -58,7 +61,19 @@ public class ClockIn extends JPanel{
     public void setList(JList<WorkerCheck> list) {
         this.list = list;
     }
-
+    public WorkerCheck getEmma() {
+        return emma;
+    }
+    public void setEmma(WorkerCheck emma) {
+        this.emma = emma;
+    }
+    public WorkerCheck getCecil() {
+        return cecil;
+    }
+    public void setCecil(WorkerCheck cecil) {
+        this.cecil = cecil;
+    }
+    
     
 
 }

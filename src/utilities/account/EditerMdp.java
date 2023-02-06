@@ -27,7 +27,7 @@ public class EditerMdp extends JFrame {
     private JPasswordField passNow=new JPasswordField();
     private JLabel eye=new JLabel();
     private Labels labely= new Labels("Entrer ton mot de passe actuel","Arial",Colors.text,13);
-    private  Buttons cancel=new Buttons("Cancel");
+    private  Buttons cancel=new Buttons("Annuler");
     private  Buttons suivant =new Buttons("Suivant");
     private JPanel panel;
     private Buttons valider=new Buttons("Valider");
@@ -96,7 +96,7 @@ public class EditerMdp extends JFrame {
     JPanel pan=new JPanel(new FlowLayout(FlowLayout.RIGHT));
     pan.setOpaque(false);
 
-    cancel.setBackground(Color.gray);
+    cancel.isOutlined(true);
     cancel.addMouseListener(new MouseInputAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -104,8 +104,8 @@ public class EditerMdp extends JFrame {
         }
     });
    
-    pan.add(cancel);
-    pan.add(suivant);
+    
+    pan.add(suivant);pan.add(cancel);
 
     return pan;
     }
