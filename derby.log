@@ -1,23 +1,18 @@
 ----------------------------------------------------------------
-<<<<<<< HEAD
-Mon Feb 06 20:21:14 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0186-27bf-0109-0000047df3f8 
-on database directory D:\DeskApp\smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
-Loaded from file:/D:/DeskApp/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=18.0.1.1+2-6
-user.dir=D:\DeskApp
-=======
-Tue Jan 31 10:27:57 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0186-06b9-abf8-000003b1d1f0 
-on database directory C:\Users\JD132\Desktop\Dossier\smart\smartVs\deskNew\DeskApp\smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
-Loaded from file:/C:/Users/JD132/Desktop/Dossier/smart/smartVs/deskNew/DeskApp/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=18.0.1.1+2-6
-user.dir=C:\Users\JD132\Desktop\Dossier\smart\smartVs\deskNew\DeskApp
->>>>>>> 12eb9eea50df10d284cd9cf2f1a37ab0222e486f
-os.name=Windows 11
+Sat Feb 11 18:49:30 EAT 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0186-412a-d037-000006090680 
+on database directory /home/iahleka/javaVs/DeskApp/smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
+Loaded from file:/home/iahleka/javaVs/DeskApp/lib/derby.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.17+8-post-Ubuntu-1ubuntu222.04
+user.dir=/home/iahleka/javaVs/DeskApp
+os.name=Linux
 os.arch=amd64
-os.version=10.0
+os.version=5.15.0-47-generic
 derby.system.home=null
+------------  Begin Error Message -------------
+
+System may be in a inconsistent state, missing file /home/iahleka/javaVs/DeskApp/smartdb/log/log1.dat
+------------  End Error Message -------------
+
 Database Class Loader started - derby.database.classpath=''

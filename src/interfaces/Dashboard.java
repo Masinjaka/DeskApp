@@ -77,13 +77,7 @@ public class Dashboard extends JPanel {
 
         welcomeLabel = new Labels("Bienvenue",Fonts.textFont, Colors.text, 30);
      
-<<<<<<< HEAD
 
-        welcomeLabel.setFont(new Font("Arial",Font.BOLD,30));
-        welcomeLabel.setForeground(textColor);
-
-=======
->>>>>>> 12eb9eea50df10d284cd9cf2f1a37ab0222e486f
 
         welcomePanel.add(welcomeLabel);
 
