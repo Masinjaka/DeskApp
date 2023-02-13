@@ -3,6 +3,7 @@ import javax.swing.SwingUtilities;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import interfaces.Template;
+
 public class App {
 
     static Template template;
@@ -18,6 +19,6 @@ public class App {
                 template = new Template(1);
             }
         });
-        
+
     }
 }

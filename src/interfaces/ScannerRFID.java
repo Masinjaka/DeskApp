@@ -58,6 +58,8 @@ public class ScannerRFID extends JPanel{
      private Labels ssid = new Labels("Wifi SSID: ",Fonts.textFont,Colors.grey,15);
      private Labels pass = new Labels("mot de passe: ",Fonts.textFont,Colors.grey,15);
 
+    
+
     public ScannerRFID(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
@@ -278,11 +280,14 @@ public class ScannerRFID extends JPanel{
 
 
     //getter and setter
+
+    
     
     public Labels getPort() {
         return port;
     }
 
+    
     public Labels getSsid() {
         return ssid;
     }

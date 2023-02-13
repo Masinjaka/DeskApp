@@ -78,7 +78,6 @@ public class Dashboard extends JPanel {
         welcomeLabel = new Labels("Bienvenue",Fonts.textFont, Colors.text, 30);
      
 
-
         welcomePanel.add(welcomeLabel);
 
         JButton search = new JButton("Rechercher");

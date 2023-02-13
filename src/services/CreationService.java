@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputAdapter;
 
 import com.formdev.flatlaf.ui.FlatLineBorder;
@@ -16,10 +15,24 @@ import interfaces.Creation;
 import interfaces.Login;
 import interfaces.Template;
 import utilities.Colors;
+import utilities.OptionPanes;
 
 public class CreationService {
     private Creation creation = new Creation();
 
+    // Option pane
+    private OptionPanes unknowPersonne = new OptionPanes(null, "smart", "Personnel introuvable",
+            "Cette personne n'existe pas dans la liste", "img/alert.png", false);
+    private OptionPanes passOption = new OptionPanes(null, "smart", "Mot de passe non identique",
+            "Verifier votre mot de passe", "img/alert.png", false);
+    private OptionPanes userNOption = new OptionPanes(null, "smart", "Username dèja utilisé",
+            "Trouvez une autre username",
+            "img/alert.png", false);
+    private OptionPanes reponseOption = new OptionPanes(null, "smart", "Réponse vide ",
+            "Vous devez répondre cette question", "img/alert.png", false);
+    private OptionPanes doneOption = new OptionPanes(null, "smart", "Fini", "Creation compte effectuée",
+            "img/reussit.png", false);
+            
     // compterur pour le bouton suivant et retour
     private int countNext = 0;
 
@@ -85,7 +98,8 @@ public class CreationService {
                 // ---------------------------------------------------------------------------------
 
             } else {
-                JOptionPane.showMessageDialog(null, "Désolé ce personnel est introuvable");
+
+                unknowPersonne.montrer();
             }
 
         } else if (countNext == 1) {
@@ -100,7 +114,8 @@ public class CreationService {
                 if (new String(creation.getPassField().getPassword())
                         .equals(new String(creation.getConfirmField().getPassword()))) {
 
-                    // pour le changement de langue------------------------------------------------------
+                    // pour le changement de
+                    // langue------------------------------------------------------
                     if (creation.getNext().getTextLabel().getText().equals("Suivant"))
                         creation.getNext().getTextLabel().setText("Créer");
                     else if (creation.getNext().getTextLabel().getText().equals("Manaraka"))
@@ -110,14 +125,17 @@ public class CreationService {
                     creation.getSlider().nextPanel(1, creation.getCreation3(), JPanelSlider.right);
                     countNext++;
                 } else {
-                    JOptionPane.showMessageDialog(null, "Mot de passe non identique");
+
+                    passOption.montrer();
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Username est déja utilisé par autre compte");
+
+                userNOption.montrer();
             }
         } else if (countNext == 2) {
-            if (creation.getReponseField().getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Reponder au question");
+            if (creation.getReponseField().getText().isEmpty()) {
+
+                reponseOption.montrer();
             } else {
                 try {
                     String password = new String(creation.getPassField().getPassword());
@@ -127,7 +145,8 @@ public class CreationService {
                             password,
                             creation.getQuestionsBox().getSelectedItem().toString(),
                             creation.getReponseField().getText());
-                    JOptionPane.showMessageDialog(null, "Enregistrement compre effectué");
+
+                    doneOption.montrer();
                     Login.slidePan.remove(1);
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -233,6 +252,46 @@ public class CreationService {
 
     public void setCreation(Creation creation) {
         this.creation = creation;
+    }
+
+    public OptionPanes getPassOption() {
+        return passOption;
+    }
+
+    public void setPassOption(OptionPanes passOption) {
+        this.passOption = passOption;
+    }
+
+    public OptionPanes getUserNOption() {
+        return userNOption;
+    }
+
+    public void setUserNOption(OptionPanes userNOption) {
+        this.userNOption = userNOption;
+    }
+
+    public OptionPanes getUnknowPersonne() {
+        return unknowPersonne;
+    }
+
+    public void setUnknowPersonne(OptionPanes unknowPersonne) {
+        this.unknowPersonne = unknowPersonne;
+    }
+
+    public OptionPanes getReponseOption() {
+        return reponseOption;
+    }
+
+    public void setReponseOption(OptionPanes reponseOption) {
+        this.reponseOption = reponseOption;
+    }
+
+    public OptionPanes getDoneOption() {
+        return doneOption;
+    }
+
+    public void setDoneOption(OptionPanes doneOption) {
+        this.doneOption = doneOption;
     }
 
 }

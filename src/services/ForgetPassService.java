@@ -2,6 +2,9 @@ package services;
 
 import java.awt.Color;
 import java.awt.Insets;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.FocusAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +21,7 @@ import interfaces.ForgetPass;
 import interfaces.Login;
 import interfaces.Template;
 import utilities.Colors;
+import utilities.OptionPanes;
 import utilities.Login.showHidePasse;
 
 public class ForgetPassService {
@@ -26,6 +30,9 @@ public class ForgetPassService {
     String question, valiny;
     boolean testEyes = false;
 
+    //optionpane
+    private OptionPanes doneOption=new OptionPanes(null,"smart","Fini","Recupération compte effectuée","img/reussit.png",false);
+    private OptionPanes passOption=new OptionPanes(null,"smart","Mot de passe non identique","verifier votre mot de passe ","img/alert.png",false);
     // compterur pour le bouton suivant et retour
     private int countNext = 0;
 
@@ -75,6 +82,7 @@ public class ForgetPassService {
                             Template.db_tables.getUtilisateur().modifierPass(id,
                                     new String(forgetPass.getTxtNewPass1().getPassword()));
                             System.out.println("Modifier avec succès");
+                            doneOption.montrer();
                             countNext = 0;
                             Login.slidePan.remove(1);
 
@@ -170,9 +178,10 @@ public class ForgetPassService {
             forgetPass.getTxtForgotPrenom().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
             forgetPass.getTxtForgotPrenom().setForeground(Color.red);
             forgetPass.getTxtForgotPrenom().setText("veuiller remplir");
+            forgetPass.getTxtForgotPrenom().setForeground(Colors.text);
         }
         if (forgetPass.getStatutAutentification().getText().equals("Aucune compte trouvée") ||
-                forgetPass.getStatutAutentification().getText().equals("Tsy manan kaonty io")) {
+                forgetPass.getStatutAutentification().getText().equals("Tsy manana kaonty io")) {
             forgetPass.getTxtForgotNom().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
             forgetPass.getTxtForgotPrenom().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
         }
@@ -185,6 +194,7 @@ public class ForgetPassService {
             forgetPass.getTxtReponseForgot().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
             forgetPass.getTxtReponseForgot().setForeground(Color.red);
             forgetPass.getTxtReponseForgot().setText("veuiller remplir");
+            forgetPass.getTxtReponseForgot().setForeground(Colors.text);
         }
     }
 
@@ -196,18 +206,15 @@ public class ForgetPassService {
         if (pass1.equals("") || pass2.equals("")) {
             if (pass1.equals("")) {
                 forgetPass.getTxtNewPass1().setBorder(new FlatLineBorder(new Insets(12, 10, 12, 10), Color.red, 3, 20));
-                forgetPass.getTxtNewPass1().setForeground(Color.red);
             }
             if (pass2.equals("")) {
                 forgetPass.getTxtNewPass2().setBorder(new FlatLineBorder(new Insets(12, 10, 12, 10), Color.red, 3, 20));
-                forgetPass.getTxtNewPass2().setForeground(Color.red);
             }
         } else if (pass1.equals(pass2)) {
             test = true;
         } else {
             forgetPass.getStatutRecovery().setForeground(Color.red);
-            forgetPass.getStatutRecovery().setText("verifier le mot de passe");
-            System.out.println("non identique");
+            passOption.montrer();
         }
         return test;
     }
@@ -221,11 +228,17 @@ public class ForgetPassService {
             txt.addMouseListener(new MouseInputAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    txt.setBorder(new FlatLineBorder(new Insets(12, 10, 12, 10), Colors.purple, 3, 20));
-                    txt.setForeground(Color.DARK_GRAY);
-                    txt.setText("");
+                    checkRedMark(txt);
+                }
+            });
+            txt.addFocusListener(new FocusAdapter(){
+
+                @Override
+                public void focusGained(FocusEvent arg0) {
+                    checkRedMark(txt);
                 }
 
+                
             });
 
         }
@@ -237,13 +250,33 @@ public class ForgetPassService {
             txt.addMouseListener(new MouseInputAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    txt.setBorder(new FlatLineBorder(new Insets(12, 10, 12, 10), Colors.purple, 3, 20));
-                    txt.setForeground(Color.DARK_GRAY);
+                    checkRedMark(txt);
                 }
+            });
+            txt.addFocusListener(new FocusAdapter(){
+
+                @Override
+                public void focusGained(FocusEvent arg0) {
+                    checkRedMark(txt);
+                }
+
+                
             });
 
         }
 
+    }
+
+    // methode pour verifier les zone de text
+    public void checkRedMark(JTextField txt){
+        forgetPass.getStatutAutentification().setText("");
+        if(txt.getText().equals("veuiller remplir")){
+            txt.setBorder(new FlatLineBorder(new Insets(12, 10, 12, 10), Colors.purple, 3, 20));
+            txt.setForeground(Colors.text);
+            txt.setText("");
+           }
+           else
+            txt.setBorder(new FlatLineBorder(new Insets(12, 10, 12, 10), Colors.purple, 3, 20));
     }
 
     public ForgetPass getForgetPass() {
@@ -252,6 +285,22 @@ public class ForgetPassService {
 
     public void setForgetPass(ForgetPass forgetPass) {
         this.forgetPass = forgetPass;
+    }
+
+    public OptionPanes getDoneOption() {
+        return doneOption;
+    }
+
+    public void setDoneOption(OptionPanes doneOption) {
+        this.doneOption = doneOption;
+    }
+
+    public OptionPanes getPassOption() {
+        return passOption;
+    }
+
+    public void setPassOption(OptionPanes passOption) {
+        this.passOption = passOption;
     }
 
 }

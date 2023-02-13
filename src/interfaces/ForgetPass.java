@@ -24,7 +24,7 @@ public class ForgetPass extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JPanel panTitre=new JPanel(new FlowLayout(FlowLayout.CENTER));
 	private Labels labTitre=new Labels("Mot de pass oublié","Arial",Colors.blue,25);
-	private Labels fanazavana=new Labels("<html>Entrez votre nom et votre prenom  <br>pour verifier et renitialisr votre compte<html>","Arial",Colors.grey,15);
+	private Labels fanazavana=new Labels("<html>Entrez votre nom et votre prénom  <br>pour verifier et renitialiser votre compte<html>","Arial",Colors.grey,15);
 	
 	private Labels labNom=new Labels("Nom","Arial",Colors.text,13);
 	private JTextField txtForgotNom=new JTextField();
@@ -56,15 +56,18 @@ public class ForgetPass extends JPanel{
 
 	private JPanelSlider slider=new JPanelSlider();
 
-	private Labels LabFanazavana=new Labels("<html>Tsy maintsy ampidirinao eto <br>le valiny nataonao tamin nanao creation compte iny"
-				+ "<br>mba ahafana mamantatra hoe anao le compte!!!</html>","Arial",Colors.grey,15);
+	private Labels LabFanazavana=new Labels("<html>Vous devez repondre cette question  <br>pour verifier votre compte</html>","Arial",Colors.grey,15);
 
 	//statut pour chaque panel
 	private Labels statutAutentification=new Labels("","Arial",Colors.blue,15);
 	private Labels statutQuestion=new Labels("","Arial",Colors.blue,15);
 	private Labels statutRecovery=new Labels("","Arial",Colors.blue,15);
-	
-	public ForgetPass(){
+
+	// mot de passe
+	Labels forgotPass1 = new Labels("Nouveau mot de pass", "Arial", Colors.text, 13);
+	Labels forgotPass2 = new Labels("Retapez le nouveau de mot de pass", "Arial", Colors.text, 13);
+
+	public ForgetPass() {
 		//partie NORTH
 		setLayout(new VerticalFlowLayout());
 		panTitre.add(labTitre);
@@ -114,16 +117,21 @@ public class ForgetPass extends JPanel{
 		txtForgotNom.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
 		txtForgotPrenom.setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
 
+		//centré statut
+		JPanel panStatu=new JPanel(new FlowLayout(FlowLayout.CENTER));
+		panStatu.add(statutAutentification);
+		panStatu.setOpaque(false);
+
 		pan.add(fanazavana);
 		pan.add(panNomForgot);
 		pan.add(txtForgotNom);
 		pan.add(panPrenomForgot);
 		pan.add(txtForgotPrenom);
-		pan.add(statutAutentification);
+		pan.add(panStatu);
 		pan.setBackground(Color.white);
 
 		JPanel panOutPan= new JPanel(new FlowLayout(FlowLayout.CENTER));
-		pan.setPreferredSize(new Dimension(280,250));
+		pan.setPreferredSize(new Dimension(280,280));
 		pan.setBorder(new FlatLineBorder(new Insets(10, 2, 10, 2), Colors.stroke, 1, 20));
 		panOutPan.add(pan);
 
@@ -153,8 +161,6 @@ public class ForgetPass extends JPanel{
 	//panel renitialisation password
 		public  JPanel forgotPanPassRecover() {
 			JPanel pan=new JPanel(new VerticalFlowLayout(VerticalFlowLayout. MIDDLE,10,10,true,false));
-			Labels forgotPass1= new Labels("Nouveau mot de pass","Arial",Colors.text,13);
-			Labels forgotPass2=new Labels("Retapez le nouveau de mot de pass","Arial",Colors.text,13);
 			JPanel panValider=new JPanel(new BorderLayout());
 			JPanel panPass1Forget=new JPanel(new BorderLayout());
 			JPanel panPass2Forget=new JPanel(new BorderLayout());
@@ -341,6 +347,18 @@ public class ForgetPass extends JPanel{
 		}
 		public void setLabFanazavana(Labels labFanazavana) {
 			LabFanazavana = labFanazavana;
+		}
+		public Labels getForgotPass1() {
+			return forgotPass1;
+		}
+		public void setForgotPass1(Labels forgotPass1) {
+			this.forgotPass1 = forgotPass1;
+		}
+		public Labels getForgotPass2() {
+			return forgotPass2;
+		}
+		public void setForgotPass2(Labels forgotPass2) {
+			this.forgotPass2 = forgotPass2;
 		}
 		
 		

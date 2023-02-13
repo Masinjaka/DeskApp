@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sat Feb 11 18:49:30 EAT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0186-412a-d037-000006090680 
+Sun Feb 12 22:11:00 EAT 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0186-4709-a56c-0000063a08b0 
 on database directory /home/iahleka/javaVs/DeskApp/smartdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
 Loaded from file:/home/iahleka/javaVs/DeskApp/lib/derby.jar
 java.vendor=Ubuntu
@@ -10,9 +10,4 @@ os.name=Linux
 os.arch=amd64
 os.version=5.15.0-47-generic
 derby.system.home=null
-------------  Begin Error Message -------------
-
-System may be in a inconsistent state, missing file /home/iahleka/javaVs/DeskApp/smartdb/log/log1.dat
-------------  End Error Message -------------
-
 Database Class Loader started - derby.database.classpath=''

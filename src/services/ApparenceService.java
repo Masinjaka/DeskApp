@@ -111,6 +111,7 @@ public class ApparenceService {
         Template.menuServices.getDashboard().getParametreService().getParametre().getScannerRFIDService().getScanner().getTitre().setText(messages.getString("scan_rfid"));
         Template.menuServices.getDashboard().getParametreService().getParametre().getScannerRFIDService().getScanner().getSsid().setText(messages.getString("scan_rfid"));
         Template.menuServices.getDashboard().getParametreService().getParametre().getScannerRFIDService().getScanner().getPass().setText(messages.getString("mdp"));
+        Template.menuServices.getDashboard().getParametreService().getParametre().getScannerRFIDService().getScanner().getBouton().getTextLabel().setText(messages.getString("btn_suivant"));
 
 
          //taux de présence/ ponctualité
@@ -144,6 +145,20 @@ public class ApparenceService {
          Template.logInService.getLogin().getCreationService().getCreation().getNext().getTextLabel().setText(messages.getString("btn_suivant"));
          Template.logInService.getLogin().getCreationService().getCreation().getRetour().setText(messages.getString("btn_retour"));
 
+         Template.logInService.getLogin().getCreationService().getUnknowPersonne().getLab_message1().setText(messages.getString("personne_introuvable1"));
+         Template.logInService.getLogin().getCreationService().getUnknowPersonne().getLab_message2().setText(messages.getString("personne_introuvable2"));
+         Template.logInService.getLogin().getCreationService().getPassOption().getLab_message1().setText(messages.getString("pass_not_same1"));
+         Template.logInService.getLogin().getCreationService().getPassOption().getLab_message2().setText(messages.getString("pass_not_same2"));
+         Template.logInService.getLogin().getCreationService().getUserNOption().getLab_message1().setText(messages.getString("userName_used1"));
+         Template.logInService.getLogin().getCreationService().getUserNOption().getLab_message2().setText(messages.getString("userName_used2"));
+         Template.logInService.getLogin().getCreationService().getReponseOption().getLab_message1().setText(messages.getString("reponse_empty"));
+         Template.logInService.getLogin().getCreationService().getReponseOption().getLab_message2().setText(messages.getString("reponse_empty2"));
+         Template.logInService.getLogin().getCreationService().getDoneOption().getLab_message1().setText(messages.getString("done"));
+         Template.logInService.getLogin().getCreationService().getDoneOption().getLab_message2().setText(messages.getString("done_creation2"));
+        
+         
+
+
         Template.logInService.getLogin().getCreationService().getCreation().getQuestionsBox().setModel(modele);
          
         //mot de passe oublié
@@ -154,6 +169,12 @@ public class ApparenceService {
         Template.logInService.getLogin().getForgetPassService().getForgetPass().getFanazavana().setText(messages.getString("check_nom_prenom"));
         Template.logInService.getLogin().getForgetPassService().getForgetPass().getNext().getTextLabel().setText(messages.getString("btn_suivant"));
         Template.logInService.getLogin().getForgetPassService().getForgetPass().getRetour().setText(messages.getString("btn_retour"));
+        Template.logInService.getLogin().getForgetPassService().getForgetPass().getForgotPass1().setText(messages.getString("create_mdp"));
+        Template.logInService.getLogin().getForgetPassService().getForgetPass().getForgotPass2().setText(messages.getString("confirm_mdp"));
+        Template.logInService.getLogin().getForgetPassService().getDoneOption().getLab_message1().setText(messages.getString("done"));
+        Template.logInService.getLogin().getForgetPassService().getDoneOption().getLab_message2().setText(messages.getString("done_recoverCompte"));
+        Template.logInService.getLogin().getForgetPassService().getPassOption().getLab_message1().setText(messages.getString("pass_not_same1"));
+        Template.logInService.getLogin().getForgetPassService().getPassOption().getLab_message2().setText(messages.getString("pass_not_same2"));
 
 
 
@@ -161,7 +182,8 @@ public class ApparenceService {
 
         //Exporter
         Template.menuServices.getDashboard().getParametreService().getParametre().getExporterService().getExporter().getTitre().setText(messages.getString("export"));
-
+        Template.menuServices.getDashboard().getParametreService().getParametre().getExporterService().getExporter().getLanguage().setText(messages.getString("export_phrase"));
+        Template.menuServices.getDashboard().getParametreService().getParametre().getExporterService().getExporter().getExporterBtn().getTextLabel().setText(messages.getString("export"));
         //Apropos
         Template.menuServices.getDashboard().getParametreService().getParametre().getAproposService().getApropos().getTitre().setText(messages.getString("propos"));
 
@@ -241,6 +263,9 @@ public class ApparenceService {
         Template.menuServices.getDashboard().getParametreService().getParametre().getScannerRFIDService().getScanner().getPort().changeFont(pourcentage);
         Template.menuServices.getDashboard().getParametreService().getParametre().getScannerRFIDService().getScanner().getPortSuite().changeFont(pourcentage);
         Template.menuServices.getDashboard().getParametreService().getParametre().getScannerRFIDService().getScanner().getTitre().changeFont(pourcentage);
+        Template.menuServices.getDashboard().getParametreService().getParametre().getScannerRFIDService().getScanner().getSsid().changeFont(pourcentage);
+        Template.menuServices.getDashboard().getParametreService().getParametre().getScannerRFIDService().getScanner().getPass().changeFont(pourcentage);
+        Template.menuServices.getDashboard().getParametreService().getParametre().getScannerRFIDService().getScanner().getBouton().getTextLabel().changeFont(pourcentage);
 
         //taux de présence/ ponctualité
          ClockIn.overview.getTitle().changeFont(pourcentage);
@@ -270,6 +295,16 @@ public class ApparenceService {
          Template.logInService.getLogin().getCreationService().getCreation().getConfirmLabel().changeFont(pourcentage);
          Template.logInService.getLogin().getCreationService().getCreation().getFanazavana().changeFont(pourcentage);
          Template.logInService.getLogin().getCreationService().getCreation().getTitre().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getUnknowPersonne().getLab_message1().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getUnknowPersonne().getLab_message2().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getPassOption().getLab_message1().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getPassOption().getLab_message2().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getUserNOption().getLab_message1().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getUserNOption().getLab_message2().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getReponseOption().getLab_message1().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getReponseOption().getLab_message2().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getDoneOption().getLab_message1().changeFont(pourcentage);
+         Template.logInService.getLogin().getCreationService().getDoneOption().getLab_message2().changeFont(pourcentage);
         //  Template.logInService.getLogin().getCreationService().getCreation().getNext().getTextLabel().setText(messages.getString("btn_suivant"));
         //  Template.logInService.getLogin().getCreationService().getCreation().getRetour().setText(messages.getString("btn_retour"));
         // Template.logInService.getLogin().getCreationService().getCreation().getQuestionsBox().setModel(modele);
@@ -280,11 +315,23 @@ public class ApparenceService {
         Template.logInService.getLogin().getForgetPassService().getForgetPass().getLabPrenom().changeFont(pourcentage);
         Template.logInService.getLogin().getForgetPassService().getForgetPass().getLabFanazavana().changeFont(pourcentage);
         Template.logInService.getLogin().getForgetPassService().getForgetPass().getFanazavana().changeFont(pourcentage);
+        Template.logInService.getLogin().getForgetPassService().getForgetPass().getForgotPass1().changeFont(pourcentage);
+        Template.logInService.getLogin().getForgetPassService().getForgetPass().getForgotPass2().changeFont(pourcentage);
+        Template.logInService.getLogin().getForgetPassService().getDoneOption().getLab_message1().changeFont(pourcentage);
+        Template.logInService.getLogin().getForgetPassService().getDoneOption().getLab_message2().changeFont(pourcentage);
+        Template.logInService.getLogin().getForgetPassService().getPassOption().getLab_message1().changeFont(pourcentage);
+        Template.logInService.getLogin().getForgetPassService().getPassOption().getLab_message2().changeFont(pourcentage);
+        
+
+        
+
         // Template.logInService.getLogin().getForgetPassService().getForgetPass().getNext().getTextLabel().setText(messages.getString("btn_suivant"));
         // Template.logInService.getLogin().getForgetPassService().getForgetPass().getRetour().setText(messages.getString("btn_retour"));
  
          //Exporter
          Template.menuServices.getDashboard().getParametreService().getParametre().getExporterService().getExporter().getTitre().changeFont(pourcentage);
+         Template.menuServices.getDashboard().getParametreService().getParametre().getExporterService().getExporter().getLanguage().changeFont(pourcentage);
+        Template.menuServices.getDashboard().getParametreService().getParametre().getExporterService().getExporter().getExporterBtn().getTextLabel().changeFont(pourcentage);
         
          // terme et condition
         Template.menuServices.getDashboard().getParametreService().getParametre().getTerm_conditionService().getTerm_Condition().getTitre().changeFont(pourcentage);

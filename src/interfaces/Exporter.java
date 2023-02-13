@@ -18,7 +18,7 @@ import utilities.Labels;
 public class Exporter extends JPanel{
     private Buttons exporterBtn=new Buttons("Exporter");
     Labels titre = new Labels("Exporter",Fonts.textFont,Colors.text,25);
-
+    Labels language = new Labels("Exporter la liste des personnels", Fonts.textFont, Colors.text, 15);
     public Exporter(){
         this.setLayout(new BorderLayout());
         this.setBorder(BorderFactory.createEmptyBorder(15,10,10,10));
@@ -52,7 +52,7 @@ public class Exporter extends JPanel{
 
         //-----******************* LABELS ************-*--------
 
-        Labels language = new Labels("Exporter la liste des personnels", Fonts.textFont, Colors.text, 15);
+        
    
         //-----******************* Bouton ************-*--------
         panBtn.add(exporterBtn);
@@ -74,5 +74,12 @@ public class Exporter extends JPanel{
     public void setTitre(Labels titre) {
         this.titre = titre;
     }
+    public Labels getLanguage() {
+        return language;
+    }
+    public void setLanguage(Labels language) {
+        this.language = language;
+    }
+
     
 }

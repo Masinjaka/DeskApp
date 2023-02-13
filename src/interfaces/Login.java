@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.event.MouseInputAdapter;
-
+import java.awt.event.*;
 import com.formdev.flatlaf.ui.FlatLineBorder;
 import com.intellij.openapi.ui.VerticalFlowLayout;
 import diu.swe.habib.JPanelSlider.JPanelSlider;
@@ -30,7 +30,7 @@ import utilities.Sary;
 
 public class Login extends JPanel {
     private static final long serialVersionUID = 1L;
-    private  JPanel panDivise = new JPanel();
+    private JPanel panDivise = new JPanel();
     // image a gauche
     private JLabel imageAgauche = new JLabel();
 
@@ -41,15 +41,15 @@ public class Login extends JPanel {
     private JLabel labLogo = new JLabel();
 
     // panels dans Panel creation
-    private CreationService creationService=new CreationService();
-    private JPanel panelCreation=creationService.getCreation();
+    private CreationService creationService = new CreationService();
+    private JPanel panelCreation = creationService.getCreation();
 
     // panels forgot pass
-    private ForgetPassService forgetPassService=new ForgetPassService();
-    private JPanel panForgotPass=forgetPassService.getForgetPass();
+    private ForgetPassService forgetPassService = new ForgetPassService();
+    private JPanel panForgotPass = forgetPassService.getForgetPass();
 
     public JTextField txtUserName = new JTextField();
-   
+
     private Labels labUserName = new Labels("Nom d'utilisateur", "Arial", Colors.text, 15);
     public JPanel panUserName = new JPanel(new FlowLayout(FlowLayout.LEFT));
     public JLabel labStatutUserName = new JLabel("");
@@ -59,8 +59,8 @@ public class Login extends JPanel {
     private Labels labPass = new Labels("Mot de passe", "Arial", Colors.text, 15);
     private JPanel panTxtPass = new JPanel(new FlowLayout(FlowLayout.LEFT));
     public JLabel labStatutTxtPass = new JLabel("");
-    
-    public  Buttons btnConnect = new Buttons("Se connecter");
+
+    public Buttons btnConnect = new Buttons("Se connecter");
     private JPanel panBtnConnect = new JPanel(new FlowLayout());
     private Labels labPhrase = new Labels(" pas de compte?", "Arial", Colors.grey, 11);
     public Labels labCreer = new Labels("Créer un compte", "Arial", Colors.text, 12);
@@ -77,21 +77,21 @@ public class Login extends JPanel {
 
     public JLabel imgVisible = new JLabel();
     private JPanel panEye = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-    private JPanel passPanel = new AsideLayout(txtPass,panEye);
+    private JPanel passPanel = new AsideLayout(txtPass, panEye);
 
     public static JPanelSlider slidePan = new JPanelSlider();
 
-    JPanel panMiddle=new JPanel(new VerticalFlowLayout());
-    
-    public Login(){
+    JPanel panMiddle = new JPanel(new VerticalFlowLayout());
+
+    public Login() {
 
     }
 
     public JPanel login() {
-       
+
         panDivise.setLayout(new GridLayout(1, 2));
-        
-        //Partie Logo
+
+        // Partie Logo
         labLogo.setIcon(logo);
         flowlogo.setLayout(new FlowLayout());
         flowlogo.add(labLogo);
@@ -108,18 +108,20 @@ public class Login extends JPanel {
         userNamePanel.add(txtUserName);
         txtUserName.setBorder(null);
 
-        //enlève le redmark sur la partie username
+        // enlève le redmark sur la partie username
         txtUserName.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(labStatutUserName.getText().equals("veuiller remplir")){
-                    userNamePanel.setBorder(new FlatLineBorder(new Insets(1, 10, 1, 10), Colors.purple, 2, 20));
-                    labStatutUserName.setText("");
-                    statut.setText("");
-                }
+                removeRedUsername();
             }
         });
+        txtUserName.addFocusListener(new FocusAdapter() {
 
+            @Override
+            public void focusGained(FocusEvent e) {
+                removeRedUsername();
+            }
+        });
         // partie password
         labStatutTxtPass.setForeground(Color.red);
         panTxtPass.add(labPass);
@@ -127,26 +129,28 @@ public class Login extends JPanel {
         panTxtPass.setBackground(null);
         panTxtPass.setPreferredSize(new Dimension(100, 20));
         imgVisible.setIcon(new ImageIcon(new Sary().Resize("img/Hide.png", 25, 25)));
-       
+
         passPanel.setBorder(new FlatLineBorder(new Insets(1, 10, 1, 10), Colors.purple, 2, 20));
         txtPass.setPreferredSize(new Dimension(150, 25));
         txtPass.setBorder(BorderFactory.createLineBorder(Color.white, 5));
         panEye.add(imgVisible);
         panEye.setBackground(Color.white);
 
-         //enlève le redmark sur la partie password
-         txtPass.addMouseListener(new MouseInputAdapter() {
+        // enlève le redmark sur la partie password
+        txtPass.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(labStatutTxtPass.getText().equals("veuiller remplir")){
-                    passPanel.setBorder(new FlatLineBorder(new Insets(1, 10, 1, 10), Colors.purple, 2, 20));
-                    labStatutTxtPass.setText("");
-                    statut.setText("");
-                }
+                removeRedPass();
+            }
+        });
+        txtPass.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                removeRedPass();
+
             }
         });
 
-       
         panBtnConnect.add(btnConnect);
         panBtnConnect.setBackground(null);
 
@@ -165,15 +169,15 @@ public class Login extends JPanel {
         panSouth.setBackground(null);
 
         panelInformation.setLayout(new VerticalFlowLayout());
-       
+
         panelInformation.add(panUserName);
         panelInformation.add(userNamePanel);
         panelInformation.add(panTxtPass);
         panelInformation.add(passPanel);
         panelInformation.add(panPassOublie);
-       
+
         panelInformation.setBackground(Color.white);
-        panelInformation.setPreferredSize(new Dimension(230,230));
+        panelInformation.setPreferredSize(new Dimension(230, 230));
         panelAdroite.add(panelInformation);
 
         panelInformation.setBorder(new FlatLineBorder(new Insets(10, 2, 10, 2), Colors.stroke, 1, 20));
@@ -181,26 +185,35 @@ public class Login extends JPanel {
         panMiddle.add(panelAdroite);
         panMiddle.add(panBtnConnect);
         panMiddle.add(panSouth);
-       
 
         slidePan.add(panMiddle);
         slidePan.setBorder(null);
         slidePan.setOpaque(false);
 
-      //  ImageIcon icon = new ImageIcon("img/imageGauche.jpg");
-      
+        // ImageIcon icon = new ImageIcon("img/imageGauche.jpg");
+
         panDivise.add(imageAgauche);
         panDivise.add(slidePan);
 
         return panDivise;
 
     }
-    
 
-       
-      
-       
-  
+    // remove
+    // redMark-------------------------------------------------------------------------------------------
+    public void removeRedUsername() {
+        userNamePanel.setBorder(new FlatLineBorder(new Insets(1, 10, 1, 10), Colors.purple, 2, 20));
+        labStatutUserName.setText("");
+        statut.setText("");
+    }
+
+    public void removeRedPass() {
+        passPanel.setBorder(new FlatLineBorder(new Insets(1, 10, 1, 10), Colors.purple, 2, 20));
+        labStatutTxtPass.setText("");
+        statut.setText("");
+    }
+    // ------------------------------------------------------------------------------------------
+
     public Buttons getBtnConnect() {
         return btnConnect;
     }
@@ -256,6 +269,7 @@ public class Login extends JPanel {
     public void setLabCreer(Labels labCreer) {
         this.labCreer = labCreer;
     }
+
     public JLabel getImgVisible() {
         return imgVisible;
     }
@@ -347,11 +361,5 @@ public class Login extends JPanel {
     public void setForgetPassService(ForgetPassService forgetPassService) {
         this.forgetPassService = forgetPassService;
     }
-    
-   
-
-   
-    
-
 
 }

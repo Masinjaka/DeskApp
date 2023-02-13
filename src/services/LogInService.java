@@ -3,7 +3,6 @@ package services;
 import java.awt.Color;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
-import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JPasswordField;
@@ -16,7 +15,7 @@ import diu.swe.habib.JPanelSlider.JPanelSlider;
 import interfaces.Account;
 import interfaces.Login;
 import interfaces.Template;
-import utilities.Buttons;
+import utilities.Colors;
 import utilities.Login.showHidePasse;
 
 public class LogInService {
@@ -28,17 +27,8 @@ public class LogInService {
         login.getBtnConnect().addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                try {
-                    // por le language------------------------------------------------------------
-                    if (login.getBtnConnect().getTextLabel().getText().equals("Se connecter"))
-                        login.getBtnConnect().getTextLabel().setText("connexion...");
-                    else 
-                        login.getBtnConnect().getTextLabel().setText("Fidirana...");
-                    // ------------------------------------------------------------------------
+                    connectingLangue();
                     verifierUtilisateur(login.getTxtUserName(), login.getTxtPass());
-                } catch (NoSuchAlgorithmException e1) {
-                    e1.printStackTrace();
-                }
 
             }
         });
@@ -79,22 +69,20 @@ public class LogInService {
 
     // *************************verification utilisateur dans la
     // base*************************
-    public void verifierUtilisateur(JTextField userName, JPasswordField pass) throws NoSuchAlgorithmException {
+    public void verifierUtilisateur(JTextField userName, JPasswordField pass)  {
+        
         if (userName.getText().equals("") || new String(pass.getPassword()).equals("")) {
             // pour le
             // language------------------------------------------------------------------------------
-            if (login.getBtnConnect().getTextLabel().getText().equals("conexion..."))
-                login.getBtnConnect().getTextLabel().setText("Se connecter");
-            else
-                login.getBtnConnect().getTextLabel().setText("Hiditra");
+            checkLanguage();
             // ----------------------------------------------------------------------------------------------------------
 
-            if (userName.getText().equals("")) {
+            if (userName.getText().isEmpty()) {
                 login.getUserNamePanel().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
                 login.getLabStatutUserName().setForeground(Color.red);
                 login.getLabStatutUserName().setText("veuiller remplir");
             }
-            if (new String(pass.getPassword()).equals("")) {
+            if (new String(pass.getPassword()).isEmpty()) {
                 login.getPassPanel().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
                 login.getLabStatutTxtPass().setForeground(Color.red);
                 login.getLabStatutTxtPass().setText("veuiller remplir");
@@ -113,40 +101,52 @@ public class LogInService {
                             Account.fieldUsername.setText(login.getTxtUserName().getText());
                             System.out.println("you are logged in!!");
                             login.getStatut().setText("");
+                            login.getPassPanel().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
+                        login.getUserNamePanel().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Colors.purple, 3, 20));
                             Template.autorizeLogin = true;
                             break;
                         } else {
-                            // pour le
-                            // language------------------------------------------------------------------------------
-                            if (login.getBtnConnect().getTextLabel().getText().equals("conexion..."))
-                                login.getBtnConnect().getTextLabel().setText("Se connecter");
-                            else
-                                login.getBtnConnect().getTextLabel().setText("Hiditra");
-                            // ----------------------------------------------------------------------------------------------------------
                             login.getStatut().setText("Mot de passe incorrect");
                             login.getLabStatutTxtPass().setText("* Incorrect!!");
                             login.getLabStatutTxtPass().setForeground(Color.red);
+                            login.getPassPanel().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
                             break;
                         }
                     } else {
-                        // pour le
-                        // language------------------------------------------------------------------------------
-                        if (login.getBtnConnect().getTextLabel().getText().equals("conexion..."))
-                            login.getBtnConnect().getTextLabel().setText("Se connecter");
-                        else
-                            login.getBtnConnect().getTextLabel().setText("Hiditra");
-                        // ----------------------------------------------------------------------------------------------------------
                         login.getLabStatutUserName().setForeground(Color.red);
                         login.getLabStatutTxtPass().setForeground(Color.red);
                         login.getStatut().setText("Mot de pass ou username incorrect");
+                        login.getPassPanel().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
+                        login.getUserNamePanel().setBorder(new FlatLineBorder(new Insets(2, 10, 2, 10), Color.red, 3, 20));
                     }
                 }
+
+                if(!Template.autorizeLogin)
+                    checkLanguage();
 
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
 
         }
+    }
+
+    public void checkLanguage() {
+        System.out.println("check:" + login.getBtnConnect().getTextLabel().getText());
+
+        if (login.getBtnConnect().getTextLabel().getText().equals("connexion..."))
+            login.getBtnConnect().getTextLabel().setText("Se connecter");
+        else
+            login.getBtnConnect().getTextLabel().setText("Hiditra");
+    }
+
+    public void connectingLangue() {
+        // por le language------------------------------------------------------------
+        if (login.getBtnConnect().getTextLabel().getText().equals("Se connecter"))
+            login.getBtnConnect().getTextLabel().setText("connexion...");
+        else
+            login.getBtnConnect().getTextLabel().setText("Fidirana...");
+        // ------------------------------------------------------------------------
     }
 
     public Login getLogin() {
