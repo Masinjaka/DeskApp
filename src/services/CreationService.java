@@ -86,7 +86,7 @@ public class CreationService {
                 redMark1();
             }
             // ------- verification personnel dans la base------------------
-            else if (!isPersonnel(creation.getNomField().getText(), creation.getPrenomField().getText())) {
+            else if (isPersonnel(creation.getNomField().getText(), creation.getPrenomField().getText())) {
                 creation.getSlider().nextPanel(1, creation.getCreation2(), JPanelSlider.right);
 
                 // pour le changement de langue-------------------------------------------------
