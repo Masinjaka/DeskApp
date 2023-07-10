@@ -11,7 +11,7 @@ public class WebSocket {
     private Socket socket = null;
 
     // Port
-    static final int PORT = 8080;
+    static final int PORT = 1234;
 
     // Signal d'erreur
     public static volatile boolean erreur = true;
@@ -35,7 +35,7 @@ public class WebSocket {
         try {
 
             WebSocket.erreur = false;
-            socket = new Socket("localhost", PORT);
+            socket = new Socket("0.0.0.0", PORT);
 
             // Ouvrir un tampon de cannal de communication
             br = new BufferedReader(new InputStreamReader(socket.getInputStream()));

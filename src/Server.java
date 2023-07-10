@@ -51,6 +51,7 @@ public class Server extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 writer = new PrintWriter(out,true);
                 writer.println(field.getText());
+                
             }
             
         });
@@ -81,7 +82,7 @@ public class Server extends JFrame{
 
     private void try_connect() throws IOException{
 
-        ss = new ServerSocket(8080);
+        ss = new ServerSocket(1234);
         SwingWorker work = new SwingWorker() {
             @Override
             protected Void doInBackground() throws Exception {
